@@ -1,242 +1,221 @@
 # Chapter 6 — The Normal Distribution
-
-## Three title options
-
-1. **The Bell Curve That Won the War: How a handheld shape became the grammar of uncertainty**
-2. **When Things Fall: Why so much of what we measure obeys one mathematical law**
-3. **The Most Common Shape: From heights to exam scores, the normal distribution is everywhere—and how to speak its language**
+*The bell that rings everywhere.*
 
 ---
 
-## TL;DR
+In 1875, Francis Galton was plotting dots on graph paper.
 
-The normal distribution is the bell-shaped curve you've seen a hundred times without knowing why it appears everywhere. It's not just ornamental; it's a working tool. Once you know the mean and standard deviation of a normal population, the 68-95-99.7 rule tells you what percentage falls in any band around the middle. Z-scores let you translate any value from any normal distribution into a standardized position, so you can compare apples to apples. The standard normal table converts the complicated formula into a simple lookup. Everything that follows—confidence intervals, hypothesis testing, all of it—pivots on this one curve.
+Each dot represented a father and a son. The horizontal position was the father's height; the vertical position was the son's. He was trying to understand heredity — whether tall fathers produced tall sons, whether short fathers produced short sons. What he found was more interesting than what he was looking for.
 
----
+The cloud of dots had a shape. It wasn't random scatter. It swelled in the middle and thinned toward the edges, symmetrically, as if someone had designed it. And Galton recognized the shape. He had seen it before — in chest measurements of Scottish soldiers, in the diameters of acorns from the same oak tree, in the errors that artillery officers made trying to hit a target. The same curve, appearing again and again in completely unrelated phenomena.
 
-## Cold open: Sir Francis Galton's wisdom teeth
+He began to suspect he was seeing something fundamental. Not a statistical artifact. Not a coincidence. Something deep — a shape that emerges whenever many small, independent causes add up to produce a single measurable outcome.
 
-It's 1875 in London. Francis Galton, polymath and obsessive measurer, is studying heredity. He collects data on heights of parents and their children. He makes dots on a graph—each dot a child, horizontal position the father's height, vertical position the child's. The pattern that emerges is a cloud. It's not random scatter. The cloud has a shape: it swells around the middle, tapers toward the edges, and does so symmetrically. If you squint at the edges of that cloud and imagine it filled in, smoothed, rounded into a curve, you see a bell.
+He was right. That shape is the normal distribution. This chapter teaches you to read it.
 
-Galton had seen the same shape before. It appeared in measurements of acorns from different oak trees, in the chest circumferences of soldiers, in the strengths of cannons tested on the production line. He began to suspect he was looking at a fundamental law of nature—not something imposed by the laws of physics, but something intrinsic to variation itself. When you measure the same kind of thing in a population (heights, or test scores, or the time it takes someone to run a mile), and that measurement is determined by many small independent causes adding up, the result is a bell-shaped distribution. Galton didn't prove this mathematically—that came later—but he saw the pattern and named it: the curve of natural variation. We call it the normal distribution.
-
-What makes it normal is not that it's common—though it is. What makes it normal is that it obeys one mathematical formula, and that formula depends on exactly two numbers: the mean ($\mu$, pronounced "mu," the Greek letter for "average") and the standard deviation ($\sigma$, "sigma," the measure of spread). Every bell-shaped distribution you'll ever meet has this same shape, this same proportions, once you translate its mean to zero and its spread to units of one. This is why the normal distribution is the skeleton key in statistics. It unlocks everything downstream.
-
-This chapter teaches you to read that curve and to move fluently between it and the real data underneath.
-
-### Learning objectives
-
-By the end of this chapter you will be able to:
-
-- **Identify** when the normal distribution is a reasonable model for data and when it's not.
-- **Compute** z-scores that translate any value from any normal distribution into standard units.
-- **Use** the empirical rule (68-95-99.7) to make instant estimates of what percentage of a population lies in any band around the mean.
-- **Read** the standard normal table to find exact probabilities for any standardized interval.
-- **Compare** values from different populations by converting them to z-scores and reading percentiles.
-- **Recognize** when to use the normal distribution to approximate binomial probabilities and execute that approximation correctly.
-
-### Prerequisites
-
-Understanding of the mean and standard deviation from Chapter 2. Familiarity with z-scores as a concept (introduced in Chapter 3). Comfort with reading and interpreting probability as an area under a curve. Willingness to look values up in a table without understanding the calculus underneath.
-
-### Why this chapter matters
-
-The normal distribution is the gateway to inference. In Chapter 7, the central limit theorem will tell you that if you take repeated samples from any population and plot their means, those sample means form a normal distribution. That fact—that sample means are normally distributed even when the population they're drawn from is not—is the foundation of everything you'll do in the rest of this course. You cannot understand confidence intervals, hypothesis testing, or regression without understanding what the normal distribution is and how to move through it. This chapter equips you to do that.
-
-Beyond the classroom, the normal distribution appears whenever a measurement or outcome is influenced by many small independent causes. Test scores. Heights. Weights. Lifetimes of electronic components. The IQ tests that steer lives. The dosages of medications that save them. The distribution is not decorative. It is consequential.
+<!-- → [IMAGE: Recreation of Galton's 1875 bivariate scatter plot — father's height on x-axis, son's height on y-axis. Points form an elliptical cloud, denser in the center and thinning at the edges. A bell curve projected onto each axis to show the marginal distributions. Caption: "Galton's dots. The cloud has a shape — and that shape is the bell."] -->
 
 ---
 
-## Concept 1 — Where the normal curve comes from, and what it measures
+## Why the bell curve appears
 
-The formula for the normal probability density function looks like this:
+There's a thought experiment that makes the normal distribution feel inevitable rather than mysterious.
+
+Imagine flipping 100 fair coins and counting the number of heads. You could get anywhere from 0 to 100. But most of the time, you'll get somewhere around 50. Values far from 50 — say, 10 heads or 90 heads — are extremely rare. Values near 50 are common.
+
+Now plot the probability of each possible outcome. What shape do you get? A bell. Peaked at 50, tapering symmetrically toward both extremes.
+
+Why? Because getting exactly 50 heads requires that about half your coins land heads, and there are an enormous number of ways for that to happen — more ways than there are for exactly 10 or exactly 90. The count near the middle is reachable by many different arrangements of coins; the count near the extremes is reachable by very few.
+
+Now extend the logic. A person's height is determined by hundreds of genes, each contributing a small increment up or down, plus nutrition, plus a dozen environmental factors. If each factor contributes roughly independently and roughly equally, the total is like flipping many coins. Most people land near the middle. Very tall people and very short people are rare.
+
+This is why the normal distribution appears whenever a quantity is the sum of many small independent effects. The causes don't need to be identical to each other. They just need to be numerous and independent. The central limit theorem (which you'll meet in Chapter 7) makes this precise. For now, trust the intuition: sums of many independent small things converge to a bell shape. That's not a coincidence. It's a theorem.
+
+<!-- → [CHART: Bar chart of the binomial distribution for n=100 coin flips — x-axis: number of heads (30 to 70), y-axis: probability. Bars form a clear bell shape peaking at 50. A smooth normal curve overlaid to show how well they match. Student should see the bell emerging from pure counting, with no formula required.] -->
+
+---
+
+## The shape and its two parameters
+
+The formula for the normal distribution is:
 
 $$f(x) = \frac{1}{\sigma \sqrt{2\pi}} \cdot e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}$$
 
-Do not memorize it. Do not even try to understand it in detail. The point is this: it's a function that takes a value $x$ and tells you the *height* of the curve at that point. The curve is symmetric about the mean $\mu$. The mean, median, and mode are all the same number—they all sit at the peak of the bell. The curve tapers off to either side according to how many standard deviations you are away from the mean.
+Don't memorize this. The point isn't to work with the formula — it's to understand what it says.
 
-Here's what matters: this one formula generates an infinite family of bell curves, one for every possible choice of $\mu$ and $\sigma$. A distribution with mean 100 and standard deviation 15 has the same *shape* as a distribution with mean 500 and standard deviation 50—they're just shifted and stretched versions of each other. The shape itself is determined by one thing and one thing only: how many standard deviations away from the mean you are.
+The formula depends on exactly two numbers: $\mu$ (pronounced "mu") and $\sigma$ (pronounced "sigma"). Every bell-shaped distribution is completely determined by these two parameters.
 
-We denote a normal distribution with mean $\mu$ and standard deviation $\sigma$ as $N(\mu, \sigma)$. If your data follows a normal distribution with mean 70 and standard deviation 2.5, you'd write $X \sim N(70, 2.5)$. The tilde means "is distributed as," and the notation is read aloud as "X is distributed as normal with mean 70 and standard deviation 2.5."
+$\mu$ is the mean — the center of the distribution, the value at the peak of the bell. The entire curve is symmetric about $\mu$.
 
-### When is the normal distribution reasonable?
+$\sigma$ is the standard deviation — the measure of spread. A small $\sigma$ produces a tall, narrow bell. A large $\sigma$ produces a short, wide bell. But no matter the size of $\sigma$, the shape is always the same: it's always the same proportions, the same taper, the same family of curves.
 
-Not all data are normally distributed. Heights in a population are. Test scores often are, especially when the test is well-designed and the sample is large. But arrival times at an emergency room are not—they cluster during rush hours and thin out at 3 a.m. Income distributions are not normal—they have a long tail to the right, with a few very high earners pulling the mean above the median. Before you apply the normal distribution to data, you should plot it. Look at the histogram. Does it have a single peak? Does it taper off symmetrically to both sides, or does one tail stretch longer? Are there clusters or gaps? If the data are genuinely skewed, or multimodal, or have heavy outliers, the normal distribution is a poor fit. Statistical tests can tell you whether the data fit the normal distribution well enough. For now, trust your eyes: if the histogram doesn't look roughly bell-shaped, the normal distribution isn't the right tool.
+We write $X \sim N(\mu, \sigma)$ to say that a quantity $X$ follows a normal distribution with mean $\mu$ and standard deviation $\sigma$. The tilde means "is distributed as."
 
-### The trade-off: elegance for precision
+<!-- → [IMAGE: Three normal curves drawn on the same axes, all centered at μ=0. First: σ=1, tall and narrow. Second: σ=2, medium. Third: σ=4, short and wide. Each labeled with its σ value. Caption: "Same mean, different spread. The shape is always the bell — only the width changes."] -->
 
-The normal distribution is useful precisely because it's elegant. If you know the mean and standard deviation, you instantly know that 68% of your data lie within one standard deviation of the mean, 95% within two, and 99.7% within three. This is called the empirical rule, and it's a massive convenience. It means you don't have to calculate anything—you just remember the three numbers 68, 95, and 99.7, and you can estimate answers to a wide class of probability questions in your head.
+Three facts about the normal curve that are worth having in your head:
 
-The cost: you lose precision. The empirical rule gives you rough bands. It says that 68% of the data fall between $\mu - \sigma$ and $\mu + \sigma$. But what if you need to know what percentage falls between $\mu - 0.5\sigma$ and $\mu + 0.8\sigma$? The empirical rule won't tell you. For that, you need the standard normal table, and you need to know how to use it. That's the next concept.
+The mean, median, and mode are all the same number — they all sit at the peak, because the curve is symmetric.
+
+The curve never quite touches zero. It has infinite tails. The probability of values arbitrarily far from the mean is not zero; it's just very, very small.
+
+The total area under the curve equals 1. This is the probability interpretation: if you want to know the probability that $X$ falls in some range, you find the area under the curve over that range.
 
 ---
 
-## Concept 2 — Z-scores and the standard normal distribution
+## The empirical rule: 68, 95, 99.7
 
-Imagine you're an admissions officer at a university. One applicant took the SAT and scored 1200. Another took the ACT and scored 28. Which score is better? You can't compare them directly—they're on different scales. The SAT ranges from 400 to 1600; the ACT ranges from 1 to 36. But what if both distributions are normal? Then you can translate both scores into a common language.
+One of the most useful facts in statistics is so simple it sounds like a cheat.
 
-The common language is the **z-score**, also called the standardized score. A z-score tells you how many standard deviations a value is away from its population mean. The formula is simple:
+For any normal distribution:
+
+- About **68%** of the data fall within one standard deviation of the mean — between $\mu - \sigma$ and $\mu + \sigma$.
+- About **95%** of the data fall within two standard deviations of the mean.
+- About **99.7%** of the data fall within three standard deviations of the mean.
+
+This is called the empirical rule, or sometimes the 68-95-99.7 rule.
+
+These three numbers are worth memorizing because they let you estimate answers instantly. IQ scores are normally distributed with mean 100 and standard deviation 15. Without calculating anything: about 68% of people have IQs between 85 and 115. About 95% have IQs between 70 and 130. About 99.7% have IQs between 55 and 145. The rule tells you that an IQ above 145 is genuinely rare — it falls in the outer 0.3%, the tail beyond three standard deviations.
+
+Notice the rule also gives you the tails. If 95% of data fall within two standard deviations, then 5% fall outside — split symmetrically, about 2.5% in each tail. If 99.7% fall within three, then 0.3% are more extreme, about 0.15% in each tail.
+
+These tail probabilities matter enormously when you get to hypothesis testing. A result that is more than two standard deviations from what you expected is rare by chance. A result more than three standard deviations away is very rare. That's the intuition behind statistical significance, and it all flows from these three numbers.
+
+<!-- → [IMAGE: Standard normal bell curve with three nested shaded bands. Innermost band (darkest): ±1σ, labeled 68%. Middle band: ±2σ, labeled 95%. Outer band (lightest): ±3σ, labeled 99.7%. The unshaded tails at ±3σ clearly visible. Below the curve: the tail percentages labeled — 0.15% each beyond ±3σ, 2.5% each beyond ±2σ. Caption: "The 68-95-99.7 rule. Three numbers to memorize. The tails are already included."] -->
+
+---
+
+## Z-scores: the universal translator
+
+Here is a problem. An applicant to your university scored 1200 on the SAT and another scored 28 on the ACT. These tests are on completely different scales. How do you compare them?
+
+The answer is the z-score.
+
+A z-score tells you how many standard deviations a value is away from its mean. The formula is:
 
 $$z = \frac{x - \mu}{\sigma}$$
 
-where $x$ is the value you're standardizing, $\mu$ is the population mean, and $\sigma$ is the population standard deviation.
+where $x$ is the raw value, $\mu$ is the mean of the distribution, and $\sigma$ is the standard deviation.
 
-Suppose the SAT has mean $\mu = 1050$ and standard deviation $\sigma = 200$. The applicant who scored 1200 has a z-score of:
+Suppose the SAT has mean 1050 and standard deviation 200. The applicant who scored 1200:
 
 $$z = \frac{1200 - 1050}{200} = \frac{150}{200} = 0.75$$
 
 This applicant is 0.75 standard deviations above the mean.
 
-Now suppose the ACT has mean $\mu = 21$ and standard deviation $\sigma = 5$. The applicant who scored 28 has a z-score of:
+Suppose the ACT has mean 21 and standard deviation 5. The applicant who scored 28:
 
-$$z = \frac{28 - 21}{5} = \frac{7}{5} = 1.4$$
+$$z = \frac{28 - 21}{5} = \frac{7}{5} = 1.40$$
 
-This applicant is 1.4 standard deviations above the mean. So the second applicant did better *relative to peers taking the same test*. The score of 28 is more impressive than 1200.
+This applicant is 1.4 standard deviations above the mean. The ACT score of 28 is more impressive than the SAT score of 1200, even though 1200 is a bigger number. The z-score strips away the arbitrary scale and tells you the only thing that matters: where you sit in the distribution.
 
-Here's the key insight: when you convert any value to a z-score, you're expressing it in terms of distance from the mean, measured in standard deviations. Once everything is expressed in z-scores, the distribution becomes standardized. We call this the standard normal distribution, written $N(0, 1)$—mean zero, standard deviation one. This is the distribution Galton discovered: the universal shape of variation, stripped of any particular location or scale. Every normal distribution can be converted into this one standard form.
+The z-score has a concrete interpretation:
+- $z = 0$ means you're at the mean.
+- $z = 1$ means you're one standard deviation above the mean — about the 84th percentile.
+- $z = -1$ means you're one standard deviation below — about the 16th percentile.
+- $z = 2$ means you're two standard deviations above — about the 97.5th percentile.
+- $z = -2$ means you're two below — about the 2.5th percentile.
 
-The interpretation of z-scores is straightforward:
+These percentile numbers come directly from the empirical rule. If 68% of the population falls between $z = -1$ and $z = +1$, then 16% fall below $z = -1$ (by symmetry), and 84% fall below $z = +1$. The z-score and the percentile rank are the same information expressed differently.
 
-- $z = 0$ means the value is exactly at the mean.
-- $z = 1$ means the value is one standard deviation above the mean.
-- $z = -1.5$ means the value is 1.5 standard deviations *below* the mean.
-- $z = 2.3$ means the value is 2.3 standard deviations above the mean.
+### The standard normal distribution
 
-A positive z-score means the value is above the mean. A negative z-score means it's below. The magnitude tells you how far.
+When you convert a value to a z-score, you're translating it into a distribution with mean 0 and standard deviation 1. This is called the **standard normal distribution**, written $N(0, 1)$.
 
-### The empirical rule applied to z-scores
+Every normal distribution, regardless of its original mean and standard deviation, becomes the same standard normal distribution once you convert to z-scores. This is why z-scores are so powerful: they provide a universal scale. All normal distributions are the same shape. Standardization reveals that universal shape.
 
-Remember those percentages: 68, 95, 99.7? Now you can state them precisely in terms of z-scores.
-
-For any normal distribution:
-
-- About 68% of data fall between $z = -1$ and $z = +1$ (within one standard deviation of the mean).
-- About 95% of data fall between $z = -2$ and $z = +2$ (within two standard deviations of the mean).
-- About 99.7% of data fall between $z = -3$ and $z = +3$ (within three standard deviations of the mean).
-
-This is profound. It means that if you know a value's z-score, you instantly know its percentile rank in the population.
-
-If someone has a z-score of 1, they're at about the 84th percentile. (Half the population is below the mean—that's 50%—plus about 34% of the population between the mean and one standard deviation above it, for a total of 84%.)
-
-If someone has a z-score of 2, they're at about the 97.5th percentile. (50% + 47.5% = 97.5%.)
-
-If someone has a z-score of -1, they're at about the 16th percentile. (50% - 34% = 16%.)
-
-### A worked example — comparing test scores
-
-A student scores 85 on a statistics exam where the class mean is 80 and the standard deviation is 4. Another student scores 88 on an English exam where the class mean is 85 and the standard deviation is 6. Assuming both classes have normally distributed scores, who performed better relative to their peers?
-
-*Statistics student:*
-
-$$z = \frac{85 - 80}{4} = \frac{5}{4} = 1.25$$
-
-This student is 1.25 standard deviations above the class mean. Using the empirical rule as a rough guide, this puts them around the 89th percentile.
-
-*English student:*
-
-$$z = \frac{88 - 85}{6} = \frac{3}{6} = 0.5$$
-
-This student is only 0.5 standard deviations above the class mean. This puts them around the 69th percentile.
-
-*Conclusion:* The statistics student performed better relative to peers, even though the raw score (85 vs. 88) was lower. The z-score accounts for the fact that the English class had more spread—getting 3 points above the mean is less impressive when the standard deviation is 6 than when it's 4.
-
-### Common misconceptions
-
-**"A z-score of 2 is twice as good as a z-score of 1."** No. A z-score measures position relative to the mean, not magnitude. It's a ranking system, not a proportion. A z-score of 2 puts you farther from the mean than a z-score of 1, but it doesn't mean your actual value is twice as large.
-
-**"Z-scores are only for normal distributions."** True. The z-score formula makes sense for any distribution, but the *interpretation* of z-scores—the fact that a z-score of 1 corresponds to roughly the 84th percentile—relies on the normal distribution. For other distributions, you'd need different conversion tables.
+<!-- → [INFOGRAPHIC: Two-step transformation diagram. Left: a bell curve labeled N(1050, 200) — the SAT distribution — with the value 1200 marked. Arrow pointing right labeled "z = (x − μ)/σ". Right: the standard normal N(0,1) with z = 0.75 marked at the same relative position. Parallel diagram below for ACT: N(21, 5), value 28, transforms to z = 1.40. Both z-scores shown on the same standard normal axis so the comparison is visible. Caption: "Z-scores put incomparable scales on a common ruler."] -->
 
 ---
 
-## Concept 3 — Using the normal distribution to find probabilities
+## Reading the probability from the curve
 
-You know the mean and standard deviation. You have a value you want to evaluate. You need to find the probability that a randomly selected observation from the population falls above, below, or between certain points. How do you do it?
+The empirical rule gives you three checkpoints: 68%, 95%, 99.7%. But what if you need a more precise answer? What's the probability of a value between $z = 0$ and $z = 1.25$?
 
-The answer is the standard normal table, also called the z-table. This is a lookup table that shows, for any z-score, the probability of getting a value between the mean (z=0) and that z-score in a standard normal distribution. You read down the first column to find your z-score, read across to find the second decimal place, and the number where row and column meet is the probability.
+For this you use the standard normal table, also called the z-table.
 
-For example, if you look up z = 1.25, the table gives you 0.3944. This means the probability of getting a value between 0 and 1.25 standard deviations above the mean is 0.3944 or 39.44%.
+The standard normal table lists, for each z-score, the area under the standard normal curve between 0 and that z-score. This area is a probability — the probability that a randomly selected value from a standard normal population falls between the mean and the z-score.
 
-Here's how to use the table to answer real questions:
+For example, the table entry for $z = 1.25$ is 0.3944. The probability of a value between the mean and 1.25 standard deviations above the mean is 0.3944.
 
-**Question: What proportion of the population falls below a given value?**
+A few reference points worth knowing:
+- $z = 1.00$: area between 0 and 1 is 0.3413. Combined with the 0.5 below the mean, the area below $z = 1$ is 0.8413. This is the 84th percentile.
+- $z = 1.96$: area below this z-score is very close to 0.975. This number — 1.96 — will come back constantly in Chapters 8 and 9.
+- $z = 2.576$: area below this is 0.995. Used for 99% confidence intervals.
 
-Step 1: Convert the value to a z-score using $z = \frac{x - \mu}{\sigma}$.
+Because the curve is symmetric, the table for positive z-scores is all you need. The area below $z = -1.25$ equals the area above $z = 1.25$, which is $0.5 - 0.3944 = 0.1056$.
 
-Step 2: If the z-score is positive, look it up in the table to get the area between 0 and your z-score. Add 0.5 (the area to the left of the mean) to get the total area to the left of your value.
+### Three types of probability questions
 
-Step 3: If the z-score is negative, look up the absolute value, subtract the table value from 0.5 to account for being on the left side of the mean.
+Every probability question about a normal distribution reduces to one of three types.
 
-**Question: What proportion of the population falls above a given value?**
+**Below a value:** Convert to a z-score. If positive, add 0.5 to the table value (since 0.5 of the area is to the left of the mean). If negative, subtract the table value from 0.5.
 
-Find the proportion below it (using the steps above) and subtract from 1.
+**Above a value:** Find the probability below it, then subtract from 1.
 
-**Question: What proportion falls between two values?**
+**Between two values:** Convert both to z-scores. Find the area between each and the mean. Add if they're on opposite sides of the mean; subtract if they're on the same side.
 
-Convert both to z-scores. Look up both. Subtract the smaller area from the larger area.
+A worked example. Heights of adult men are normally distributed with mean 70 inches and standard deviation 2.5 inches. What's the probability a randomly selected man is taller than 72 inches?
 
-### A worked example — final exam scores
+Convert: $z = (72 - 70)/2.5 = 0.80$
 
-The final exam scores in a statistics class are normally distributed with mean 75 and standard deviation 8. What percentage of students scored between 70 and 85?
+Table: area between 0 and 0.80 is 0.2881.
 
-*Step 1: Convert both boundaries to z-scores.*
+Since we want *above* 72, and the area above the mean is 0.5: $0.5 - 0.2881 = 0.2119$.
 
-Lower boundary: $z_1 = \frac{70 - 75}{8} = \frac{-5}{8} = -0.625$
+About 21% of men are taller than 72 inches.
 
-Upper boundary: $z_2 = \frac{85 - 75}{8} = \frac{10}{8} = 1.25$
+Another example: what fraction of men are between 67 and 73 inches?
 
-*Step 2: Look up both z-scores in the standard normal table.*
+$z_1 = (67 - 70)/2.5 = -1.20$; table value for 1.20 is 0.3849.
+$z_2 = (73 - 70)/2.5 = 1.20$; table value is also 0.3849 (symmetric).
 
-For z = 1.25, the table gives 0.3944. This is the area between the mean and 1.25 standard deviations above it.
+Since they're on opposite sides of the mean, add: $0.3849 + 0.3849 = 0.7698$.
 
-For z = -0.625, the absolute value is 0.625. Looking that up (rounding to 0.63), the table gives approximately 0.2357. This is the area between the mean and 0.625 standard deviations below it.
+About 77% of men fall in this range. Notice this is close to, but not exactly, the empirical rule's 68% for one standard deviation. The interval here is $\pm 1.2$ standard deviations, which is a bit wider than $\pm 1$.
 
-*Step 3: Add the two areas.*
-
-Total area = 0.2357 + 0.3944 = 0.6301
-
-*Interpretation:* About 63% of students scored between 70 and 85. Or, if you randomly select a student, there's a 0.63 probability their score falls in that range.
-
-### The crucial symmetry
-
-The normal distribution is symmetric about the mean. This means that the area to the left of the mean equals the area to the right. Each equals 0.5 or 50%. It also means that the distance from the mean to, say, 85 on the right produces the same area as the same distance on the left. A z-score of -1 covers the same area (34%) as a z-score of +1. The standard normal table only lists positive z-scores because of this symmetry—you can apply the same areas to negative z-scores by symmetry.
-
-This symmetry is so important that some textbooks write the z-score formula as:
-
-$$z = \frac{|x - \mu|}{\sigma}$$
-
-with absolute value bars, to emphasize that only the distance from the mean matters for the area calculation, not the direction.
-
-### Common misconceptions
-
-**"If my z-score is 2, then 2% of the population is above me."** No. If your z-score is 2, then about 97.5% of the population is below you (and 2.5% is above). The table gives you areas, not percentages of the tail.
-
-**"The normal distribution table works for all distributions."** No. This table is specific to the normal distribution. For other distributions, you'd need different tables or calculations.
+<!-- → [IMAGE: Three side-by-side standard normal curves illustrating the three question types. Left: "Below a value" — entire left tail shaded up to z=0.80, area labeled 0.7881. Center: "Above a value" — right tail shaded from z=0.80, area labeled 0.2119. Right: "Between two values" — middle region shaded between z=−1.20 and z=+1.20, areas on each half labeled 0.3849, total 0.7698. Caption: "Three shapes, three moves. Every normal probability question is one of these."] -->
 
 ---
 
-## Integration — from raw scores to confidence and back
+## When the normal distribution doesn't fit
 
-Return to the beginning. You have a population. You measure something—heights, test scores, assembly times, dosages. The measurements are normally distributed. You want to know: what's the probability that a randomly selected measurement falls in some range?
+Not all data are normally distributed, and applying the normal distribution blindly to data that aren't is a real error with real consequences.
 
-Here's the three-step process, the one you'll use over and over:
+Heights in a population: yes, approximately normal.
 
-1. **Standardize**: Convert the raw value to a z-score using $z = \frac{x - \mu}{\sigma}$.
+Income: no. Incomes are right-skewed — a few extremely high earners pull the tail far to the right. The mean income is substantially higher than the median. Applying the normal distribution would badly underestimate the fraction of people with very high incomes.
 
-2. **Lookup**: Read the standard normal table to find the area (probability) corresponding to that z-score.
+Time between events, like customer arrivals or equipment failures: no. These follow exponential distributions, which are entirely one-sided — time can't be negative.
 
-3. **Interpret**: Translate the probability back into a statement about the original population.
+Exam scores in a class that's too easy: no. Everyone clusters near the top. The distribution is left-skewed, with a hard ceiling at 100.
 
-Let's say the heights of adult men in the United States are normally distributed with mean 70 inches and standard deviation 2.5 inches. A randomly selected man walks into a room. What's the probability he's taller than 72 inches?
+The diagnostic is simple: plot the data. If the histogram looks roughly symmetric and bell-shaped, the normal distribution is a reasonable starting point. If it's skewed, or has two peaks, or has a hard floor or ceiling, look for a different model.
 
-*Standardize:* $z = \frac{72 - 70}{2.5} = \frac{2}{2.5} = 0.8$
+The most important violation to recognize is heavy tails. A normal distribution assigns very small probabilities to extreme values. If your data has more extreme values than the normal distribution predicts — which is common in financial returns, earthquake magnitudes, and network traffic — the normal distribution will underestimate the probability of rare, large events. This is not a minor problem. It's the kind of modeling error that produces financial crises.
 
-*Lookup:* The z-table shows that the area between 0 and 0.8 is 0.2881. This is the probability of being between 70 and 72 inches.
+<!-- → [CHART: Overlapping density curves — standard normal (thin tail, labeled "Normal") vs a t-distribution or power-law distribution (visibly fatter tail, labeled "Heavy-tailed"). The two curves are nearly identical in the center but diverge sharply beyond ±2σ. A zoomed inset of the right tail makes the difference stark. Caption: "The tails look the same until they don't. Heavy-tailed data produces extreme events the normal distribution says are almost impossible."] -->
 
-*Interpret:* Since we want "taller than 72," and the total area to the right of the mean is 0.5, the probability of being above 72 is $0.5 - 0.2881 = 0.2119$ or about 21.2%.
+---
 
-In the next chapter, you'll learn what happens when you don't have one randomly selected individual, but instead a sample of them. You'll learn that the means of those samples form a normal distribution even if the population doesn't. That discovery—the central limit theorem—is what makes statistics inference possible. But it all rests on understanding this curve, this one shape, this grammar of variation.
+## The normal distribution and what comes next
 
-For now, practice the process until it's automatic: standardize, lookup, interpret. The pattern repeats in a thousand forms.
+This chapter is infrastructure. The normal distribution is the foundation on which the rest of the course is built.
+
+In Chapter 7, you'll meet the central limit theorem. It says: take a large enough sample from any population — it doesn't matter what shape that population has — and compute the sample mean. Do this many times and plot those means. They form a normal distribution. This is astonishing. It means that even if you're sampling from a skewed population, or a bimodal population, or a population with heavy tails, the distribution of sample means is still approximately normal. The spread of that normal distribution shrinks as your sample size grows — larger samples give you a tighter estimate of the true mean.
+
+This fact is what makes statistical inference possible. You don't need to know the shape of the population. You just need to know the distribution of sample means, and the central limit theorem tells you what that is.
+
+The three-step pattern you've learned here — standardize, look up, interpret — is the template you'll use repeatedly:
+1. Compute a z-score (or t-score, or chi-square value — these are all variants of the same idea).
+2. Find the corresponding probability from a table or software.
+3. Ask: is this probability small enough to be surprising?
+
+That third step is hypothesis testing. But you need this chapter to get there.
+
+The normal distribution is not a description of any particular dataset. It is a mathematical model — an idealization. Real data are never perfectly normal. The question is never "is this exactly normal?" It's "is this close enough to normal that the normal distribution gives me useful answers?" Most of the time, for well-measured continuous quantities in large populations, the answer is yes.
+
+Galton didn't set out to discover the grammar of statistics. He was looking at dots on paper, trying to understand whether tall fathers had tall sons. He found something larger: that the shape of variation itself has a form, and that form is the bell. A hundred and fifty years later, every time you construct a confidence interval or run a t-test, you are using the shape that Galton drew on his graph paper.
 
 ---
 
@@ -244,83 +223,32 @@ For now, practice the process until it's automatic: standardize, lookup, interpr
 
 ### Warm-up
 
-**Exercise 6.1** *(LO: standardize and interpret z-scores.)* A population of adult women has mean height 65.5 inches and standard deviation 2.2 inches, normally distributed. What is the z-score for a woman who is 68 inches tall? Interpret this z-score in a complete sentence.
+**6.1** *(Empirical rule — direct application.)* SAT scores are normally distributed with mean 1050 and standard deviation 200. Using only the 68-95-99.7 rule, answer without a calculator: (a) What percentage of test-takers score between 850 and 1250? (b) What percentage score above 1450? (c) Between what two scores do the middle 99.7% of test-takers fall?
 
-**Exercise 6.2** *(LO: use the empirical rule.)* IQ scores are normally distributed with mean 100 and standard deviation 15. Using the 68-95-99.7 rule, what percentage of the population has an IQ between 85 and 115?
+**6.2** *(Computing and interpreting a z-score.)* A runner finishes a 10K race in 52 minutes. The distribution of finishing times for her age group is normal with mean 58 minutes and standard deviation 7 minutes. (a) Compute her z-score. (b) Interpret it in plain language. (c) Using the empirical rule, estimate her approximate percentile rank.
 
-**Exercise 6.3** *(LO: read the standard normal table.)* Using the standard normal table, find the probability (area) that a z-score falls between 0 and 1.5. Then find the probability that a z-score falls below -1.5.
+**6.3** *(Identifying when the normal distribution fits.)* For each of the following, state whether the normal distribution is likely a reasonable model. Briefly explain why or why not. (a) The annual salaries of all employees at a large corporation. (b) The weights of apples from a single orchard. (c) The number of customers who enter a store each hour.
 
 ### Application
 
-**Exercise 6.4** *(LO: convert to z-score and interpret percentile.)* A student scores 92 on an exam where the mean is 85 and the standard deviation is 6. What is the student's z-score? Using the 68-95-99.7 rule as an approximation, what percentile rank does this correspond to (approximately)?
+**6.4** *(Standard normal table — below and above.)* Using the standard normal table: (a) Find $P(Z < 1.65)$. (b) Find $P(Z > 0.90)$. (c) Find $P(Z < -1.30)$.
 
-**Exercise 6.5** *(LO: find probability using the normal distribution.)* The lifetimes of a certain brand of lightbulb are normally distributed with mean 1000 hours and standard deviation 120 hours. What is the probability that a randomly selected lightbulb lasts more than 1200 hours?
+**6.5** *(Between two values.)* A manufacturer fills juice bottles. Fill volumes are normally distributed with mean 16.2 oz and standard deviation 0.3 oz. Quality control accepts bottles between 15.8 and 16.8 oz. What fraction of bottles pass inspection?
 
-**Exercise 6.6** *(LO: compare values across populations using z-scores.)* A student scores 78 on a history exam (mean 75, SD 4) and 82 on a biology exam (mean 80, SD 5). On which exam did the student perform better relative to classmates? Show your z-score calculations.
+**6.6** *(Comparing across populations.)* A student scores 74 on a chemistry exam (mean 68, SD 8) and 81 on a physics exam (mean 78, SD 4). On which exam did the student perform better relative to classmates? Show your z-score calculations and explain the answer.
 
 ### Synthesis
 
-**Exercise 6.7** *(LO: integrate the full process.)* A company manufactures ball bearings with a diameter that should be 2 cm. The actual diameters are normally distributed with mean 2.0 cm and standard deviation 0.05 cm. The company accepts bearings between 1.95 and 2.05 cm. (a) What percentage of bearings will be accepted? (b) What percentage will be too large?
+**6.7** *(Full three-step process.)* Adult women's resting heart rates are approximately normally distributed with mean 74 beats per minute (bpm) and standard deviation 8 bpm. (a) What fraction of women have resting heart rates below 60 bpm? (b) A physician flags patients whose resting heart rate is above 90 bpm for follow-up. What fraction of women will be flagged? (c) What fraction have heart rates between 66 and 82 bpm?
 
-**Exercise 6.8** *(LO: apply to real-world decision making.)* A nurse must administer a medication to patients. The dose is normally distributed in the population—patients metabolize drugs at different rates. The recommended dose is 100 mg with standard deviation 15 mg. The nurse wants to know what proportion of patients will metabolize the dose within a safe range of 75 to 125 mg. Using the normal distribution, calculate this proportion.
+**6.8** *(Reverse: find the value from the probability.)* On a standardized exam with mean 500 and standard deviation 100, a scholarship requires scoring in the top 10% of test-takers. What is the minimum score required? (Hint: find the z-score that puts 90% of the area below it, then solve $x = \mu + z \cdot \sigma$.)
 
 ### Challenge
 
-**Exercise 6.9** *(LO: reverse the process—find the value given the probability.)* In a standardized test with mean 500 and standard deviation 100, what score puts a student in the 90th percentile? (Hint: first find the z-score that corresponds to the 90th percentile using the table, then solve for x using $x = \mu + z \cdot \sigma$.)
+**6.9** *(Heavy tails and model failure.)* A risk analyst models daily stock returns as $N(0.05\%, 1.2\%)$. (a) According to this model, what is the probability of a single day's return falling below $-4\%$? (b) If the stock market has trading days about 252 days per year, how many such days would the model predict per century? (c) In reality, one-day drops of 4% or more happen roughly several times per decade for major indices. What does this tell you about the normal distribution as a model for daily returns?
 
-**Exercise 6.10** *(LO: integrate and extend.)* Manufacturing tolerances often use the 99.7% rule. A factory produces screws with mean diameter 10 mm and standard deviation 0.1 mm, normally distributed. To keep 99.7% of screws within acceptable bounds, between what two diameters should screws fall? Why is the 99.7% rule useful for manufacturing?
+**6.10** *(Design reasoning.)* A hospital sets a drug dosage at 200 mg, the mean required dose for patients in their population. The standard deviation of required doses is 30 mg. The drug is safe if the actual dose is within 50 mg of what a patient needs — that is, if the absolute difference between administered and required dose is at most 50 mg. (a) What fraction of patients receive a safe dose? (b) If the hospital could tighten dosing precision — reducing the standard deviation to 20 mg — what fraction would now be safe? (c) What does this calculation reveal about the relationship between precision and safety in medical dosing?
 
----
-
-## Chapter summary
-
-You can now do five things you probably could not do before.
-
-You can **identify when a normal distribution is reasonable** for data and recognize when it's not by looking at a histogram.
-
-You can **translate any value from any normal distribution into a z-score**, a standardized position that lets you compare across populations on a common scale.
-
-You can **apply the empirical rule** (68-95-99.7) to estimate percentages in your head, instantly, without a calculator.
-
-You can **read a standard normal table** and use it to find the exact probability that a value falls above, below, or between specified boundaries.
-
-And you have learned that **the normal distribution is not decorative**. It is the foundation of inference. Everything you do from this point forward—confidence intervals, hypothesis tests, regression models—rests on understanding this curve.
-
-The thing to watch for is **confusing the direction of the question**. "Above this value" and "below this value" require opposite moves with the table. "Between these two values" requires subtraction. These are mechanical steps, but they're easy to reverse. When in doubt, sketch the curve, shade the region you're interested in, and count from the picture before you count from the numbers.
-
-What you should now be able to teach a friend who asks: why the bell curve appears everywhere; what a z-score actually measures; how to convert a raw score into a percentile rank; why the normal distribution makes comparisons across different populations possible.
-
----
-
-## Connections forward
-
-In Chapter 7, you'll meet the central limit theorem, which says that sample means are normally distributed even when the population they're drawn from is not. This is the most important fact in statistics. It's what allows you to take a sample of 30 people and make inferences about the entire population of millions. The theorem rests entirely on the foundation you've built in this chapter.
-
-Chapters 8 and 9 use the normal distribution to construct confidence intervals and test hypotheses. You'll use z-scores again and again, reading tables, translating back and forth between raw data and standardized position. The normal distribution becomes your lingua franca.
-
-Chapter 13 will return to the normal distribution when you learn linear regression. The errors—the residuals—in a good regression model should themselves be normally distributed. The normal distribution is not just a probability distribution at that point. It's a diagnostic. It tells you whether your model is working.
-
-For now, the skill is fluency with the curve. Know its shape. Know what z-scores mean. Know how to read the table. The geometry of normal distributions—the symmetry, the tails, the concentration near the mean—will become intuitive as you use it. The pattern is always the same: standardize, lookup, interpret. Master that three-step dance and the rest of statistics is within reach.
-
----
-
-## Still puzzling
-
-I don't fully understand why so many naturally occurring measurements—heights, test scores, measurement errors—follow this specific mathematical curve and not some other distribution. The central limit theorem (next chapter) provides one explanation, but the visual intuition for why the normal distribution in particular must arise from sums of random effects remains opaque to me.
-
----
-
-## What would change my mind
-
-If I encountered a large, well-measured population of a familiar quantity (e.g., adult heights, standardized test scores) that visibly deviated from the normal distribution and could not be explained by truncation, selection effects, or measurement error, I would revise my assumption that the normal distribution is nearly universal. So far I haven't.
-
----
-
-## Tags
-
-`normal-distribution`, `z-scores`, `standard-normal`, `probability`, `empirical-rule`, `68-95-99.7`, `inference-foundation`
-
----
 ---
 
 ## LLM Exercise — Chapter 6: The Normal Distribution (Analyze One Dataset Project)
@@ -399,12 +327,11 @@ This shapes which inference methods will be appropriate later.
 
 **Preview of next chapter:** Chapter 7 covers the CLT. You'll simulate or bootstrap sampling distributions of the mean from your data and verify (or refute) the CLT's promise.
 
-
 ---
 
 ## 🕰️ AI Wayback Machine
 
-**Carl Friedrich Gauss** was mathematician whose 1809 work on least squares put the normal distribution at the center of statistical practice.
+**Carl Friedrich Gauss** was a mathematician whose 1809 work on least squares put the normal distribution at the center of statistical practice.
 
 **Run this:**
 
