@@ -1,372 +1,221 @@
 # Chapter 8 — Confidence Intervals
-
-## Three title options
-
-1. **From One Sample to a Range: How we estimate what we don't know, and know how often we're right**
-2. **The honest guess: Why a number plus or minus a margin tells you more than the number alone**
-3. **Building bounds from randomness: Confidence intervals, from drug trials to polling**
+*On the honest way to express what you don't know.*
 
 ---
 
-## TL;DR
+Tuesday, 6:17 p.m. A woman on the phone says she's conducting a survey for the county health department. She asks how many days in the last month your mental health was not good. You pause and say seven. She thanks you and hangs up.
 
-A confidence interval is a range of values—not a single guess—that we build from sample data to estimate a population parameter. The trade-off is always the same: wider intervals hold more confidence; narrower ones are more precise. You choose the level of confidence first. Then the math tells you the range. The key insight: 95% confidence does not mean "there's a 95% chance the parameter is in this interval." It means "95% of all intervals built this way will contain the true parameter." You'll understand that distinction by the end of this chapter, and it will change how you read every margin of error you encounter.
+On the other end, 499 other people have answered the same question. She calculates the sample mean: 10.2 days. The sample standard deviation: 6.8 days. She will never know the true population mean — the average across every resident in the county. But she can build a range.
 
----
+She reports to her supervisor: "We estimate with 95% confidence that the true county average is between 9.3 and 11.1 days."
 
-## Cold open: The moment the poll lands on your front door
-
-Tuesday, 6:17 p.m. A woman on the phone says she's conducting a survey for the county health department. She asks: "In the last month, how many days would you say your mental health was not good?" You pause. You guess seven days. She thanks you and hangs up.
-
-On the other end, 499 people have answered the same question. One caller said three days. Another said thirty. The median response is nine days. The woman writing the report knows the true population mean—the average across every resident in the county—is hidden from her. She will never know it exactly. But she can build a range.
-
-She calculates the sample mean: 10.2 days. The sample standard deviation: 6.8 days. Then she does the math. She reports to her supervisor: "We estimate with 95% confidence that the true county average is between 9.3 and 11.1 days."
-
-This is statistics doing what it was invented to do: turning one sample into a guess about the whole population, and telling you honestly how confident that guess is.
-
-### Learning objectives
-
-By the end of this chapter you will be able to:
-
-- **Construct and interpret** confidence intervals for a population mean when the population standard deviation is known (using the z-distribution).
-- **Construct and interpret** confidence intervals for a population mean when the population standard deviation is unknown (using the t-distribution), and **explain** why the interval gets wider.
-- **Construct and interpret** confidence intervals for a population proportion and **identify** when the normal approximation is valid.
-- **Calculate** sample size to achieve a desired margin of error at a specified confidence level.
-- **Distinguish** the confidence level (a property of the procedure) from the probability statement about the parameter (which makes no sense once the interval is built).
-
-### Prerequisites
-
-Comfort with the central limit theorem. Ability to read and use a standard normal table and a t-table. Algebra with fractions and square roots. Understanding that $\mu$ denotes the population mean and $\bar{x}$ denotes the sample mean.
-
-### Why this chapter matters
-
-Every estimate you read that includes a margin of error—every poll, every drug trial result, every survey—is built on the ideas in this chapter. Politicians use confidence intervals to decide which candidate to support. Pharmaceutical companies use them to report whether a drug works. Your doctor reads them to know whether a treatment is safe. This chapter teaches you to build them yourself and to read them with the skepticism they deserve.
-
-The margin of error is not magic. It's mathematics. And like all mathematics, it only works if you understand what you're measuring and what your assumptions are.
+That sentence is doing something very precise. It is not saying the true mean is probably in that range. It is not saying the true mean is definitely in that range. It is saying something more careful, and more useful, than either of those things — and understanding exactly what it says is the whole point of this chapter.
 
 ---
 
-## Concept 1 — From point to range: Why one number is never enough
+## Why one number is never enough
 
-**Cold open: The Apple Music question**
+When you ask "what is the average?" and get a single answer back, you're looking at a point estimate. It's your best single guess. It's also, almost certainly, wrong — not because the arithmetic was bad, but because samples bounce. A different random sample of 500 people would give a different sample mean, and that one would also be your best guess, and it would be different from the first one.
 
-A music-streaming company wants to know the average number of songs its users download per month. They survey 100 random users. The sample mean is 2.1 songs. So they report: "Our users download an average of 2.1 songs per month."
+The central limit theorem, from Chapter 7, told you how much the bouncing happens. If you draw repeated samples of size $n$ from a population with mean $\mu$ and standard deviation $\sigma$, the sample means distribute normally around $\mu$ with a standard deviation of $\sigma / \sqrt{n}$. That quantity — $\sigma / \sqrt{n}$ — is the standard error. It measures how much the sample mean typically strays from the true mean.
 
-But the next month, a different sample of 100 users shows a sample mean of 1.9 songs. Did the true average drop? Or is this just randomness—the natural bounce that happens when you sample?
+Now here's the move. You know the sampling distribution of the mean. You know that 95% of all sample means fall within $\pm 1.96$ standard errors of the true mean. So if your particular sample mean is one of that 95%, then the true mean falls within $\pm 1.96$ standard errors of your sample mean.
 
-The company needs a different kind of estimate. Not a single number—called a **point estimate**. A range that acknowledges uncertainty. A **confidence interval** — that's the range of plausible values we have *confidence* (meaning long-run frequency, not probability) in, built from the sample data and expressed as $\text{point estimate} \pm \text{margin of error}$.
-
-### The machinery: from the central limit theorem to a formula
-
-The central limit theorem promised us this: if you draw repeated samples of size $n$ from a population with mean $\mu$ and standard deviation $\sigma$, the sample means follow a normal distribution with mean $\mu$ and standard deviation $\sigma / \sqrt{n}$ (the *standard error*).
-
-So if we know $\sigma$, we can use the normal distribution to ask: what range captures 95% of all sample means?
-
-The z-score formula tells us: for any value $z^*$, the range from $-z^*$ to $+z^*$ under the standard normal curve captures a certain percentage of the data.
-
-- $z^* = 1.645$ captures 90% (35% on each side of the mean, since 0.45 + 0.45 = 0.90).
-- $z^* = 1.96$ captures 95%.
-- $z^* = 2.576$ captures 99%.
-
-Now here's the key move. If $z^*$ captures 95% of sample means, and our sample mean $\bar{x}$ is within that band of the true mean, then the true mean $\mu$ is within $\bar{x} \pm z^* \cdot \sigma/\sqrt{n}$.
-
-This is the confidence interval for a population mean, $\sigma$ known:
+That's it. That's the confidence interval.
 
 $$\bar{x} - z^* \cdot \frac{\sigma}{\sqrt{n}} \leq \mu \leq \bar{x} + z^* \cdot \frac{\sigma}{\sqrt{n}}$$
 
-Or written more compactly:
+The $z^*$ is the critical value — the z-score that marks the boundary of your chosen confidence level. For 95% confidence, $z^* = 1.96$. For 90%, $z^* = 1.645$. For 99%, $z^* = 2.576$. The quantity $z^* \cdot \frac{\sigma}{\sqrt{n}}$ is the margin of error — how far you extend on each side of the sample mean.
 
-$$\mu = \bar{x} \pm z^* \cdot \frac{\sigma}{\sqrt{n}}$$
-
-**A gloss on the terms:** The quantity $z^*$ is the critical value — the z-score that marks the boundary of your desired confidence level. The quantity $\frac{\sigma}{\sqrt{n}}$ is the standard error (the standard deviation of the sampling distribution). Their product, $z^* \cdot \frac{\sigma}{\sqrt{n}}$, is the margin of error or error bound (EBM).
-
-### The critical misunderstanding
-
-Once you build a confidence interval, say $(1.8, 2.4)$, the interval is fixed. The parameter $\mu$ is also fixed. It's either in the interval or it's not.
-
-So it makes no sense to say: "There's a 95% probability that $\mu$ is in this interval."
-
-What 95% confidence means is this: if you repeated the sampling and interval-building procedure 100 times, about 95 of those intervals would contain the true parameter. The confidence is in the *procedure*, not in *this particular interval*.
-
-This distinction saves you from a common trap: a student builds a 95% CI and thinks "I'm 95% sure the true mean is in this range." But you could be one of the 5 unlucky samples whose interval missed entirely. You'll never know.
-
-### Worked example — Apple Music downloads, confidence interval with known σ
-
-Suppose the population standard deviation of monthly downloads is known to be $\sigma = 1$ song (the company studied this years ago). A sample of 100 users gives $\bar{x} = 2.0$. Build a 95% confidence interval for the true population mean.
-
-**Step 1:** Identify the given values.
-- $\bar{x} = 2.0$
-- $\sigma = 1$
-- $n = 100$
-- Confidence level 95%, so $z^* = 1.96$
-
-**Step 2:** Calculate the standard error.
-
-$$SE = \frac{\sigma}{\sqrt{n}} = \frac{1}{\sqrt{100}} = \frac{1}{10} = 0.1$$
-
-**Step 3:** Calculate the margin of error.
-
-$$EBM = z^* \cdot SE = 1.96 \cdot 0.1 = 0.196$$
-
-**Step 4:** Build the interval.
-
-$$\bar{x} - EBM \leq \mu \leq \bar{x} + EBM$$
-
-$$2.0 - 0.196 \leq \mu \leq 2.0 + 0.196$$
-
-$$1.804 \leq \mu \leq 2.196$$
-
-**Interpretation:** We are 95% confident that the true average number of songs downloaded per month is between 1.8 and 2.2.
-
-**What this means procedurally:** If the company repeated this survey 100 times with 100 new random samples, about 95 of the resulting intervals would contain the true population mean. The company never knows whether this particular interval did.
-
-### Common misconceptions
-
-**"95% confidence means there's a 95% chance the parameter is in the interval."** No. Once the interval is built, the parameter is either in it or not—probability doesn't apply. The 95% applies to the long-run frequency of the procedure.
-
-**"A larger sample makes the interval narrower."** True. But only because a larger sample reduces the standard error. The math directly shows this: the standard error is $\sigma / \sqrt{n}$. As $n$ grows, the denominator grows, the fraction shrinks, and the margin of error shrinks.
-
-**"The confidence level and the sample size do opposite things to interval width."** Not quite. A higher confidence level (say 99% instead of 95%) uses a larger $z^*$, which widens the interval. A larger sample size shrinks $1/\sqrt{n}$, which narrows it. They're independent levers.
+<!-- → [TABLE: three-row reference table — columns: Confidence Level, z* critical value, Interpretation; rows: 90% / 1.645 / "Miss 10% of the time", 95% / 1.96 / "Miss 5% of the time", 99% / 2.576 / "Miss 1% of the time"; quick lookup card students will return to throughout Chapters 8–13] -->
 
 ---
 
-## Concept 2 — When you don't know σ: The t-distribution and Student's story
+## What "95% confident" actually means
 
-**Cold open: William Gossett's problem**
+Here is the misunderstanding you will see repeated in newspapers, in medical papers, in boardrooms. People look at a confidence interval — say, (9.3, 11.1) — and say: "There's a 95% chance the true mean is in there."
 
-It's 1908. William Gossett works at the Guinness brewery in Dublin. He runs small experiments on hops and barley—the crops that make beer. His sample sizes are always small: five, ten, maybe fifteen samples. He wants to estimate the mean quality of his barley batches from these tiny samples.
+This is wrong. And it's wrong in a subtle way that's worth understanding completely.
 
-He calculates confidence intervals using the normal distribution. But they keep failing him. When he repeated an experiment, the true parameter fell outside his interval far more often than 5% of the time. The normal approximation wasn't working for small samples.
+Once you've built the interval, the true mean is either in it or it isn't. It's a fixed number. The interval is a fixed range. Probability doesn't apply to fixed things — probability applies to random processes before the outcome is determined.
 
-The problem: when you don't know the population standard deviation $\sigma$ and your sample is small, you substitute the sample standard deviation $s$ into the formula. But $s$ is itself random. It bounces around more than $\sigma$. Using the normal distribution to pretend $s$ is constant introduces error you can't ignore.
+What 95% confidence actually means is a statement about the *procedure*, not about *this* interval. If you repeated the sampling and interval-building process 100 times — 100 independent surveys of 500 people, 100 confidence intervals computed — then about 95 of those 100 intervals would contain the true mean. The other 5 would miss it entirely.
 
-Gossett figured out the right distribution. It has heavier tails than the normal—it lets the interval get wider to account for the extra uncertainty. He published his discovery in 1908 under the pen name "A Student." The distribution is now called the **Student's t-distribution**.
+Your interval is one of those 100. It either hit or missed. You'll never know which. But if the procedure is trustworthy (random sample, correct formula), you should trust that the procedure works 95% of the time.
 
-### The t-distribution: Normal's more cautious cousin
+<!-- → [IMAGE: horizontal dot plot showing 100 confidence intervals stacked vertically — each a horizontal line segment representing one CI built from one sample; 95 of the lines cross a vertical dashed line labeled "true μ = 10.7"; 5 lines are colored red and do not cross the dashed line; caption: "95 of 100 intervals contain the true mean — but you never know which intervals those are"] -->
 
-The t-distribution is defined by one parameter: the **degrees of freedom** (df), which equals $n - 1$ for this application.
+Let me be concrete. Suppose the true county average really is 10.7 days. The survey produced an interval of (9.3, 11.1). That interval contains 10.7, so it hit. But the survey team doesn't know 10.7 is the true value — they never will. They know only that they used a procedure that works 95% of the time. That's what they mean when they say "95% confidence."
 
-Why $n - 1$? When you calculate a sample standard deviation, you compute $n$ deviations from the sample mean. But the deviations sum to zero by definition. So the last deviation is determined by the first $n-1$. Only $n-1$ deviations are *free to vary*. Hence $n-1$ degrees of freedom.
-
-The t-distribution has these properties:
-
-- **It's symmetric** around zero, just like the normal distribution.
-- **It has heavier tails.** More probability sits in the tails than in the normal. This is why the confidence intervals get wider.
-- **As df increases (n gets larger), the t-distribution converges to the normal distribution.** At $df = \infty$, a t-value and a z-value are identical. At $df = 30$, they're very close. This is why many textbooks say "use t for $n < 30$ and z for $n \geq 30$"—the distributions are similar enough by that point that the distinction doesn't matter much in practice.
-
-### The confidence interval formula with unknown σ
-
-When the population standard deviation is unknown and you substitute the sample standard deviation $s$:
-
-$$\mu = \bar{x} \pm t_{df, \alpha/2} \cdot \frac{s}{\sqrt{n}}$$
-
-where $df = n - 1$, and $t_{df, \alpha/2}$ is the critical value from the t-table at $df = n-1$ and your chosen confidence level.
-
-Notice the parallel to the z-formula. The only differences are: $s$ replaces $\sigma$, and $t_{df, \alpha/2}$ replaces $z^*$. Everything else—the logic, the structure, the interpretation—is identical.
-
-### The t-table and how to use it
-
-A t-table shows t-critical values by degrees of freedom (rows) and confidence level (columns, or sometimes as $\alpha$ or $\alpha/2$).
-
-Suppose you have a sample of $n = 10$ and want a 95% confidence interval.
-
-- $df = n - 1 = 9$
-- For 95% confidence, $\alpha = 0.05$, so $\alpha/2 = 0.025$ (you split the 5% failure rate evenly into the two tails)
-- Look at row 9, column 0.025
-- The value is $t_{9, 0.025} = 2.262$
-
-This means you extend 2.262 standard errors on each side of the sample mean.
-
-### Worked example — Dow Jones Industrial Average, CEO earnings per share
-
-A financial analyst randomly samples 10 stocks from the DJIA. Their earnings per share (EPS): $\bar{x} = 1.85$ with sample standard deviation $s = 0.395$. Build a 99% confidence interval for the true mean EPS of all DJIA industrials.
-
-**Step 1:** Identify the given values.
-- $\bar{x} = 1.85$
-- $s = 0.395$
-- $n = 10$, so $df = 9$
-- Confidence level 99%, so $\alpha = 0.01$, $\alpha/2 = 0.005$
-- From the t-table: $t_{9, 0.005} = 3.250$
-
-**Step 2:** Calculate the standard error.
-
-$$SE = \frac{s}{\sqrt{n}} = \frac{0.395}{\sqrt{10}} = \frac{0.395}{3.162} = 0.1249$$
-
-**Step 3:** Calculate the margin of error.
-
-$$EBM = t_{df, \alpha/2} \cdot SE = 3.250 \cdot 0.1249 = 0.406$$
-
-**Step 4:** Build the interval.
-
-$$\bar{x} - EBM \leq \mu \leq \bar{x} + EBM$$
-
-$$1.85 - 0.406 \leq \mu \leq 1.85 + 0.406$$
-
-$$1.444 \leq \mu \leq 2.256$$
-
-**Interpretation:** We are 99% confident that the true mean EPS of all DJIA industrial stocks is between \$1.44 and \$2.26.
-
-### Trade-offs: Why t-intervals are wider than z-intervals
-
-Compare two scenarios. A sample of 20 gives $\bar{x} = 100$ and $s = 10$.
-
-Using z (if we pretended we knew $\sigma = 10$):
-- $z^* = 1.96$ (95% confidence)
-- $SE = 10/\sqrt{20} = 2.236$
-- $EBM = 1.96 \cdot 2.236 = 4.38$
-- Interval: $(95.62, 104.38)$, width 8.76
-
-Using t (since we actually don't know $\sigma$):
-- $df = 19$, $t_{19, 0.025} = 2.093$
-- $SE = 10/\sqrt{20} = 2.236$
-- $EBM = 2.093 \cdot 2.236 = 4.68$
-- Interval: $(95.32, 104.68)$, width 9.36
-
-The t-interval is 0.6 units wider. Gossett's insight: this extra width is the honest price of not knowing $\sigma$. You buy safety.
-
-### Common misconceptions
-
-**"t is for small samples; z is for large samples."** More precisely: use t whenever you don't know $\sigma$. When $n \geq 30$ and you don't know $\sigma$, the t-interval and a z-interval using $s$ are so similar that many practitioners treat them as interchangeable. But t is the theoretically correct choice.
-
-**"Degrees of freedom is just n."** No. It's $n - 1$ because one degree of freedom is "spent" calculating the sample standard deviation.
-
-**"The t-table has infinitely many rows."** The table usually ends at $df = 30$ or $df = 40$, then jumps to $df = \infty$. The row for $\infty$ gives the z-values. This is where you see that $t_{\infty, 0.025} = 1.96 = z^*$.
+This distinction matters practically. When a pharmaceutical company reports that a drug reduces blood pressure by 5 to 15 mmHg with 95% confidence, they're not saying the true effect is probably between 5 and 15. They're saying they used a procedure that, in 95% of trials, captures the true effect. The drug could be one of the 5% who missed. The data doesn't tell you which.
 
 ---
 
-## Concept 3 — Proportions: From binomial to normal to confidence
+## Building a confidence interval when you know $\sigma$
 
-**Cold open: The poll published the morning of the election**
+Let me work through the mechanics once, slowly, so the structure is clear.
 
-Election day. A news outlet publishes their final poll: "In a sample of 1,200 likely voters, 52% say they will vote for Candidate A. Margin of error: ±3 percentage points, 95% confidence."
+A streaming company surveys 100 random users and finds a sample mean of $\bar{x} = 2.0$ songs downloaded per month. The company knows from historical data that the population standard deviation is $\sigma = 1$ song. They want a 95% confidence interval for the true mean.
 
-What does "52% ± 3%" mean? It means the outlet estimates the true proportion of all voters who support Candidate A is between 49% and 55%. If 49% of the true population supports A, Candidate A loses. At 51%, it's a toss-up. At 55%, it's a landslide. The same sample, but the range determines the narrative.
+**Step 1.** The standard error: $SE = \sigma / \sqrt{n} = 1 / \sqrt{100} = 0.1$.
 
-### Sample proportion: the point estimate
+**Step 2.** The critical value: $z^* = 1.96$ for 95% confidence.
 
-Let $p$ denote the true population proportion (the proportion of all voters who support Candidate A). We never know $p$ exactly. But from a sample of $n$ voters, we can calculate $\hat{p}$ (read "p-hat"), the **sample proportion**:
+**Step 3.** The margin of error: $EBM = 1.96 \times 0.1 = 0.196$.
 
-$$\hat{p} = \frac{x}{n}$$
+**Step 4.** The interval: $2.0 \pm 0.196$, which is $(1.804, 2.196)$.
 
-where $x$ is the number of successes (voters who support A) and $n$ is the sample size.
+Interpretation: we are 95% confident — meaning, we used a procedure that captures the true mean 95% of the time — that the true average number of songs downloaded per month is between 1.8 and 2.2.
 
-This $\hat{p}$ is our point estimate of $p$.
+Notice two things. Larger samples narrow the interval, because $\sigma / \sqrt{n}$ shrinks as $n$ grows. Higher confidence levels widen the interval, because $z^*$ grows when you demand more confidence. These are the two levers you control. They pull in opposite directions: more confidence means a wider net; more data means a tighter net.
 
-### The sampling distribution of the sample proportion
-
-By the central limit theorem, if $n$ is large enough, the sample proportion $\hat{p}$ is approximately normal with:
-
-- Mean: $\mu_{\hat{p}} = p$
-- Standard deviation: $\sigma_{\hat{p}} = \sqrt{\frac{p(1-p)}{n}}$
-
-**The condition for validity:** Both $np$ and $n(1-p)$ must be at least 5. If 52% of 1,200 support A, then $np = 1200 \cdot 0.52 = 624$ and $n(1-p) = 1200 \cdot 0.48 = 576$. Both exceed 5. The normal approximation is valid.
-
-### The confidence interval for a population proportion
-
-$$\hat{p} = p \pm z^* \sqrt{\frac{\hat{p}(1 - \hat{p})}{n}}$$
-
-Or written as a range:
-
-$$\hat{p} - z^* \sqrt{\frac{\hat{p}(1 - \hat{p})}{n}} \leq p \leq \hat{p} + z^* \sqrt{\frac{\hat{p}(1 - \hat{p})}{n}}$$
-
-**Notice:** We substitute $\hat{p}$ for the unknown $p$ in the standard deviation formula, because we don't know $p$. This is analogous to using $s$ instead of $\sigma$ for means. The margin of error again follows the familiar pattern: $z^* \cdot SE$.
-
-### Worked example — Smartphone ownership in a large city
-
-A market research firm surveys 500 randomly selected adults in a large city. Of them, 421 own a smartphone. Build a 95% confidence interval for the true proportion of adults in the city who own smartphones.
-
-**Step 1:** Check the condition and identify the given values.
-- $n = 500$
-- $x = 421$ (number who own smartphones)
-- $\hat{p} = 421/500 = 0.842$
-- $\hat{q} = 1 - \hat{p} = 0.158$
-- Check: $np = 500 \cdot 0.842 = 421 \geq 5$ ✓ and $n(1-p) = 500 \cdot 0.158 = 79 \geq 5$ ✓
-- Confidence level 95%, so $z^* = 1.96$
-
-**Step 2:** Calculate the standard error.
-
-$$SE = \sqrt{\frac{\hat{p}(1 - \hat{p})}{n}} = \sqrt{\frac{0.842 \cdot 0.158}{500}} = \sqrt{\frac{0.133}{500}} = \sqrt{0.000266} = 0.0163$$
-
-**Step 3:** Calculate the margin of error.
-
-$$EBM = z^* \cdot SE = 1.96 \cdot 0.0163 = 0.0319 \approx 0.032$$
-
-**Step 4:** Build the interval.
-
-$$\hat{p} - EBM \leq p \leq \hat{p} + EBM$$
-
-$$0.842 - 0.032 \leq p \leq 0.842 + 0.032$$
-
-$$0.810 \leq p \leq 0.874$$
-
-**Interpretation:** We are 95% confident that between 81.0% and 87.4% of all adults in the city own smartphones.
-
-### Trade-off: Proportions at the extreme
-
-A quirk of proportions: the standard error $\sqrt{\hat{p}(1-\hat{p})/n}$ is largest when $\hat{p} = 0.5$. At the extremes (say $\hat{p} = 0.1$ or $\hat{p} = 0.9$), the standard error shrinks, and so does the margin of error.
-
-This makes intuitive sense. If 95% of a sample owns a smartphone, you're more confident about that number than if 50% own one. The 50-50 split has the most uncertainty.
-
-### Common misconceptions
-
-**"The normal approximation always works for proportions."** Only if $np \geq 5$ and $n(1-p) \geq 5$. Small samples with extreme proportions (like 2 successes out of 5 trials) require exact binomial methods, not the normal approximation.
-
-**"Proportions are easier than means."** Proportions require one fewer calculation (no degrees of freedom, so always use z), but they have the strict condition on the sample size and the validity threshold. Neither is universally easier.
-
-**"The confidence interval for a proportion is always symmetric around $\hat{p}$."** Yes, it is—because we're using the normal approximation. (There are other methods, like the Wilson score interval, that produce asymmetric intervals, but they're beyond this course.)
+<!-- → [INFOGRAPHIC: 2×2 grid showing four interval widths for the same x̄=2.0, σ=1 dataset — top row: n=100 at 90% and 99% confidence; bottom row: n=400 at 90% and 99% confidence; each cell shows the interval as a horizontal bar with numeric bounds; student sees both levers simultaneously: larger n narrows each row, higher confidence widens each column] -->
 
 ---
 
-## Integration — Confidence, precision, and the sample size question
+## The problem Gossett solved
 
-Return to the polling company from the chapter opening. They want to estimate the true proportion of county residents who report poor mental health within a margin of error of ±2.5 percentage points, at 95% confidence. How many people do they need to survey?
+The formula above requires knowing $\sigma$, the population standard deviation. In practice, you almost never know it. You know only $s$, the standard deviation of your sample.
 
-This is the **sample size formula**. It comes from rearranging the margin of error formula.
+The obvious move: just substitute $s$ for $\sigma$. And indeed, that's essentially what you do. But there's a catch that a brewer from Dublin discovered in 1908.
 
-For a population proportion:
+William Gossett worked at the Guinness brewery running small experiments on barley and hops. His sample sizes were rarely more than ten or fifteen. He built confidence intervals using the normal distribution, substituting $s$ for $\sigma$. And his intervals kept failing: the true parameter fell outside his interval more than 5% of the time. Something was wrong.
 
-$$n = \frac{(z^*)^2 \cdot \hat{p}(1-\hat{p})}{e^2}$$
+The problem: $s$ itself is random. It's computed from the same sample as $\bar{x}$, so it bounces around. When $n$ is small, $s$ can stray substantially from $\sigma$. Using the normal distribution as if $s$ were a constant underestimates the true uncertainty.
+
+Gossett worked out the correct distribution. It looks like the normal curve — symmetric, bell-shaped, centered at zero — but with heavier tails. More probability sits in the extremes. This makes sense: because $s$ is uncertain, the interval needs to extend farther to maintain its coverage guarantee. The extra width is the honest price of not knowing $\sigma$.
+
+He published his finding under the pen name "Student" — Guinness didn't want competitors knowing that their brewers were doing statistics. The distribution is now called the **Student's t-distribution**, and the critical values come from a t-table rather than a z-table.
+
+The t-distribution has one parameter: the **degrees of freedom**, equal to $n - 1$.
+
+Why $n - 1$? When you compute the sample standard deviation $s$, you first compute the sample mean $\bar{x}$, then measure how far each observation strays from $\bar{x}$. Those $n$ deviations must sum to exactly zero — that's a constraint baked into the definition of the mean. So the last deviation is completely determined by the first $n - 1$. Only $n - 1$ values are free to vary. One degree of freedom was spent calculating the mean.
+
+The t-distribution with $df$ degrees of freedom has heavier tails than the normal, and the difference is most pronounced when $df$ is small. As $df$ increases — as $n$ gets larger — the t-distribution converges to the standard normal. By around $df = 30$, the two are nearly identical. This is why practitioners sometimes say "use t for small samples and z for large ones" — but the more precise rule is: use t whenever you don't know $\sigma$. For large $n$, it doesn't much matter, but t is always correct.
+
+<!-- → [CHART: overlapping density curves — standard normal (z) in one color; t with df=3 in a second color; t with df=10 in a third; t with df=30 nearly indistinguishable from normal; all centered at 0; horizontal axis from -4 to 4; the heavier tails of t at small df are visible; caption notes that critical values at the 2.5% tail grow from 1.96 (z) to 2.262 (df=9) to 3.250 (df=9 at 99%), explaining why t-intervals are wider] -->
+
+The confidence interval formula for a mean with unknown $\sigma$:
+
+$$\mu = \bar{x} \pm t_{n-1, \, \alpha/2} \cdot \frac{s}{\sqrt{n}}$$
+
+Everything is the same as the z-formula except: $s$ replaces $\sigma$, and the critical value comes from the t-table at $df = n-1$ and the chosen confidence level.
+
+Let me show you the difference in a concrete case. A financial analyst samples 10 stocks from the Dow Jones Industrial Average and finds a mean earnings per share of $\bar{x} = 1.85$ with sample standard deviation $s = 0.395$. They want a 99% confidence interval.
+
+$df = 9$. From the t-table at $df = 9$ and 99% confidence, the critical value is $t_{9, \, 0.005} = 3.250$.
+
+Standard error: $SE = 0.395 / \sqrt{10} = 0.125$.
+
+Margin of error: $EBM = 3.250 \times 0.125 = 0.406$.
+
+Interval: $1.85 \pm 0.406$, giving $(1.444, 2.256)$.
+
+If you mistakenly used the z-table and $z^* = 2.576$, you'd get a narrower interval: $1.85 \pm 0.322$, giving $(1.528, 2.172)$. That narrower interval is overconfident — it claims more precision than the data actually support, because it ignores the uncertainty in $s$. Gossett's contribution was recognizing that this extra overconfidence is not a small rounding error; it's a systematic underestimate that compounds across small samples.
+
+The wider t-interval isn't a failure. It's an honest accounting of what you actually know.
+
+---
+
+## Proportions: The same logic, different shape
+
+Everything we've done so far estimates a mean — an average of numerical measurements. But sometimes you want to estimate a proportion: what fraction of voters support this candidate, what fraction of devices fail within a year, what fraction of households own a tablet.
+
+The sample proportion is $\hat{p} = x / n$, where $x$ is the number of successes and $n$ is the sample size. This is your point estimate of the true population proportion $p$.
+
+By the central limit theorem, when $n$ is large enough, $\hat{p}$ is approximately normally distributed with mean $p$ and standard deviation $\sqrt{p(1-p)/n}$. Since we don't know $p$, we substitute $\hat{p}$:
+
+$$SE = \sqrt{\frac{\hat{p}(1 - \hat{p})}{n}}$$
+
+The confidence interval:
+
+$$p = \hat{p} \pm z^* \sqrt{\frac{\hat{p}(1 - \hat{p})}{n}}$$
+
+Two things to notice. First, this uses $z^*$, not $t$ — because the formula is an approximation to the normal that works when $n$ is large, and for large $n$, $z$ and $t$ agree. Second, the approximation only works when both $n\hat{p} \geq 5$ and $n(1 - \hat{p}) \geq 5$. These conditions ensure the sampling distribution is close enough to normal. If you're estimating a rare event — say, a 1% failure rate — you need a much larger sample before the normal approximation is trustworthy.
+
+Let me work through one example. A market research firm surveys 500 adults in a city. Of them, 421 own a smartphone. Build a 95% confidence interval.
+
+$\hat{p} = 421/500 = 0.842$. Check conditions: $500 \times 0.842 = 421 \geq 5$ and $500 \times 0.158 = 79 \geq 5$. Both satisfied.
+
+Standard error: $SE = \sqrt{0.842 \times 0.158 / 500} = \sqrt{0.000266} = 0.0163$.
+
+Margin of error: $EBM = 1.96 \times 0.0163 = 0.032$.
+
+Interval: $0.842 \pm 0.032$, which is $(0.810, 0.874)$.
+
+We are 95% confident that between 81.0% and 87.4% of adults in the city own smartphones.
+
+One interesting quirk: the margin of error is largest when $\hat{p} = 0.5$, because the product $\hat{p}(1 - \hat{p})$ is maximized at $0.5$. A 50-50 split has the most uncertainty; an extreme proportion (near 0 or 1) has less, because when almost everyone or almost no one has the characteristic, your estimate is inherently more precise. The 95% split in our smartphone example gives a narrower interval than you'd get if the split were 50-50.
+
+<!-- → [CHART: parabolic curve of p̂(1-p̂) as a function of p̂ from 0 to 1 — peaks at p̂=0.5 (value=0.25) and falls to 0 at both extremes; horizontal axis labeled "Sample proportion p̂"; vertical axis labeled "Variance contribution p̂(1-p̂)"; point at p̂=0.842 marked to show the smartphone example sits on the right slope with lower variance than the 0.5 peak; caption: "Margin of error is widest when the split is closest to 50-50"] -->
+
+---
+
+## How many people do you need?
+
+The question that always follows a confidence interval: "Was my sample big enough? If I want more precision, how much more data do I need?"
+
+Start from the margin of error formula: $EBM = z^* \cdot \sqrt{\hat{p}(1-\hat{p})/n}$. Solve for $n$:
+
+$$n = \frac{(z^*)^2 \cdot \hat{p}(1 - \hat{p})}{e^2}$$
 
 where $e$ is the desired margin of error.
 
-There's a catch: to calculate $n$, you need to estimate $\hat{p}$. But you don't have the sample yet. 
+There's a circular problem: to compute $n$, you need $\hat{p}$, but you're computing $n$ to determine how many samples to take to find $\hat{p}$. Three ways around it: use a prior estimate from a previous study, use the worst case $\hat{p} = 0.5$ (which gives the largest possible $n$ and hence the most conservative estimate), or run a small pilot study to get a rough $\hat{p}$ first.
 
-Three strategies:
+The county health department wants a margin of error of $\pm 2.5\%$ at 95% confidence. No prior data. Use $\hat{p} = 0.5$.
 
-1. **Use a prior estimate.** If the company ran a similar survey last year and found $\hat{p} = 0.15$, use that.
-2. **Assume the worst case.** The product $\hat{p}(1-\hat{p})$ is largest when $\hat{p} = 0.5$. So use $\hat{p} = 0.5$ to get a conservative (larger) sample size.
-3. **Use preliminary data.** Run a small pilot survey, get a rough estimate of $\hat{p}$, then calculate the full sample size needed.
+$$n = \frac{(1.96)^2 \times 0.25}{(0.025)^2} = \frac{0.9604}{0.000625} = 1537$$
 
-**Example:** The polling company wants $e = 0.025$ (margin of error ±2.5%), and they have no prior information. Use strategy 2: $\hat{p} = 0.5$.
+They need to survey about 1,537 people.
 
-$$n = \frac{(1.96)^2 \cdot 0.5(1-0.5)}{(0.025)^2} = \frac{3.8416 \cdot 0.25}{0.000625} = \frac{0.9604}{0.000625} = 1537$$
+Now here's the relationship that surprises most people the first time they see it. To cut the margin of error in half — from $\pm 2.5\%$ to $\pm 1.25\%$ — you don't need twice as many people. You need *four times* as many. The margin of error goes as $1/\sqrt{n}$, so halving it requires multiplying $n$ by four.
 
-So they need to survey about 1,537 people to achieve that precision at 95% confidence with no prior knowledge of the true proportion.
+$$n = \frac{(1.96)^2 \times 0.25}{(0.0125)^2} = \frac{0.9604}{0.000156} = 6,157$$
 
-**The trade-off revealed:** To cut the margin of error in half, you must *quadruple* the sample size. The formula has $e^2$ in the denominator. This is why polling companies face a real cost when they want more precision.
+This is why precision is expensive. A poll accurate to $\pm 3\%$ takes about 1,000 people. A poll accurate to $\pm 1\%$ takes about 9,600. News organizations don't run 10,000-person polls; they accept a $\pm 3\%$ margin and live with the uncertainty. That's not laziness — it's economics.
 
-### From confidence level to precision
+<!-- → [CHART: curve of required sample size n (vertical axis, log scale) vs. desired margin of error e (horizontal axis, from 1% to 10%); the curve follows the 1/e² relationship; three labeled points: (3%, ~1,067), (2%, ~2,401), (1%, ~9,604); caption: "Halving the margin of error quadruples the required sample — the cost of precision is not linear"] -->
 
-**Scenario 1:** Confidence level 95%, margin of error ±3%.
-- $z^* = 1.96$, $\hat{p} = 0.5$
-- $n = \frac{(1.96)^2 \cdot 0.25}{(0.03)^2} = \frac{0.9604}{0.0009} = 1067$
+The same relationship holds for means. The sample size needed to achieve a margin of error $e$ for a mean is:
 
-**Scenario 2:** Confidence level 99%, margin of error ±3%.
-- $z^* = 2.576$, $\hat{p} = 0.5$
-- $n = \frac{(2.576)^2 \cdot 0.25}{(0.03)^2} = \frac{1.656}{0.0009} = 1840$
+$$n = \left(\frac{z^* \cdot \sigma}{e}\right)^2$$
 
-Higher confidence costs sample size. The 99% confident poll requires 773 more respondents than the 95% confident poll, both at the same margin of error.
+Again, halving the margin of error requires quadrupling the sample size.
 
-### A scale shift: Replicating the procedure
+---
 
-Imagine the polling company repeats this study 100 times, surveying 1,537 new random samples each time. They build a 95% confidence interval from each sample.
+## The shape of what you know
 
-- About **95 of those 100 intervals** will contain the true population proportion.
-- About 5 will miss.
+There's a clean way to picture everything in this chapter. Imagine the sampling distribution of your estimator — it's a bell curve centered at the true parameter, with spread equal to the standard error. Your sample gave you one point on that curve. The confidence interval is a window centered at your point, wide enough to capture the true parameter in most repetitions of the sampling procedure.
 
-You'll never know which category your interval falls into. But if you trust the procedure (random sampling, known σ or large n, correct formula), you should trust that 95 of 100 intervals work.
+Narrowing the window: larger $n$ shrinks the standard error, pulling the bell curve tighter, so a narrower window still captures the center most of the time.
 
-This is what "95% confidence" means procedurally. Not "this interval has a 95% chance of being right," but "this procedure produces right intervals 95% of the time."
+Widening the window: higher confidence level means you need the window to succeed in more repetitions, so it has to be wider.
+
+The t-distribution adds one more wrinkle: when $\sigma$ is unknown, you're building the window with a ruler (the sample standard deviation $s$) that itself has some measurement error. The t-distribution's heavier tails are the honest accounting for that extra source of uncertainty. As $n$ grows, your ruler becomes more precise, the t and z curves converge, and the extra width disappears.
+
+One final thought. Every margin of error you'll read in a newspaper, every "plus or minus" attached to a poll, every "confidence interval" in a medical journal — they are all doing exactly what this chapter describes. They are converting a sample into an honest expression of what you know and how much you're guessing. The 95% confidence level doesn't mean you're 95% right. It means you're using a procedure that's right 95% of the time, and you can't know whether this particular application is one of the 95% or one of the 5%.
+
+That honest uncertainty is not a failure of statistics. It's what statistics is for.
+
+---
+
+## What would change my mind
+
+If I repeatedly observed that my 95% confidence intervals contained the true parameter far less than 95% of the time — say, only 80% — I would look first for violations of assumptions: non-random sampling, non-normal populations with small samples, or underestimates of $\sigma$. If those were all ruled out and the shortfall persisted, I would need to revise my understanding of where the coverage guarantee breaks down.
+
+The derivation that replacing $\sigma$ with $s$ requires exactly the t-distribution rather than some other heavy-tailed distribution is mathematically clean — it follows from the ratio of a standard normal to a chi-squared variable — but I don't yet have a geometric or physical picture of *why* that particular ratio captures the extra uncertainty. The result is right; the necessity still feels more algebraic than inevitable.
+
+---
+
+## Connections forward
+
+Chapter 9 turns the logic around. Instead of building an interval around a sample statistic and asking "where is the parameter?", you'll fix a hypothesized parameter value and ask "how consistent is this sample with that hypothesis?" The sampling distributions are the same; the question is different. The margin of error you computed in this chapter becomes the standard for measuring how surprising your data would be if the null hypothesis were true.
+
+Chapter 10 extends confidence intervals to two samples — estimating the difference between two population means or two proportions. The structure is identical: point estimate $\pm$ margin of error. The point estimate is now a difference, and the standard error combines variability from both samples.
+
+In applied work — clinical trials, public opinion polling, quality control — confidence intervals are the working language of uncertainty. The width of the interval tells you how much precision you bought with your sample size. The level tells you how often you'll be right when you build intervals this way. Together, they let you make decisions under uncertainty without pretending the uncertainty isn't there.
 
 ---
 
@@ -374,81 +223,38 @@ This is what "95% confidence" means procedurally. Not "this interval has a 95% c
 
 ### Warm-up
 
-**Exercise 8.1** *(LO: construct CI for a mean, σ known.)* A sample of 50 college freshmen shows a mean SAT math score of $\bar{x} = 510$ with a known population standard deviation $\sigma = 100$. Build a 90% confidence interval for the true mean SAT math score of all college freshmen. Interpret the result.
+**8.1** *(CI for a mean, $\sigma$ known.)* A sample of 64 college students reports a mean weekly study time of $\bar{x} = 14.5$ hours. The population standard deviation is known to be $\sigma = 4$ hours. Build a 95% confidence interval for the true mean weekly study time. Interpret the result using the correct procedural language — not "there is a 95% chance."
 
-**Exercise 8.2** *(LO: construct CI for a mean, σ unknown.)* A sample of 12 patients in a sleep study slept an average of $\bar{x} = 8.1$ hours with sample standard deviation $s = 1.2$ hours. Build a 95% confidence interval for the true mean hours of sleep. What is the degrees of freedom? Why does the t-value differ from the z-value you would use if σ were known?
+**8.2** *(Reading critical values.)* For each confidence level, state the z* critical value and explain in one sentence what it means geometrically on the standard normal curve: (a) 90%, (b) 95%, (c) 99%. Why does the critical value increase as the confidence level increases?
 
-**Exercise 8.3** *(LO: construct CI for a proportion.)* In a random sample of 400 households, 68 say they own a tablet computer. Build a 95% confidence interval for the true proportion of all households that own tablets. Check that the conditions for normal approximation are met.
+**8.3** *(CI for a proportion.)* In a random sample of 300 registered voters, 162 say they plan to vote in the next election. Check the conditions for normal approximation. Build a 95% confidence interval for the true proportion of registered voters who plan to vote. Interpret the result.
 
 ### Application
 
-**Exercise 8.4** *(LO: compare confidence levels.)* Using the data from Exercise 8.2 (sample mean 8.1 hours, $s = 1.2$, $n = 12$), construct both a 90% and a 99% confidence interval. Compare the margins of error and the interval widths. Explain why the 99% interval is wider.
+**8.4** *(t-distribution and degrees of freedom.)* A nutrition researcher measures the daily caloric intake of 15 adults: $\bar{x} = 2,180$ calories, $s = 310$ calories. Build a 90% confidence interval for the true mean daily caloric intake. (a) What is the degrees of freedom? (b) What t* value do you use? (c) How would the interval change if the sample size were 50 instead of 15, everything else equal?
 
-**Exercise 8.5** *(LO: interpret margins of error.)* A poll reports: "52% of voters approve of the president's job performance, margin of error ±4%, 95% confidence." What does this statement mean? Is it correct to say "there's a 95% chance the true approval rate is between 48% and 56%"? Why or why not?
+**8.5** *(z vs. t comparison.)* Using the data from Exercise 8.4 ($n = 15$, $\bar{x} = 2,180$, $s = 310$), compute both a z-based and a t-based 90% confidence interval, treating $s$ as if it were $\sigma$ for the z calculation. Compare the two intervals. Which is wider? Why is the wider one the honest choice?
 
-**Exercise 8.6** *(LO: sample size calculation.)* A company wants to estimate the proportion of its website visitors who make a purchase, with a margin of error of ±3% at 95% confidence. How many visitors must they track? If they want to cut the margin of error to ±2%, how many visitors are needed? What is the relationship between margin of error and sample size?
+**8.6** *(Sample size planning.)* A market researcher wants to estimate the proportion of households that subscribe to a streaming service. She wants a margin of error of $\pm 4\%$ at 95% confidence. (a) With no prior estimate of the proportion, how many households must she survey? (b) If a previous study found $\hat{p} = 0.35$, how many are needed? (c) Why does using a prior estimate reduce the required sample size compared to the worst-case assumption?
 
 ### Synthesis
 
-**Exercise 8.7** *(LO: integrate means and proportions.)* You are designing a survey to estimate (1) the mean household income in a county and (2) the proportion of households below the poverty line. For the mean, you have a rough estimate of the standard deviation ($s \approx \$20,000$). For the proportion, you have a pilot estimate of about 12% below the line. Build a 95% confidence interval for each, assuming a sample size of 200. Which estimate is more precise (narrower interval relative to the estimate)? Why?
+**8.7** *(Interpreting a published margin of error.)* A news article reports: "A new poll finds 58% of Americans approve of the Supreme Court, with a margin of error of ±3.1 percentage points at 95% confidence." (a) Construct the confidence interval. (b) Is it correct to say "there is a 95% probability the true approval rate is between 54.9% and 61.1%"? Explain the distinction. (c) If the true approval rate is 55%, did this poll's interval hit or miss? How would you know?
 
-**Exercise 8.8** *(LO: recognize limitations and biases.)* A survey of 500 gym members finds that the mean weight loss after six months is 12 pounds, $s = 8$ pounds. Build a 95% CI. But identify two ways this interval might be misleading: (1) a bias in who responded, and (2) an assumption about the underlying distribution.
+**8.8** *(Two confidence levels, same data.)* A clinical trial of 25 patients shows a mean reduction in LDL cholesterol of 18 mg/dL with $s = 12$ mg/dL. Build both a 90% and a 99% confidence interval. (a) Which is wider, and by how much? (b) A regulator says: "The 90% interval looks better — it's narrower and still suggests the drug works." Explain the trade-off the regulator is accepting. (c) If the drug will be prescribed to millions of patients, which interval level gives you more comfort, and why?
+
+**8.9** *(The cost of precision.)* A polling firm currently surveys 1,000 people and achieves a margin of error of $\pm 3.1\%$ at 95% confidence. Their client wants a margin of error of $\pm 1\%$. (a) How many people would the firm need to survey to achieve this? (b) If each survey respondent costs \$12 to contact and interview, what is the additional cost of the tighter margin? (c) The client says "just cut the margin in half, not all the way to 1%." How many people are needed for $\pm 1.55\%$, and what does this cost?
 
 ### Challenge
 
-**Exercise 8.9** *(LO: compare procedures.)* A pharmaceutical company runs a clinical trial of a new blood pressure drug. They measure the systolic blood pressure of 25 patients before and after treatment. The mean reduction is 15 mmHg with $s = 10$ mmHg. (a) Build a 95% confidence interval using the t-distribution. (b) How would the interval change if the sample size were 100 instead of 25? (c) How would it change if the standard deviation were 5 mmHg instead of 10? (d) Explain the direction of each change in terms of the margin of error formula.
+**10** *(Procedural honesty.)* A pharmaceutical company builds a 95% confidence interval for the effectiveness of a new drug and reports the interval $(2.1, 8.4)$ mg/dL reduction. A skeptic says: "Given how pharmaceutical trials work — selective reporting, publication bias, small $n$ — I don't believe the claimed 95% coverage is real." Identify two specific ways the coverage guarantee could be systematically violated in clinical research. For each, explain which assumption of the confidence interval procedure is being broken and what direction the bias would push the true coverage rate.
 
-**Exercise 8.10** *(LO: open-ended reasoning.)* A researcher publishes a study claiming: "We are 95% confident that the mean improvement in students' test scores after using our tutoring program is between 3 and 7 points." Critique this claim. What would you want to know about the study design, sample, and assumptions to decide whether to believe it?
-
----
-
-## Chapter summary
-
-You can now do five things you probably could not do an hour ago.
-
-You can **build a confidence interval for a population mean** when you know or can assume the population standard deviation, using the z-distribution and the formula $\bar{x} \pm z^* \cdot \frac{\sigma}{\sqrt{n}}$. You understand that the interval gets narrower with larger samples and wider with higher confidence.
-
-You can **build a confidence interval when the standard deviation is unknown**, using the t-distribution and $\bar{x} \pm t_{df, \alpha/2} \cdot \frac{s}{\sqrt{n}}$, and you understand why Gossett's discovery (the t-distribution) was necessary: because the sample standard deviation $s$ is itself random, and the normal distribution underestimates the uncertainty when $n$ is small.
-
-You can **build a confidence interval for a population proportion**, using $\hat{p} \pm z^* \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$, and you know to check that $np \geq 5$ and $n(1-p) \geq 5$ before you trust the normal approximation.
-
-You can **calculate the sample size** needed to achieve a desired margin of error at a specified confidence level, and you understand the cost: halving the margin of error requires quadrupling the sample size.
-
-Most importantly, you understand the distinction that saves you from a pervasive error: **95% confidence is a statement about the procedure, not about this particular interval.** If you build confidence intervals the right way 100 times, about 95 will contain the true parameter. But any single interval either does or doesn't. You'll never know which. That honest uncertainty is the whole point.
-
----
-
-## What would change my mind
-
-Evidence that the true population parameter falls outside the confidence interval I built would show that either my procedure was biased, my randomization failed, or I was one of the small fraction of samples whose intervals miss. More broadly, if I observed that across many repeated samplings, fewer than 95% of my 95% confidence intervals contained the true parameter, I would suspect a violation in one of my assumptions: perhaps the population isn't normal, or the samples aren't truly random, or the standard deviation changed.
-
----
-
-## Still puzzling
-
-I don't yet have a fully satisfying intuition for why replacing $\sigma$ with $s$ requires the heavier tails of the t-distribution rather than a simple adjustment factor. Gossett's derivation (the t as a ratio of normal and chi-squared) makes mathematical sense, but I haven't yet developed a picture that shows *why* that particular construction captures the added uncertainty. The math works; the mechanism remains slightly opaque.
-
----
-
-## Tags
-
-confidence-intervals, margin-of-error, hypothesis-testing-foundation, central-limit-theorem, z-distribution, t-distribution, sample-size-planning, polling, clinical-trials, parameter-estimation
-
----
-
-## Connections forward
-
-In Chapter 9, you will use confidence intervals as the foundation for hypothesis testing. The logic reverses: instead of building an interval around a sample statistic and asking "where is the parameter?", you'll assume a parameter value and ask "how consistent is this sample with that assumption?" Both procedures rest on the sampling distributions you learned here (normal for large samples, t for small).
-
-In Chapter 10, you'll build confidence intervals for the difference between two population means or proportions. The formulas grow more complex, but the structure—point estimate ± margin of error—remains unchanged. You'll see that comparing two samples is just a careful extension of estimating one.
-
-In applied work—medicine, public policy, business analytics—confidence intervals are your working tool for converting uncertainty into a decision. When a clinical trial estimates that a drug reduces symptoms by 5 to 15 points, confidence intervals tell you whether you're confident enough in that range to approve the drug. This chapter gives you the machinery. The chapters that follow show you how to use it.
 ---
 
 ## LLM Exercise — Chapter 8: Confidence Intervals (Analyze One Dataset Project)
 
-**Project:** Analyze One Real Dataset.
-**What you're building this chapter:** CIs for mean and proportion on key variables.
+**Project:** Analyze One Real Dataset.  
+**What you're building this chapter:** CIs for mean and proportion on key variables.  
 **Tool:** **Claude Code** + **Claude Project**.
 
 ---
@@ -523,12 +329,11 @@ confidence?
 
 **Preview of next chapter:** Chapter 9 covers hypothesis testing with one sample. You'll test one specific claim about your dataset (e.g., "the mean is X" or "the proportion is Y").
 
-
 ---
 
 ## 🕰️ AI Wayback Machine
 
-**Jerzy Neyman** was Polish-American statistician who built the modern theory of confidence intervals and hypothesis testing in the 1930s with Egon Pearson.
+**Jerzy Neyman** was a Polish-American statistician who built the modern theory of confidence intervals and hypothesis testing in the 1930s with Egon Pearson.
 
 **Run this:**
 
