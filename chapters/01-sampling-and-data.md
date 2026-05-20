@@ -230,7 +230,7 @@ analysis report.
 
 ---
 
-## 🕰️ AI Wayback Machine
+## AI Wayback Machine
 
 **Florence Nightingale David** was a 20th-century British statistician — Karl Pearson's protégée — whose work on combinatorial probability and survey sampling is still cited.
 

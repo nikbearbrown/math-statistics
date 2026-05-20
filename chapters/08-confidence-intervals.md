@@ -331,7 +331,7 @@ confidence?
 
 ---
 
-## 🕰️ AI Wayback Machine
+## AI Wayback Machine
 
 **Jerzy Neyman** was a Polish-American statistician who built the modern theory of confidence intervals and hypothesis testing in the 1930s with Egon Pearson.
 

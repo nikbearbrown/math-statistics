@@ -335,7 +335,7 @@ practical meaning? Compute the probability and interpret.
 
 ---
 
-## 🕰️ AI Wayback Machine
+## AI Wayback Machine
 
 **Abraham de Moivre** derived the normal approximation to the binomial in 1733 — the first appearance of the normal distribution in print.
 

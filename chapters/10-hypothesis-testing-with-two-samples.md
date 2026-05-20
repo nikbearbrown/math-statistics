@@ -252,7 +252,7 @@ dataset's central story?
 
 ---
 
-## 🕰️ AI Wayback Machine
+## AI Wayback Machine
 
 **Frank Wilcoxon** was a chemist whose rank-based two-sample test (1945) became one of the most-used nonparametric techniques in modern statistics.
 

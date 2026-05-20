@@ -361,7 +361,7 @@ close.
 
 ---
 
-## 🕰️ AI Wayback Machine
+## AI Wayback Machine
 
 **Gertrude Cox** was the first woman to chair a statistics department in the US — at North Carolina State — and a pioneer of experimental design and regression methods.
 

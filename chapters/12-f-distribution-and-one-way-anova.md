@@ -369,7 +369,7 @@ gives the full picture.
 
 ---
 
-## 🕰️ AI Wayback Machine
+## AI Wayback Machine
 
 **Ronald Fisher** invented analysis of variance, the F-distribution, and the core machinery of modern experimental statistics — with an entangled eugenics legacy.
 

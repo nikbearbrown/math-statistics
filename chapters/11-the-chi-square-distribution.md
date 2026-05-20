@@ -334,7 +334,7 @@ suspected?
 
 ---
 
-## 🕰️ AI Wayback Machine
+## AI Wayback Machine
 
 **Karl Pearson** introduced the chi-square test in 1900 — and built the foundations of biometric statistics, with a controversial eugenics legacy.
 

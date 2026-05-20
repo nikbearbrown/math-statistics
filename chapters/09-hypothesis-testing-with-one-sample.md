@@ -362,7 +362,7 @@ about "significance" as a discipline?
 
 ---
 
-## 🕰️ AI Wayback Machine
+## AI Wayback Machine
 
 **William Gosset** wrote as "Student" while working at Guinness — and introduced the t-test in 1908 to handle small-sample inference.
 

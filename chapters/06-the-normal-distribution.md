@@ -329,7 +329,7 @@ This shapes which inference methods will be appropriate later.
 
 ---
 
-## 🕰️ AI Wayback Machine
+## AI Wayback Machine
 
 **Carl Friedrich Gauss** was a mathematician whose 1809 work on least squares put the normal distribution at the center of statistical practice.
 

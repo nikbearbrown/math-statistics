@@ -244,7 +244,7 @@ imperfect.
 
 ---
 
-## 🕰️ AI Wayback Machine
+## AI Wayback Machine
 
 **Siméon Denis Poisson** was a French mathematician whose 1837 work on the distribution bearing his name underlies modern modeling of rare events.
 

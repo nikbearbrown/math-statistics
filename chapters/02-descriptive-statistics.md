@@ -396,7 +396,7 @@ what hypothesis tests will be most interesting in Chapters 9-13.
 
 ---
 
-## 🕰️ AI Wayback Machine
+## AI Wayback Machine
 
 **John Tukey** invented exploratory data analysis — the framework underlying every modern look at a dataset.
 

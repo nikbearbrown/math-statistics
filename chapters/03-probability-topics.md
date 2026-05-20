@@ -394,7 +394,7 @@ between the two variables, made visible.
 
 ---
 
-## 🕰️ AI Wayback Machine
+## AI Wayback Machine
 
 **Andrey Kolmogorov** was a Soviet mathematician who axiomatized probability theory in 1933 — the foundation of all modern statistical reasoning.
 

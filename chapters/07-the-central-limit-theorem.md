@@ -205,7 +205,7 @@ distribution of YOUR variable's mean looks approximately Normal?
 
 ---
 
-## 🕰️ AI Wayback Machine
+## AI Wayback Machine
 
 **Pierre-Simon Laplace** extended de Moivre's normal approximation to arbitrary distributions in 1810 — the first general central limit theorem.
 
