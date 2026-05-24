@@ -15,7 +15,8 @@ His insight was to stop asking about pairs and start asking about the whole pict
 
 This is ANOVA — Analysis of Variance. One test. One family-wise error rate. One decision about whether any difference exists at all.
 
-<!-- → [CHART: Line chart — x-axis: number of groups (2 to 10), y-axis: family-wise false positive rate (probability of at least one spurious significant result). Curve rises from 0.05 at 2 groups to ~0.40 at 5 groups (10 comparisons) and ~0.63 at 7 groups (21 comparisons), computed as 1 − 0.95^(k(k−1)/2). Horizontal dashed line at 0.05 labeled "Intended α." Caption: "Each pairwise t-test adds to the chance of a false discovery. With 5 groups and 10 comparisons, the true error rate is 8× the intended level."] -->
+![Each pairwise t-test adds to the chance of a false discovery. With 5 groups and 10 comparisons, the true error rate is 8× the intended level.](images/12-f-distribution-and-one-way-anova-fig-01.png)
+*Figure 12.1 — Line chart *
 
 ---
 
@@ -31,7 +32,8 @@ The exact shape of the F-distribution depends on two parameters, both degrees of
 
 Why does the F-ratio follow this specific distribution? The argument runs through the chi-squared distribution: each variance estimate, when properly scaled, follows a chi-squared distribution, and the ratio of two independent chi-squared variables (each divided by its degrees of freedom) is the F-distribution by definition. The derivation is mathematical statistics; for our purposes, what matters is what the distribution implies: when the null hypothesis is true (the two variance estimates come from the same population), the F-ratio should be close to 1. When the null is false (the numerator variance is genuinely larger than the denominator variance), the F-ratio climbs. Large F-values are evidence against the null.
 
-<!-- → [IMAGE: Three F-distribution curves on the same axes. F(1,10): extremely right-skewed, tall spike near zero. F(5,10): wider, peak shifts right, less extreme skew. F(20,20): nearly symmetric bell, much closer to normal. Hard left boundary at zero visible on all. Caption: "Same family, different shapes. As degrees of freedom grow, the F-distribution becomes more symmetric — but it starts from zero and skews right."] -->
+![Same family, different shapes. As degrees of freedom grow, the F-distribution becomes more symmetric — but it starts from zero and skews right.](images/12-f-distribution-and-one-way-anova-fig-02.png)
+*Figure 12.2 — Three F-distribution curves on the same axes*
 
 ---
 
@@ -95,7 +97,8 @@ $$SS_{\text{total}} = SS_{\text{between}} + SS_{\text{within}}$$
 
 Total variation equals explained variation plus unexplained variation. Every partition in statistics has this structure. It's the same logic that appears in regression (Chapter 13), where total variation in the outcome splits into variation explained by the regression line and variation that remains as residuals. The idea is always the same: account for what you can, measure what's left.
 
-<!-- → [INFOGRAPHIC: Bar diagram showing one wide bar labeled "SS_total" splitting into two stacked segments: upper segment labeled "SS_between — variation explained by group membership" (lighter color) and lower segment labeled "SS_within — residual noise within groups" (darker color). Arrow annotation: "ANOVA asks whether SS_between is large relative to SS_within." Caption: "Partition of variation. When groups are genuinely different, the explained piece grows. When groups are identical, virtually everything is residual noise."] -->
+![Partition of variation. When groups are genuinely different, the explained piece grows. When groups are identical, virtually everything is residual noise.](images/12-f-distribution-and-one-way-anova-fig-03.png)
+*Figure 12.3 — Bar diagram showing one wide bar labeled "SS_total"*
 
 ---
 
@@ -125,7 +128,8 @@ climbs above 1 when real differences exist. How far above 1 depends on how large
 
 This F-statistic follows an $F_{k-1,\, n-k}$ distribution under the null hypothesis. Large values — in the right tail — are evidence against the null. The test is always right-tailed, because under the null the ratio is near 1, and evidence against the null always pushes the ratio up, never down.
 
-<!-- → [IMAGE: F-distribution curve with right tail shaded as rejection region beyond the critical value F_crit. Two vertical lines: one near 1 labeled "F ≈ 1 (H₀ true — groups are the same)" and one far to the right labeled "F >> 1 (H_a: group means genuinely differ, MS_between inflated)." Caption: "ANOVA is always right-tailed. Under the null, F ≈ 1. Real group differences push F into the right tail."] -->
+![ANOVA is always right-tailed. Under the null, F ≈ 1. Real group differences push F into the right tail.](images/12-f-distribution-and-one-way-anova-fig-04.png)
+*Figure 12.4 — F-distribution curve with right tail shaded as rejection*
 
 ---
 
@@ -175,7 +179,8 @@ The F-statistic is 0.377 — below 1. This means the between-group variation is 
 
 Notice something important about this result: the F below 1 is itself informative. It's telling you that the group means are less spread out than you'd expect from random sampling even if there were no real differences. With only 10 observations split across three groups, there simply isn't enough data to detect a difference even if one existed.
 
-<!-- → [IMAGE: Strip plot (dot plot) of the diet plan data — x-axis: three diet plans, y-axis: weight loss in pounds. Individual data points shown as dots per group. Group means marked with a horizontal line. Grand mean marked with a dashed horizontal line. Student should see: the within-group scatter for each plan is large relative to how far apart the group means sit — F < 1 becomes visually obvious. Caption: "The group means (Plan 1: 4.1, Plan 2: 5.0, Plan 3: 5.2) are nearly indistinguishable from the grand mean once you see the within-group scatter."] -->
+![The group means (Plan 1: 4.1, Plan 2: 5.0, Plan 3: 5.2) are nearly indistinguishable from the grand mean once you see the within-group scatter.](images/12-f-distribution-and-one-way-anova-fig-05.png)
+*Figure 12.5 — Strip plot (dot plot) of the diet plan*
 
 ---
 
@@ -209,7 +214,8 @@ To find out which specific pairs differ, you need a **post-hoc test**: a procedu
 
 The sequence is: first run ANOVA. If the F-test is significant, then run a post-hoc test to identify which pairs. Running post-hoc tests without a significant ANOVA first — fishing for pairs before confirming that any differences exist — is the multiple-comparisons problem that Fisher's test was designed to prevent.
 
-<!-- → [INFOGRAPHIC: Two-step flowchart. Step 1 box: "Run one-way ANOVA — F-test. Question: do any group means differ?" Arrow labeled "F significant (p < α)" leads to Step 2 box: "Run post-hoc test (Tukey's HSD). Question: which specific pairs differ?" Arrow labeled "F not significant (p ≥ α)" leads to "Stop — no evidence of any difference." Caption: "ANOVA gates the post-hoc analysis. Skipping the gate and running pairwise comparisons directly is the multiple-comparisons problem."] -->
+![ANOVA gates the post-hoc analysis. Skipping the gate and running pairwise comparisons directly is the multiple-comparisons problem.](images/12-f-distribution-and-one-way-anova-fig-06.png)
+*Figure 12.6 — Two-step flowchart*
 
 ---
 
@@ -387,3 +393,61 @@ Who is Ronald Fisher, and how does their work connect to ANOVA and the F-distrib
 - Add a constraint: "Answer including criticisms or limits of Ronald Fisher's framework."
 
 What changes? What gets better? What gets worse?
+
+## Prompts
+
+Use these prompts with Claude to generate interactive D3 v7 versions of the
+figures in this chapter. Each produces a standalone HTML file you can open
+in a browser and modify freely.
+
+**Prerequisites:** Load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into
+your Claude project context before using these prompts. They define the stack,
+naming conventions, color system, and typography the figures use.
+
+---
+
+### Figure 12.1 — Line chart 
+
+Create a standalone D3 v7 HTML file for Figure Line chart . Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: Line chart — x-axis: number of groups (2 to 10), y-axis: family-wise false positive rate (probability of at least one spurious significant result). Curve rises from 0.05 at 2 groups to ~0.40 at 5 groups (10 comparisons) and ~0.63 at 7 groups (21 comparisons), computed as 1 − 0.95^(k(k−1)/2). Horizontal dashed line at 0.05 labeled "Intended α." Caption: "Each pairwise t-test adds to the chance of a false discovery. With 5 groups and 10 comparisons, the true error rate is 8× the intended level.". Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/12-f-distribution-and-one-way-anova-fig-01.html`
+
+---
+
+### Figure 12.2 — Three F-distribution curves on the same axes
+
+Create a standalone D3 v7 HTML file for Figure Three F-distribution curves on the same axes. Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: Three F-distribution curves on the same axes. F(1,10): extremely right-skewed, tall spike near zero. F(5,10): wider, peak shifts right, less extreme skew. F(20,20): nearly symmetric bell, much closer to normal. Hard left boundary at zero visible on all. Caption: "Same family, different shapes. As degrees of freedom grow, the F-distribution becomes more symmetric — but it starts from zero and skews right.". Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/12-f-distribution-and-one-way-anova-fig-02.html`
+
+---
+
+### Figure 12.3 — Bar diagram showing one wide bar labeled "SS_total"
+
+Create a standalone D3 v7 HTML file for Figure Bar diagram showing one wide bar labeled "SS_total". Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: Bar diagram showing one wide bar labeled "SS_total" splitting into two stacked segments: upper segment labeled "SS_between — variation explained by group membership" (lighter color) and lower segment labeled "SS_within — residual noise within groups" (darker color). Arrow annotation: "ANOVA asks whether SS_between is large relative to SS_within." Caption: "Partition of variation. When groups are genuinely different, the explained piece grows. When groups are identical, virtually everything is residual noise.". Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/12-f-distribution-and-one-way-anova-fig-03.html`
+
+---
+
+### Figure 12.4 — F-distribution curve with right tail shaded as rejection
+
+Create a standalone D3 v7 HTML file for Figure F-distribution curve with right tail shaded as rejection. Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: F-distribution curve with right tail shaded as rejection region beyond the critical value F_crit. Two vertical lines: one near 1 labeled "F ≈ 1 (H₀ true — groups are the same)" and one far to the right labeled "F >> 1 (H_a: group means genuinely differ, MS_between inflated)." Caption: "ANOVA is always right-tailed. Under the null, F ≈ 1. Real group differences push F into the right tail.". Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/12-f-distribution-and-one-way-anova-fig-04.html`
+
+---
+
+### Figure 12.5 — Strip plot (dot plot) of the diet plan
+
+Create a standalone D3 v7 HTML file for Figure Strip plot (dot plot) of the diet plan. Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: Strip plot (dot plot) of the diet plan data — x-axis: three diet plans, y-axis: weight loss in pounds. Individual data points shown as dots per group. Group means marked with a horizontal line. Grand mean marked with a dashed horizontal line. Student should see: the within-group scatter for each plan is large relative to how far apart the group means sit — F < 1 becomes visually obvious. Caption: "The group means (Plan 1: 4.1, Plan 2: 5.0, Plan 3: 5.2) are nearly indistinguishable from the grand mean once you see the within-group scatter.". Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/12-f-distribution-and-one-way-anova-fig-05.html`
+
+---
+
+### Figure 12.6 — Two-step flowchart
+
+Create a standalone D3 v7 HTML file for Figure Two-step flowchart. Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: Two-step flowchart. Step 1 box: "Run one-way ANOVA — F-test. Question: do any group means differ?" Arrow labeled "F significant (p < α)" leads to Step 2 box: "Run post-hoc test (Tukey's HSD). Question: which specific pairs differ?" Arrow labeled "F not significant (p ≥ α)" leads to "Stop — no evidence of any difference." Caption: "ANOVA gates the post-hoc analysis. Skipping the gate and running pairwise comparisons directly is the multiple-comparisons problem.". Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/12-f-distribution-and-one-way-anova-fig-06.html`

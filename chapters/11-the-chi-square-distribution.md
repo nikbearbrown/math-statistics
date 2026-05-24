@@ -33,7 +33,8 @@ That mean gives you immediate intuition. If you are running a test with 6 degree
 
 Two properties follow from the structure. First, chi-square is always nonnegative — it's a sum of squares, and squares cannot be negative. Second, chi-square tests are always right-tailed. You reject the null when the test statistic is *large*, because large means observed deviations from expected are large. There is no left-tailed chi-square test.
 
-<!-- → [CHART: overlapping chi-square density curves for df=1, df=4, df=10, and df=30 on the same axes — horizontal axis from 0 to 40, vertical axis density; df=1 is most sharply bunched near zero; df=4 has a visible peak around 2; df=10 peaks around 8; df=30 is nearly symmetric and bell-like; each curve labeled; vertical dashed line at x=df for each curve showing mean=df; caption: "The distribution shifts right and becomes more symmetric as degrees of freedom increase"] -->
+![The distribution shifts right and becomes more symmetric as degrees of freedom increase](images/11-the-chi-square-distribution-fig-01.png)
+*Figure 11.1 — Overlapping chi-square density curves for df=1, df=4, df=10,*
 
 ---
 
@@ -51,7 +52,8 @@ Why square the deviation? Two reasons. First, squaring makes every term nonnegat
 
 One assumption underlies the whole procedure: the expected count in each cell must be at least 5. When expected counts are very small, the chi-square approximation breaks down. The test statistic no longer follows the chi-square distribution, and the p-value is unreliable. When you encounter small expected counts, the remedy is to combine categories until each expected count clears 5.
 
-<!-- → [INFOGRAPHIC: two-column diagram labeled "Why E < 5 breaks the test" — left column shows a bar chart of observed counts where one bar is 1 and the chi-square formula term (O-E)²/E contributes an outsized value; right column shows the same test after combining two small-count categories into one, all expected counts now ≥5, the combined bar properly sized; caption explains the approximation requires adequate probability mass in each bin] -->
+![Two-column diagram labeled "Why E < 5 breaks](images/11-the-chi-square-distribution-fig-02.png)
+*Figure 11.2 — Two-column diagram labeled "Why E < 5 breaks*
 
 ---
 
@@ -89,7 +91,8 @@ With $df = 1$, the critical value at $\alpha = 0.05$ is 3.841. The statistic 92.
 
 This is historically interesting because Mendel's published data are notoriously too clean — subsequent analysis by Ronald Fisher suggested the data may have been adjusted to better match the theory. The chi-square test, in this light, isn't just about whether a theory fits the data; it can also ask whether data are suspiciously well-fitted, which is a different kind of anomaly.
 
-<!-- → [IMAGE: chi-square distribution curve for df=1, horizontal axis 0 to 100; critical value at 3.841 marked with a vertical dashed line and labeled "α=0.05 boundary"; shaded rejection region to the right; a marker at χ²=92.93 deep in the tail labeled "Mendel's result"; the visual distance between the critical value and Mendel's statistic illustrates how dramatically the data deviate from the 3:1 theory] -->
+![Chi-square distribution curve for df=1, horizontal axis 0](images/11-the-chi-square-distribution-fig-03.png)
+*Figure 11.3 — Chi-square distribution curve for df=1, horizontal axis 0*
 
 ---
 
@@ -109,7 +112,8 @@ $$df = (\text{rows} - 1) \times (\text{columns} - 1)$$
 
 Why this formula? In a table with $r$ rows and $c$ columns, the row totals and column totals are fixed by the data. Once you fill in $(r-1) \times (c-1)$ cells, all remaining cells are determined by subtraction. Those are the cells that are genuinely free to vary.
 
-<!-- → [IMAGE: annotated 3×3 contingency table skeleton — row and column totals shown in bold; the (r-1)×(c-1) = 4 "free" cells shaded in one color; the remaining 5 cells (last row and last column) shaded in another color with arrows and labels showing "determined by row/column constraints"; caption: "Only the shaded free cells contribute independent information — the rest are forced by the margins"] -->
+![Only the shaded free cells contribute independent information — the rest are forced by the margins](images/11-the-chi-square-distribution-fig-04.png)
+*Figure 11.4 — 3×3 contingency table skeleton *
 
 A survey of 400 moviegoers classified by age group and favorite genre. Three age groups (18–30, 31–50, 50+), three genres (Action, Comedy, Drama). Does preference depend on age?
 
@@ -154,7 +158,8 @@ Now here's a thing worth noticing. The mean of a chi-square distribution with 5 
 
 This is the kind of observation that caught Fisher's attention when he examined Mendel's data. A chi-square statistic that's extremely small — much less than its degrees of freedom — suggests the data may have been adjusted or selected for agreement with the theory. Real data is messy; it almost always produces some deviation. Data that's too clean is its own kind of anomaly.
 
-<!-- → [CHART: chi-square distribution for df=5 — full curve shown; left tail region shaded for "suspiciously small" values below the 5th percentile (≈1.15); right tail region shaded for "standard rejection" values above the 95th percentile (=11.07); lottery result at χ²=1.05 marked in the left shaded region; caption: "Both extremes are informative — very large statistics suggest bad fit; very small statistics suggest suspiciously good fit"] -->
+![Both extremes are informative — very large statistics suggest bad fit; very small statistics suggest suspiciously good fit](images/11-the-chi-square-distribution-fig-05.png)
+*Figure 11.5 — Chi-square distribution for df=5 *
 
 ---
 
@@ -186,7 +191,11 @@ $$V = \sqrt{\frac{\chi^2}{n \cdot \min(r-1, c-1)}}$$
 
 where $n$ is the total sample size and $\min(r-1, c-1)$ is the smaller of rows-minus-1 and columns-minus-1. $V$ ranges from 0 (no association) to 1 (perfect association). A chi-square test with a tiny p-value but a small $V$ tells you the association is real but weak — which is what happens when sample sizes are enormous and you can detect very small effects. Always report both.
 
-<!-- → [TABLE: two-column reference table for Cramér's V interpretation — columns: V range, Strength of association; rows: V < 0.10 / Negligible, 0.10–0.30 / Moderate, 0.30–0.50 / Strong, V > 0.50 / Very strong; second column adds a note that p-value tells you the association is real, V tells you whether it matters practically; clear reference for the reporting discipline introduced in this section] -->
+| V range | Strength of association |
+| --- | --- |
+| V < 0.10 | Negligible, 0.10–0.30 |
+| second column adds a note that p-value tells you the association is real, V tells you whether it matters practically | Audience, stakes, timing, and platform conventions shape the choice. |
+| clear reference for the reporting discipline introduced in this section | A concrete checkpoint for applying the chapter concept. |
 
 And the caution about causation deserves repeating. A chi-square test of independence that rejects the null tells you two variables are associated. It does not tell you why. The relationship could be direct, it could be mediated by a third variable, it could be an artifact of how the sample was collected. The test is the beginning of the analysis, not the end of it.
 
@@ -352,3 +361,53 @@ Who is Karl Pearson, and how does their work connect to the chi-square distribut
 - Add a constraint: "Answer including criticisms or limits of Karl Pearson's framework."
 
 What changes? What gets better? What gets worse?
+
+## Prompts
+
+Use these prompts with Claude to generate interactive D3 v7 versions of the
+figures in this chapter. Each produces a standalone HTML file you can open
+in a browser and modify freely.
+
+**Prerequisites:** Load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into
+your Claude project context before using these prompts. They define the stack,
+naming conventions, color system, and typography the figures use.
+
+---
+
+### Figure 11.1 — Overlapping chi-square density curves for df=1, df=4, df=10,
+
+Create a standalone D3 v7 HTML file for Figure Overlapping chi-square density curves for df=1, df=4, df=10,. Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: overlapping chi-square density curves for df=1, df=4, df=10, and df=30 on the same axes — horizontal axis from 0 to 40, vertical axis density; df=1 is most sharply bunched near zero; df=4 has a visible peak around 2; df=10 peaks around 8; df=30 is nearly symmetric and bell-like; each curve labeled; vertical dashed line at x=df for each curve showing mean=df; caption: "The distribution shifts right and becomes more symmetric as degrees of freedom increase". Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/11-the-chi-square-distribution-fig-01.html`
+
+---
+
+### Figure 11.2 — Two-column diagram labeled "Why E < 5 breaks
+
+Create a standalone D3 v7 HTML file for Figure Two-column diagram labeled "Why E < 5 breaks. Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: two-column diagram labeled "Why E < 5 breaks the test" — left column shows a bar chart of observed counts where one bar is 1 and the chi-square formula term (O-E)²/E contributes an outsized value; right column shows the same test after combining two small-count categories into one, all expected counts now ≥5, the combined bar properly sized; caption explains the approximation requires adequate probability mass in each bin. Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/11-the-chi-square-distribution-fig-02.html`
+
+---
+
+### Figure 11.3 — Chi-square distribution curve for df=1, horizontal axis 0
+
+Create a standalone D3 v7 HTML file for Figure Chi-square distribution curve for df=1, horizontal axis 0. Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: chi-square distribution curve for df=1, horizontal axis 0 to 100; critical value at 3.841 marked with a vertical dashed line and labeled "α=0.05 boundary"; shaded rejection region to the right; a marker at χ²=92.93 deep in the tail labeled "Mendel's result"; the visual distance between the critical value and Mendel's statistic illustrates how dramatically the data deviate from the 3:1 theory. Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/11-the-chi-square-distribution-fig-03.html`
+
+---
+
+### Figure 11.4 — 3×3 contingency table skeleton 
+
+Create a standalone D3 v7 HTML file for Figure 3×3 contingency table skeleton . Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: annotated 3×3 contingency table skeleton — row and column totals shown in bold; the (r-1)×(c-1) = 4 "free" cells shaded in one color; the remaining 5 cells (last row and last column) shaded in another color with arrows and labels showing "determined by row/column constraints"; caption: "Only the shaded free cells contribute independent information — the rest are forced by the margins". Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/11-the-chi-square-distribution-fig-04.html`
+
+---
+
+### Figure 11.5 — Chi-square distribution for df=5 
+
+Create a standalone D3 v7 HTML file for Figure Chi-square distribution for df=5 . Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: chi-square distribution for df=5 — full curve shown; left tail region shaded for "suspiciously small" values below the 5th percentile (≈1.15); right tail region shaded for "standard rejection" values above the 95th percentile (=11.07); lottery result at χ²=1.05 marked in the left shaded region; caption: "Both extremes are informative — very large statistics suggest bad fit; very small statistics suggest suspiciously good fit". Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/11-the-chi-square-distribution-fig-05.html`

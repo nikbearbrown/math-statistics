@@ -19,13 +19,15 @@ The tool for looking is the **histogram**. Take your data — two thousand salar
 
 Now you can see things you couldn't see from the numbers alone. Are the data piled up in one place, or spread across the whole range? Is there a long tail on one side? Are there two separate humps — suggesting your "population" is actually two different groups? Is there one bar sitting far away from all the others?
 
-<!-- → [IMAGE: annotated histogram showing four archetypal shapes side by side — symmetric bell, right-skewed, left-skewed, bimodal — with callout arrows labeling the tail direction and the relationship between mean and median in each; student should see at a glance what "shape" means before reading about it] -->
+![Histogram showing four archetypal shapes side by side](images/02-descriptive-statistics-fig-01.png)
+*Figure 2.1 — Histogram showing four archetypal shapes side by side*
 
 That last thing — one bar sitting far away — is an outlier, and it is the source of all your trouble with the mean. More on that shortly.
 
 For a smaller dataset, say twenty or thirty values, there is a more informative version of the histogram called the **stem-and-leaf plot**. Each number is split into a "stem" (all digits except the last) and a "leaf" (the last digit). Line up the stems vertically, and write each leaf next to its stem. The result is a histogram that preserves the actual values. Twenty exam scores — 49, 53, 55, 55, 61, 63, 67, 68, 68, 69, 69, 72, 73, 74, 78, 80, 83, 88, 88, 88 — arranged this way, you see immediately that the scores cluster in the 60s and 70s, with three students stuck in 88 and one unlucky person at 49.
 
-<!-- → [IMAGE: rendered stem-and-leaf plot of the twenty exam scores above, showing stems 4–8 with leaves written out, and a dotted bracket on the right indicating how to read the shape as a sideways histogram] -->
+![Stem-and-leaf plot of the twenty exam scores above,](images/02-descriptive-statistics-fig-02.png)
+*Figure 2.2 — Stem-and-leaf plot of the twenty exam scores above,*
 
 The third picture is the **box plot**, which is really a picture of five numbers: the minimum, the 25th percentile (called Q1), the median, the 75th percentile (Q3), and the maximum. Draw a box from Q1 to Q3. Put a line inside the box at the median. Extend lines — "whiskers" — from the box out to the min and max. Any values that sit suspiciously far from the box get plotted as individual points.
 
@@ -33,7 +35,8 @@ That "suspiciously far" has a precise meaning: a value is flagged as a suspected
 
 The box plot is what you reach for when you want to compare two groups at a glance, or when you have too many observations for a stem-and-leaf plot to stay readable.
 
-<!-- → [IMAGE: labeled box plot diagram showing a single distribution — box spanning Q1 to Q3, median line inside, whiskers extending to min and max, two outlier points plotted individually beyond the upper whisker; each element labeled with its name and the 1.5×IQR boundary marked on the upper whisker] -->
+![Labeled box plot diagram showing a single distribution](images/02-descriptive-statistics-fig-03.png)
+*Figure 2.3 — Labeled box plot diagram showing a single distribution*
 
 ---
 
@@ -51,7 +54,8 @@ The $\overline{x}$ (read "x-bar") is the sample mean. If you're describing a who
 
 The physical intuition for the mean is a balance point. Imagine placing weights on a number line, one weight per observation. The mean is the fulcrum location that keeps the whole thing level. This intuition immediately tells you something important: a single heavy weight placed far from the others will drag the fulcrum toward it. An outlier pulls the mean.
 
-<!-- → [IMAGE: number line with five evenly spaced weights (2, 4, 6, 8, 10) balanced on a fulcrum at 6, then a second number line with the same four weights plus one at 30 showing the fulcrum shifting right — illustrates outlier effect on mean without words] -->
+![Number line with five evenly spaced weights (2,](images/02-descriptive-statistics-fig-04.png)
+*Figure 2.4 — Number line with five evenly spaced weights (2,*
 
 You can also compute the mean when some values repeat, by multiplying each distinct value by how many times it appears:
 
@@ -85,7 +89,8 @@ When a distribution is **left-skewed** — long tail toward low values — the p
 
 This is why the shape of the histogram matters before you compute anything. If the histogram shows a right-skewed distribution, you already know the mean is going to be inflated relative to the median, and you should be suspicious of any claim that reports only the mean.
 
-<!-- → [INFOGRAPHIC: three side-by-side distribution curves — symmetric, right-skewed, left-skewed — each with vertical lines marking mode, median, and mean positions, and the inequality relationship (mode < median < mean, etc.) printed below each; the canonical reference diagram for skewness and center] -->
+![Three side-by-side distribution curves ](images/02-descriptive-statistics-fig-05.png)
+*Figure 2.5 — Three side-by-side distribution curves *
 
 ---
 
@@ -163,7 +168,8 @@ Interpretation: the typical observation in this dataset sits about 3.16 units fr
 
 Now compare two datasets with the same mean. Supermarket A: mean wait = 5 min, $s$ = 0.5 min. Supermarket B: mean wait = 5 min, $s$ = 2 min. At A, the wait is almost always between 4 and 6 minutes. At B, the wait can be anywhere from 1 to 9 minutes. Same average experience on paper. Very different actual experience.
 
-<!-- → [CHART: two overlapping bell-curve-shaped distributions on the same axis — both centered at 5 minutes, one narrow (SD=0.5) and one wide (SD=2) — with shaded regions showing where 95% of wait times fall for each; student should see visually why equal means with different SDs produce different experiences] -->
+![Two overlapping bell-curve-shaped distributions on the same axis](images/02-descriptive-statistics-fig-06.png)
+*Figure 2.6 — Two overlapping bell-curve-shaped distributions on the same axis*
 
 ---
 
@@ -209,7 +215,8 @@ A wealth management firm wants to describe three years of portfolio returns to p
 
 The first step is the histogram. Group the returns into ten equal-width intervals (width ≈ 4.5 percentage points). The histogram shows a roughly bell-shaped distribution, slightly right-skewed — most clients earned between 2% and 11%, but there is a thin tail of exceptional performers on the high end, and a thin tail of bad years on the low end.
 
-<!-- → [CHART: histogram of the 100 client portfolio returns — horizontal axis labeled "Annual Return (%)" with ten bars from −16% to +29%, vertical axis labeled "Number of clients"; the bar spanning 2%–6.5% tallest, thin tail visible on right; mean (6.2%) and median (6.5%) marked as vertical lines so student sees they nearly coincide in a near-symmetric distribution] -->
+![Histogram of the 100 client portfolio returns ](images/02-descriptive-statistics-fig-07.png)
+*Figure 2.7 — Histogram of the 100 client portfolio returns *
 
 Now the summary statistics:
 
@@ -227,7 +234,8 @@ Outlier check:
 - Upper boundary: $10.5 + 1.5(7.7) = 22.05\%$
 - The +28.4% return exceeds this boundary. It is a suspected outlier — likely an exceptional year for one particular client, not evidence that 28% returns are typical.
 
-<!-- → [IMAGE: box plot of the 100 client returns — box from Q1=2.8% to Q3=10.5%, median line at 6.5%, lower whisker extending to −15.3%, upper whisker ending at 22.05%, and the +28.4% return plotted as a lone outlier point; visually connects the five-number summary to the outlier boundary calculation just shown] -->
+![Box plot of the 100 client returns ](images/02-descriptive-statistics-fig-08.png)
+*Figure 2.8 — Box plot of the 100 client returns *
 
 Now you can write an honest summary: "Our 100 clients achieved a mean annual return of 6.2% with a standard deviation of 6.1%. Half earned between 2.8% and 10.5%. Most returns clustered between 2% and 11%. One client achieved 28.4% — an exceptional result. Only six of 100 clients saw losses. The distribution is nearly symmetric, with no systematic bias in either direction."
 
@@ -414,3 +422,77 @@ Who is John Tukey, and how does their work connect to descriptive statistics we 
 - Add a constraint: "Answer including criticisms or limits of John Tukey's framework."
 
 What changes? What gets better? What gets worse?
+
+## Prompts
+
+Use these prompts with Claude to generate interactive D3 v7 versions of the
+figures in this chapter. Each produces a standalone HTML file you can open
+in a browser and modify freely.
+
+**Prerequisites:** Load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into
+your Claude project context before using these prompts. They define the stack,
+naming conventions, color system, and typography the figures use.
+
+---
+
+### Figure 2.1 — Histogram showing four archetypal shapes side by side
+
+Create a standalone D3 v7 HTML file for Figure Histogram showing four archetypal shapes side by side. Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: annotated histogram showing four archetypal shapes side by side — symmetric bell, right-skewed, left-skewed, bimodal — with callout arrows labeling the tail direction and the relationship between mean and median in each; student should see at a glance what "shape" means before reading about it. Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/02-descriptive-statistics-fig-01.html`
+
+---
+
+### Figure 2.2 — Stem-and-leaf plot of the twenty exam scores above,
+
+Create a standalone D3 v7 HTML file for Figure Stem-and-leaf plot of the twenty exam scores above,. Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: rendered stem-and-leaf plot of the twenty exam scores above, showing stems 4–8 with leaves written out, and a dotted bracket on the right indicating how to read the shape as a sideways histogram. Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/02-descriptive-statistics-fig-02.html`
+
+---
+
+### Figure 2.3 — Labeled box plot diagram showing a single distribution
+
+Create a standalone D3 v7 HTML file for Figure Labeled box plot diagram showing a single distribution. Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: labeled box plot diagram showing a single distribution — box spanning Q1 to Q3, median line inside, whiskers extending to min and max, two outlier points plotted individually beyond the upper whisker; each element labeled with its name and the 1.5×IQR boundary marked on the upper whisker. Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/02-descriptive-statistics-fig-03.html`
+
+---
+
+### Figure 2.4 — Number line with five evenly spaced weights (2,
+
+Create a standalone D3 v7 HTML file for Figure Number line with five evenly spaced weights (2,. Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: number line with five evenly spaced weights (2, 4, 6, 8, 10) balanced on a fulcrum at 6, then a second number line with the same four weights plus one at 30 showing the fulcrum shifting right — illustrates outlier effect on mean without words. Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/02-descriptive-statistics-fig-04.html`
+
+---
+
+### Figure 2.5 — Three side-by-side distribution curves 
+
+Create a standalone D3 v7 HTML file for Figure Three side-by-side distribution curves . Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: three side-by-side distribution curves — symmetric, right-skewed, left-skewed — each with vertical lines marking mode, median, and mean positions, and the inequality relationship (mode < median < mean, etc.) printed below each; the canonical reference diagram for skewness and center. Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/02-descriptive-statistics-fig-05.html`
+
+---
+
+### Figure 2.6 — Two overlapping bell-curve-shaped distributions on the same axis
+
+Create a standalone D3 v7 HTML file for Figure Two overlapping bell-curve-shaped distributions on the same axis. Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: two overlapping bell-curve-shaped distributions on the same axis — both centered at 5 minutes, one narrow (SD=0.5) and one wide (SD=2) — with shaded regions showing where 95% of wait times fall for each; student should see visually why equal means with different SDs produce different experiences. Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/02-descriptive-statistics-fig-06.html`
+
+---
+
+### Figure 2.7 — Histogram of the 100 client portfolio returns 
+
+Create a standalone D3 v7 HTML file for Figure Histogram of the 100 client portfolio returns . Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: histogram of the 100 client portfolio returns — horizontal axis labeled "Annual Return (%)" with ten bars from −16% to +29%, vertical axis labeled "Number of clients"; the bar spanning 2%–6.5% tallest, thin tail visible on right; mean (6.2%) and median (6.5%) marked as vertical lines so student sees they nearly coincide in a near-symmetric distribution. Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/02-descriptive-statistics-fig-07.html`
+
+---
+
+### Figure 2.8 — Box plot of the 100 client returns 
+
+Create a standalone D3 v7 HTML file for Figure Box plot of the 100 client returns . Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: box plot of the 100 client returns — box from Q1=2.8% to Q3=10.5%, median line at 6.5%, lower whisker extending to −15.3%, upper whisker ending at 22.05%, and the +28.4% return plotted as a lone outlier point; visually connects the five-number summary to the outlier boundary calculation just shown. Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/02-descriptive-statistics-fig-08.html`

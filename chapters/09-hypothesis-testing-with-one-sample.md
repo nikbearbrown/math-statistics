@@ -31,7 +31,8 @@ The alternative is the contender. It never includes an equals sign. It says: the
 
 The question the whole procedure asks is: are the data consistent with the null hypothesis, or have they strayed so far from what the null predicts that the null becomes unbelievable?
 
-<!-- → [INFOGRAPHIC: Two-column diagram titled "The asymmetry of the burden of proof." Left column (H₀, shaded): "Status quo. Presumed true. No evidence needed to maintain." Right column (Hₐ): "Challenger. Must clear a high bar. Requires data rare enough under H₀ to be convincing." Below both columns, an arrow pointing right labeled "Evidence strength required →", with the threshold for rejection marked at α = 0.05. Caption: "The null starts with the advantage. The alternative must earn the win."] -->
+![The null starts with the advantage. The alternative must earn the win.](images/09-hypothesis-testing-with-one-sample-fig-01.png)
+*Figure 9.1 — Two-column diagram titled "The asymmetry of the burden*
 
 ---
 
@@ -69,7 +70,8 @@ The doctor who interprets a p-value of 0.04 as "96% confidence that the drug wor
 
 Hold that distinction. It will matter every time you read a scientific result for the rest of your life.
 
-<!-- → [INFOGRAPHIC: Two-arrow diagram side by side. Left arrow points from "H₀ is true" → "P(data this extreme)" labeled "What the p-value measures." Right arrow points from "Data observed" → "P(H₀ is true)" labeled "What we want to know — but cannot get from p alone." A large ≠ symbol between them. Below: parallel to Chapter 3's mammogram — P(positive|cancer) ≠ P(cancer|positive). Caption: "The p-value runs in the wrong direction for the question you actually want answered."] -->
+![The p-value runs in the wrong direction for the question you actually want answered.](images/09-hypothesis-testing-with-one-sample-fig-02.png)
+*Figure 9.2 — Two-arrow diagram side by side*
 
 ---
 
@@ -99,7 +101,12 @@ For drug approval, the calculation flips. Approving a drug that doesn't work (an
 
 The framework doesn't tell you which error is worse. That's a judgment about stakes, not statistics. What the framework does is make the trade-off explicit and give you the tools to control it deliberately.
 
-<!-- → [TABLE: 2×2 decision matrix. Rows: "Reject H₀ / Fail to reject H₀." Columns: "H₀ actually true / H₀ actually false." Cells: (Reject, True) = "Type I error — false positive — probability α"; (Reject, False) = "Correct decision — power = 1−β"; (Fail to reject, True) = "Correct decision — probability 1−α"; (Fail to reject, False) = "Type II error — false negative — probability β." Note below: "Lowering α raises β. You trade one error for the other. The question is which error costs more."] -->
+| H₀ actually true | H₀ actually false |
+| --- | --- |
+| "Reject H₀ | Fail to reject H₀." Columns: "H₀ actually true |
+| Reject, False) = "Correct decision | power = 1−β" |
+| Fail to reject, True) = "Correct decision | probability 1−α" |
+| Fail to reject, False) = "Type II error | false negative |
 
 ---
 
@@ -129,7 +136,8 @@ When to use which:
 - Don't know $\sigma$ and $n < 30$: use the t-test.
 - Don't know $\sigma$ but $n \geq 30$: either works; the t-test is technically more correct, the difference is negligible.
 
-<!-- → [IMAGE: Overlapping density curves on the same axes. Standard normal N(0,1) in dark solid line. t-distribution with df=5 in lighter dashed line — visibly wider tails. t-distribution with df=30 nearly overlapping the normal. Caption: "The t-distribution accounts for uncertainty in estimating σ. With small samples, the tails are heavier. By n=30, the difference is negligible."] -->
+![The t-distribution accounts for uncertainty in estimating σ. With small samples, the tails are heavier. By n=30, the difference is negligible.](images/09-hypothesis-testing-with-one-sample-fig-03.png)
+*Figure 9.3 — Overlapping density curves on the same axes*
 
 ---
 
@@ -169,7 +177,8 @@ $$Z = \frac{16.0 - 16.43}{0.8/\sqrt{15}} = \frac{-0.43}{0.2065} = -2.08$$
 
 *Step 5 — Conclude:* Since $0.019 < 0.05$, reject $H_0$. At the 5% significance level, there is sufficient evidence to conclude that Jeffrey's mean swimming time is less than 16.43 seconds with the goggles. Frank's belief is supported by the data.
 
-<!-- → [IMAGE: Standard normal curve for Jeffrey's one-tailed test. The left tail beyond Z = −1.645 shaded as the rejection region and labeled "α = 0.05." The calculated test statistic Z = −2.08 marked with a vertical line, clearly inside the shaded rejection region. The p-value area (left of −2.08) labeled 0.019. Caption: "The test statistic lands in the rejection region. The data are rare enough under the null to reject it."] -->
+![The test statistic lands in the rejection region. The data are rare enough under the null to reject it.](images/09-hypothesis-testing-with-one-sample-fig-04.png)
+*Figure 9.4 — Standard normal curve for Jeffrey's one-tailed test*
 
 ---
 
@@ -195,7 +204,8 @@ The p-value for a two-tailed test is the area in both tails beyond $|Z| = 0.60$:
 
 Since $0.548 > 0.05$, fail to reject $H_0$. The data are consistent with the bank's claim that 50% of first-time borrowers take out smaller loans. A difference of 3 percentage points in a sample of 100 is well within what random sampling can produce.
 
-<!-- → [IMAGE: Standard normal curve for the bank's two-tailed proportion test. Both tails beyond ±1.96 shaded as rejection regions. The calculated test statistic Z = 0.60 marked near the center, clearly outside the rejection regions. The p-value labeled as the combined area in both tails (0.548). Caption: "Z = 0.60 barely moves from center. With a p-value of 0.548, the data offer no reason to doubt the null."] -->
+![Z = 0.60 barely moves from center. With a p-value of 0.548, the data offer no reason to doubt the null.](images/09-hypothesis-testing-with-one-sample-fig-05.png)
+*Figure 9.5 — Standard normal curve for the bank's two-tailed proportion*
 
 ---
 
@@ -223,7 +233,8 @@ Ask about effect size. A drug that reduces pain by 0.2 points on a 100-point sca
 
 Demand replication. One study with p < 0.05 is interesting. The same result from three independent labs is convincing.
 
-<!-- → [CHART: Line chart — x-axis: number of independent tests conducted (1 to 50), y-axis: probability of at least one false positive (Type I error). Curve starts at 0.05 for one test and rises toward 1.0 as tests increase, reaching ~0.92 by 50 tests (family-wise error rate = 1 − 0.95^n). A horizontal dashed line at 0.05. Caption: "Running 20 tests at α = 0.05 gives roughly a 64% chance of at least one false positive — even when no real effects exist. This is the arithmetic of p-hacking."] -->
+![Running 20 tests at α = 0.05 gives roughly a 64% chance of at least one false positive — even when no real effects exist. This is the arithmetic of p-hacking.](images/09-hypothesis-testing-with-one-sample-fig-06.png)
+*Figure 9.6 — Line chart *
 
 ---
 
@@ -380,3 +391,61 @@ Who is William Gosset, and how does their work connect to hypothesis testing we 
 - Add a constraint: "Answer including criticisms or limits of William Gosset's framework."
 
 What changes? What gets better? What gets worse?
+
+## Prompts
+
+Use these prompts with Claude to generate interactive D3 v7 versions of the
+figures in this chapter. Each produces a standalone HTML file you can open
+in a browser and modify freely.
+
+**Prerequisites:** Load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into
+your Claude project context before using these prompts. They define the stack,
+naming conventions, color system, and typography the figures use.
+
+---
+
+### Figure 9.1 — Two-column diagram titled "The asymmetry of the burden
+
+Create a standalone D3 v7 HTML file for Figure Two-column diagram titled "The asymmetry of the burden. Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: Two-column diagram titled "The asymmetry of the burden of proof." Left column (H₀, shaded): "Status quo. Presumed true. No evidence needed to maintain." Right column (Hₐ): "Challenger. Must clear a high bar. Requires data rare enough under H₀ to be convincing." Below both columns, an arrow pointing right labeled "Evidence strength required →", with the threshold for rejection marked at α = 0.05. Caption: "The null starts with the advantage. The alternative must earn the win.". Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/09-hypothesis-testing-with-one-sample-fig-01.html`
+
+---
+
+### Figure 9.2 — Two-arrow diagram side by side
+
+Create a standalone D3 v7 HTML file for Figure Two-arrow diagram side by side. Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: Two-arrow diagram side by side. Left arrow points from "H₀ is true" → "P(data this extreme)" labeled "What the p-value measures." Right arrow points from "Data observed" → "P(H₀ is true)" labeled "What we want to know — but cannot get from p alone." A large ≠ symbol between them. Below: parallel to Chapter 3's mammogram — P(positive|cancer) ≠ P(cancer|positive). Caption: "The p-value runs in the wrong direction for the question you actually want answered.". Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/09-hypothesis-testing-with-one-sample-fig-02.html`
+
+---
+
+### Figure 9.3 — Overlapping density curves on the same axes
+
+Create a standalone D3 v7 HTML file for Figure Overlapping density curves on the same axes. Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: Overlapping density curves on the same axes. Standard normal N(0,1) in dark solid line. t-distribution with df=5 in lighter dashed line — visibly wider tails. t-distribution with df=30 nearly overlapping the normal. Caption: "The t-distribution accounts for uncertainty in estimating σ. With small samples, the tails are heavier. By n=30, the difference is negligible.". Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/09-hypothesis-testing-with-one-sample-fig-03.html`
+
+---
+
+### Figure 9.4 — Standard normal curve for Jeffrey's one-tailed test
+
+Create a standalone D3 v7 HTML file for Figure Standard normal curve for Jeffrey's one-tailed test. Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: Standard normal curve for Jeffrey's one-tailed test. The left tail beyond Z = −1.645 shaded as the rejection region and labeled "α = 0.05." The calculated test statistic Z = −2.08 marked with a vertical line, clearly inside the shaded rejection region. The p-value area (left of −2.08) labeled 0.019. Caption: "The test statistic lands in the rejection region. The data are rare enough under the null to reject it.". Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/09-hypothesis-testing-with-one-sample-fig-04.html`
+
+---
+
+### Figure 9.5 — Standard normal curve for the bank's two-tailed proportion
+
+Create a standalone D3 v7 HTML file for Figure Standard normal curve for the bank's two-tailed proportion. Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: Standard normal curve for the bank's two-tailed proportion test. Both tails beyond ±1.96 shaded as rejection regions. The calculated test statistic Z = 0.60 marked near the center, clearly outside the rejection regions. The p-value labeled as the combined area in both tails (0.548). Caption: "Z = 0.60 barely moves from center. With a p-value of 0.548, the data offer no reason to doubt the null.". Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/09-hypothesis-testing-with-one-sample-fig-05.html`
+
+---
+
+### Figure 9.6 — Line chart 
+
+Create a standalone D3 v7 HTML file for Figure Line chart . Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: Line chart — x-axis: number of independent tests conducted (1 to 50), y-axis: probability of at least one false positive (Type I error). Curve starts at 0.05 for one test and rises toward 1.0 as tests increase, reaching ~0.92 by 50 tests (family-wise error rate = 1 − 0.95^n). A horizontal dashed line at 0.05. Caption: "Running 20 tests at α = 0.05 gives roughly a 64% chance of at least one false positive — even when no real effects exist. This is the arithmetic of p-hacking.". Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/09-hypothesis-testing-with-one-sample-fig-06.html`

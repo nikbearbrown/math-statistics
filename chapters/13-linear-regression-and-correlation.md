@@ -37,7 +37,8 @@ $r = 0$: no linear relationship; the cloud is a blob.
 $r = 0.8$: strong positive association, points cluster tightly around an upward slope.
 $r = 0.3$: weak positive association, a slight upward tendency lost in wide scatter.
 
-<!-- → [IMAGE: five scatter plots arranged in a row — from left to right: r=-1 (tight downward line), r=-0.7 (loose downward cloud), r=0 (shapeless blob), r=0.7 (loose upward cloud), r=1 (tight upward line); each labeled with its r value; same scale and point count in each; student sees at a glance how point-cloud tightness and tilt correspond to magnitude and sign of r] -->
+![Five scatter plots arranged in a row ](images/13-linear-regression-and-correlation-fig-01.png)
+*Figure 13.1 — Five scatter plots arranged in a row *
 
 One thing to watch: $r$ measures *linear* association. Two variables could be perfectly related in a curved way and still have $r$ near zero. A correlation of zero does not mean the variables are independent; it means there's no linear pattern. Always look at the scatter plot before trusting the number.
 
@@ -79,7 +80,8 @@ If $r = 0$, the slope is zero — the line is horizontal, and $x$ predicts nothi
 
 The intercept formula says the line passes through the point $(\bar{x}, \bar{y})$ — the means of both variables. This is always true for the least-squares line. If you know the slope and you know the means, the line is determined.
 
-<!-- → [IMAGE: scatter plot of ~20 points with the least-squares line drawn through them; a bold dot marks the point (x̄, ȳ) labeled "the line always passes through the means"; a vertical dashed line from one data point to the regression line labeled "residual eᵢ = yᵢ − ŷᵢ"; arrows show two residuals, one positive (point above line) and one negative (point below line); helps students see how the line and residuals relate geometrically before computing] -->
+![Scatter plot of ~20 points with the least-squares](images/13-linear-regression-and-correlation-fig-02.png)
+*Figure 13.2 — Scatter plot of ~20 points with the least-squares*
 
 Let me work through this fully. A statistics class has 25 students.
 
@@ -109,7 +111,8 @@ Now here is Galton's regression in the numbers. The student scored 85 on the mid
 
 The regression line encodes exactly this. The slope is 0.935, not 1.0. Every unit deviation from the mean on the midterm corresponds to only 0.935 units of predicted deviation on the final. That fraction is $r \cdot (s_y / s_x) = 0.85 \times 1.1 = 0.935$. The correlation determines how much regression toward the mean the line predicts.
 
-<!-- → [IMAGE: scatter plot of exam data with regression line ŷ = 6.81 + 0.935x; horizontal dashed line at ȳ=76 and vertical dashed line at x̄=74; a single point at (85, actual final) with a vertical bracket showing its distance above the mean final; a second bracket on the x-axis showing the 11-point deviation from the mean midterm; caption: "The deviation shrinks from 11 points above midterm mean to only 10.29 points above final mean — regression to the mean in action"] -->
+![The deviation shrinks from 11 points above midterm mean to only 10.29 points above final mean — regression to the mean in action](images/13-linear-regression-and-correlation-fig-03.png)
+*Figure 13.3 — Scatter plot of exam data with regression line*
 
 ---
 
@@ -125,7 +128,8 @@ If the residual plot fans out — small residuals for small $\hat{y}$, large res
 
 If there are a few points with very large residuals, those are worth investigating. They are observations where the model fails substantially. Sometimes they're errors. Sometimes they're the most interesting cases in the dataset — the student who studied brilliantly after a poor midterm, the year a company had an anomalous result.
 
-<!-- → [IMAGE: three residual plots in a row, each showing fitted values on the horizontal axis and residuals on the vertical axis — (1) random scatter around zero labeled "Good fit: assumptions met"; (2) curved pattern (U-shape) labeled "Nonlinearity: wrong model"; (3) fan shape widening to the right labeled "Heteroscedasticity: unequal variance"; each plot annotated with what the student should do in response] -->
+![Three residual plots in a row, each showing](images/13-linear-regression-and-correlation-fig-04.png)
+*Figure 13.4 — Three residual plots in a row, each showing*
 
 The quantitative measure of overall fit is $r^2$, the coefficient of determination:
 
@@ -155,7 +159,8 @@ Third, a third variable causes both. Cognitive ability drives both educational a
 
 All three of these situations produce a scatter with an upward tilt. All three produce a positive $r$. All three produce the same regression line. The line does not distinguish between them. It is agnostic about causation.
 
-<!-- → [INFOGRAPHIC: three-panel diagram, each showing the same upward scatter and identical regression line, but with different causal arrows underneath — Panel 1: X → Y (x causes y); Panel 2: Y → X (reverse causation); Panel 3: Z → X and Z → Y with no direct arrow between X and Y (confounding); all three labeled with a real example (education/earnings); caption: "The same regression line can arise from three completely different causal structures — the line cannot tell you which"] -->
+![The same regression line can arise from three completely different causal structures — the line cannot tell you which](images/13-linear-regression-and-correlation-fig-05.png)
+*Figure 13.5 — Diagram, each showing the same upward scatter and*
 
 To establish that $x$ causes $y$, you need more than a scatter plot. You need an experiment: randomize who gets the treatment and who doesn't, then compare outcomes. You need temporal precedence: $x$ must precede $y$ in time. You need to rule out confounders: show that no third variable plausibly explains the association.
 
@@ -169,7 +174,8 @@ Always plot the data first. If the scatter looks curved, do not force a straight
 
 And finally, extrapolation. The regression line was fit in the range of $x$ you observed. If your data cover doses from 50 mg to 150 mg, the line knows about that range. Predicting the effect at 200 mg is extrapolation — you are guessing what the relationship does outside the region where you have evidence. The line might bend. It might break down entirely. Extrapolation is unreliable.
 
-<!-- → [IMAGE: scatter plot with regression line extending beyond the data range — data points clustered between x=50 and x=150 with the line fitting them well; to the right, the line continues as a dashed extension past x=150 labeled "extrapolation: no data here"; a curved dotted line suggests the true relationship might plateau or reverse beyond the observed range; caption: "The line was fit only where you have data — predictions beyond that range assume the pattern continues, which may be false"] -->
+![The line was fit only where you have data — predictions beyond that range assume the pattern continues, which may be false](images/13-linear-regression-and-correlation-fig-06.png)
+*Figure 13.6 — Scatter plot with regression line extending beyond the*
 
 The full and honest statement of what a regression line gives you: *Given the data I observed, assuming the relationship is linear in this range, assuming my next observation comes from the same population as my past observations, and assuming no unmeasured confounders are at work — this is the best linear prediction of $y$ given $x$.*
 
@@ -379,3 +385,61 @@ Who is Gertrude Cox, and how does their work connect to regression and correlati
 - Add a constraint: "Answer including criticisms or limits of Gertrude Cox's framework."
 
 What changes? What gets better? What gets worse?
+
+## Prompts
+
+Use these prompts with Claude to generate interactive D3 v7 versions of the
+figures in this chapter. Each produces a standalone HTML file you can open
+in a browser and modify freely.
+
+**Prerequisites:** Load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into
+your Claude project context before using these prompts. They define the stack,
+naming conventions, color system, and typography the figures use.
+
+---
+
+### Figure 13.1 — Five scatter plots arranged in a row 
+
+Create a standalone D3 v7 HTML file for Figure Five scatter plots arranged in a row . Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: five scatter plots arranged in a row — from left to right: r=-1 (tight downward line), r=-0.7 (loose downward cloud), r=0 (shapeless blob), r=0.7 (loose upward cloud), r=1 (tight upward line); each labeled with its r value; same scale and point count in each; student sees at a glance how point-cloud tightness and tilt correspond to magnitude and sign of r. Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/13-linear-regression-and-correlation-fig-01.html`
+
+---
+
+### Figure 13.2 — Scatter plot of ~20 points with the least-squares
+
+Create a standalone D3 v7 HTML file for Figure Scatter plot of ~20 points with the least-squares. Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: scatter plot of ~20 points with the least-squares line drawn through them; a bold dot marks the point (x̄, ȳ) labeled "the line always passes through the means"; a vertical dashed line from one data point to the regression line labeled "residual eᵢ = yᵢ − ŷᵢ"; arrows show two residuals, one positive (point above line) and one negative (point below line); helps students see how the line and residuals relate geometrically before computing. Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/13-linear-regression-and-correlation-fig-02.html`
+
+---
+
+### Figure 13.3 — Scatter plot of exam data with regression line
+
+Create a standalone D3 v7 HTML file for Figure Scatter plot of exam data with regression line. Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: scatter plot of exam data with regression line ŷ = 6.81 + 0.935x; horizontal dashed line at ȳ=76 and vertical dashed line at x̄=74; a single point at (85, actual final) with a vertical bracket showing its distance above the mean final; a second bracket on the x-axis showing the 11-point deviation from the mean midterm; caption: "The deviation shrinks from 11 points above midterm mean to only 10.29 points above final mean — regression to the mean in action". Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/13-linear-regression-and-correlation-fig-03.html`
+
+---
+
+### Figure 13.4 — Three residual plots in a row, each showing
+
+Create a standalone D3 v7 HTML file for Figure Three residual plots in a row, each showing. Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: three residual plots in a row, each showing fitted values on the horizontal axis and residuals on the vertical axis — (1) random scatter around zero labeled "Good fit: assumptions met"; (2) curved pattern (U-shape) labeled "Nonlinearity: wrong model"; (3) fan shape widening to the right labeled "Heteroscedasticity: unequal variance"; each plot annotated with what the student should do in response. Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/13-linear-regression-and-correlation-fig-04.html`
+
+---
+
+### Figure 13.5 — Diagram, each showing the same upward scatter and
+
+Create a standalone D3 v7 HTML file for Figure Diagram, each showing the same upward scatter and. Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: three-panel diagram, each showing the same upward scatter and identical regression line, but with different causal arrows underneath — Panel 1: X → Y (x causes y); Panel 2: Y → X (reverse causation); Panel 3: Z → X and Z → Y with no direct arrow between X and Y (confounding); all three labeled with a real example (education/earnings); caption: "The same regression line can arise from three completely different causal structures — the line cannot tell you which". Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/13-linear-regression-and-correlation-fig-05.html`
+
+---
+
+### Figure 13.6 — Scatter plot with regression line extending beyond the
+
+Create a standalone D3 v7 HTML file for Figure Scatter plot with regression line extending beyond the. Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: scatter plot with regression line extending beyond the data range — data points clustered between x=50 and x=150 with the line fitting them well; to the right, the line continues as a dashed extension past x=150 labeled "extrapolation: no data here"; a curved dotted line suggests the true relationship might plateau or reverse beyond the observed range; caption: "The line was fit only where you have data — predictions beyond that range assume the pattern continues, which may be false". Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/13-linear-regression-and-correlation-fig-06.html`

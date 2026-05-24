@@ -17,7 +17,8 @@ Start with the fundamental idea. You draw a sample from Population 1 and compute
 
 What is the distribution of $\bar{x}_1 - \bar{x}_2$?
 
-<!-- → [DIAGRAM: Sampling distribution of the difference of two means — show two population distributions (Population 1 and Population 2) on the left, arrows pointing to their respective sampling distributions of x̄₁ and x̄₂, then a third panel showing the resulting distribution of x̄₁ − x̄₂ centered at μ₁ − μ₂ (zero under H₀). Student should see how variance adds across independent sources.] -->
+![Sampling distribution of the difference of two means](images/10-hypothesis-testing-with-two-samples-fig-01.png)
+*Figure 10.1 — Sampling distribution of the difference of two means*
 
 The Central Limit Theorem tells you that each sample mean is approximately normally distributed. And there is a general rule about the sum or difference of independent normal random variables: it is also normal. So the difference of two sample means is approximately normal. Its mean is $\mu_1 - \mu_2$, the true difference between population means. Under the null hypothesis that $\mu_1 = \mu_2$, this mean is zero.
 
@@ -41,7 +42,12 @@ where $\delta_0$ is the hypothesized difference under the null hypothesis — us
 
 A company makes brake pads at two plants. Quality engineers sample 35 pads from the Midwest facility (mean lifespan 49,200 miles, standard deviation 3,100) and 42 pads from the West Coast facility (mean 50,800 miles, standard deviation 2,900). The Midwest pads lasted 1,600 miles less on average. Is the Midwest plant drifting out of specification, or did the sample just happen to catch an off day?
 
-<!-- → [TABLE: Worked example setup — two-column table for Midwest vs. West Coast plants, rows: sample size (n), sample mean (x̄), sample standard deviation (s), contribution to SE (s²/n). Last row: observed difference and computed SE. Helps students see the formula populated with real numbers before the arithmetic.] -->
+| Item | Meaning |
+| --- | --- |
+| sample size (n | A concrete checkpoint for applying the chapter concept. |
+| sample mean (x̄ | A concrete checkpoint for applying the chapter concept. |
+| sample standard deviation (s | A concrete checkpoint for applying the chapter concept. |
+| contribution to SE (s² | n). Last row: observed difference and computed SE. Helps students see the formula populated with real numbers before the arithmetic. |
 
 The standard error of the difference is:
 
@@ -69,7 +75,9 @@ This gives a slightly simpler test statistic and exactly $n_1 + n_2 - 2$ degrees
 
 The problem is the assumption. You rarely know in advance whether the two population standard deviations are equal. If you assume they are equal and you are wrong, the pooled test can mislead you. The unpooled approach requires no such assumption and pays only a small cost in power. For this reason, most statisticians now recommend the unpooled approach as the default, reserving pooling for situations where equal variances are strongly supported by prior knowledge or preliminary tests.
 
-<!-- → [TABLE: Side-by-side comparison of pooled vs. unpooled (Welch) t-test — columns: property, pooled, Welch unpooled; rows: assumption required, degrees of freedom formula, when to use, risk if assumption violated, software default. Student should see at a glance why Welch is the safer default.] -->
+| property | pooled | Welch unpooled |
+| --- | --- | --- |
+| assumption required, degrees of freedom formula, when to use, risk if assumption violated, software default. Student should see at a glance why Welch is the safer default. | It makes the underlying reasoning visible instead of implied. | A concrete checkpoint for applying the chapter concept. |
 
 This is not a religious question. The two tests give similar results when sample sizes are roughly equal and sample variances are similar. They can diverge when one group is much larger or much more variable than the other. In those cases, the unpooled approach is more trustworthy.
 
@@ -93,7 +101,9 @@ where $\bar{d}$ is the mean of the twelve differences and $s_d$ is their standar
 
 Suppose the twelve differences (after minus before, in meters) are: 90, 60, 20, 90, 30, 100, −10, 50, 80, 40, 70, 60. Their mean is $\bar{d} = 760/12 \approx 63.3$ meters. Their standard deviation is approximately 38.2 meters. The standard error is $38.2 / \sqrt{12} \approx 11.0$ meters. The t-statistic is $63.3 / 11.0 \approx 5.75$.
 
-<!-- → [TABLE: Paired data layout for the rehabilitation example — columns: Patient ID, Before (meters), After (meters), Difference (after − before). Twelve rows of data from the worked example. Final row: mean of differences (63.3 m) and SD of differences (38.2 m). Student should see how the two-column problem collapses to a single column of differences.] -->
+| Patient ID | Before (meters) | After (meters) | Difference (after − before) |
+| --- | --- | --- | --- |
+| mean of differences (63.3 m) and SD of differences (38.2 m). Student should see how the two-column problem collapses to a single column of differences. | A concrete checkpoint for applying the chapter concept. | A concrete checkpoint for applying the chapter concept. | A concrete checkpoint for applying the chapter concept. |
 
 With 11 degrees of freedom, a t-statistic of 5.75 gives a p-value far below 0.001. The protocol significantly improved walking distance.
 
@@ -101,7 +111,8 @@ Why does pairing help? Because people differ enormously from each other. Some pa
 
 By looking only at the *change within each person*, pairing removes the between-person noise entirely. The test becomes sharper. The same true effect produces a larger t-statistic and a smaller p-value when the design exploits pairing.
 
-<!-- → [DIAGRAM: Two-panel illustration of pairing vs. ignoring pairs — left panel shows two overlapping dot clouds (before group and after group) with wide spread and overlapping distributions, making the difference hard to see; right panel shows the same data reduced to a single column of differences with a narrow distribution clearly separated from zero. Student should see visually why pairing reduces noise.] -->
+![Illustration of pairing vs](images/10-hypothesis-testing-with-two-samples-fig-02.png)
+*Figure 10.2 — Illustration of pairing vs*
 
 The flip side: pairing only helps if the pairs are genuinely related. If you sort two unrelated groups by some irrelevant criterion and call them "paired," you impose a structure that does not exist, waste a degree of freedom for every pair, and make your test worse. Pairing is a design feature, not a post-hoc trick.
 
@@ -145,7 +156,8 @@ $$d = \frac{\bar{x}_1 - \bar{x}_2}{s_p}$$
 
 Cohen's rough benchmarks: $d = 0.2$ is small, $d = 0.5$ is medium, $d = 0.8$ is large. For the brake pads, the effect size was about $d = 0.53$ — medium, practically meaningful for warranty and customer satisfaction purposes. For the blood pressure drug above, $d$ would be tiny, and no amount of statistical significance changes that.
 
-<!-- → [CHART: Scatter plot or dot plot with two axes — x-axis: p-value (log scale, from 0.001 to 1.0), y-axis: Cohen's d (0 to 1.5). Populate four quadrants with labeled example scenarios: top-left (large d, small p) = "significant AND important"; bottom-left (small d, small p) = "significant but trivial — the large-sample trap"; top-right (large d, large p) = "important but underpowered"; bottom-right (small d, large p) = "neither." Student should see that the p-value and effect size are asking different questions.] -->
+![Scatter plot or dot plot with two axes](images/10-hypothesis-testing-with-two-samples-fig-03.png)
+*Figure 10.3 — Scatter plot or dot plot with two axes*
 
 The p-value answers: "Could this have happened by chance?" Effect size answers: "Does it matter?" Both questions are worth asking. A result that is statistically significant and practically important is compelling. A result that is statistically significant but practically negligible is technically real and practically useless.
 
@@ -157,7 +169,8 @@ The three tests in this chapter — independent means, paired means, proportions
 
 In each case, you identify a quantity that represents the difference between two groups (the difference of sample means, the mean of paired differences, the difference of sample proportions). You compute its standard error. You standardize by dividing the observed difference by the standard error, producing a test statistic. You ask how extreme that test statistic is under the appropriate distribution (t or z). And you compare the resulting p-value to your significance threshold.
 
-<!-- → [INFOGRAPHIC: Decision tree for choosing among the three two-sample tests — root node: "Are your samples independent or paired?" → paired branch: "Paired t-test (one-sample t on differences)" → independent branch: "Are you comparing means or proportions?" → means branch: "Two-sample t-test (Welch unpooled by default)" → proportions branch: "Two-proportion z-test (pooled SE under H₀)." Each leaf node shows the test statistic formula and the distribution used.] -->
+![Decision tree for choosing among the three two-sample](images/10-hypothesis-testing-with-two-samples-fig-04.png)
+*Figure 10.4 — Decision tree for choosing among the three two-sample*
 
 The choice of which test to use comes down to three questions. First: are the samples independent or paired? Paired data collapse the problem to a one-sample test on differences. Independent data require the full two-sample machinery. Second: are you comparing means or proportions? Means use the t-distribution; proportions use the z. Third, for means: do you assume equal population variances? Unpooled (Welch) is the safer default.
 
@@ -273,3 +286,45 @@ career or ideas.
 - Add a constraint: "Answer including criticisms or limits of Frank Wilcoxon's framework."
 
 What changes? What gets better? What gets worse?
+
+## Prompts
+
+Use these prompts with Claude to generate interactive D3 v7 versions of the
+figures in this chapter. Each produces a standalone HTML file you can open
+in a browser and modify freely.
+
+**Prerequisites:** Load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into
+your Claude project context before using these prompts. They define the stack,
+naming conventions, color system, and typography the figures use.
+
+---
+
+### Figure 10.1 — Sampling distribution of the difference of two means
+
+Create a standalone D3 v7 HTML file for Figure Sampling distribution of the difference of two means. Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: Sampling distribution of the difference of two means — show two population distributions (Population 1 and Population 2) on the left, arrows pointing to their respective sampling distributions of x̄₁ and x̄₂, then a third panel showing the resulting distribution of x̄₁ − x̄₂ centered at μ₁ − μ₂ (zero under H₀). Student should see how variance adds across independent sources.. Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/10-hypothesis-testing-with-two-samples-fig-01.html`
+
+---
+
+### Figure 10.2 — Illustration of pairing vs
+
+Create a standalone D3 v7 HTML file for Figure Illustration of pairing vs. Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: Two-panel illustration of pairing vs. ignoring pairs — left panel shows two overlapping dot clouds (before group and after group) with wide spread and overlapping distributions, making the difference hard to see; right panel shows the same data reduced to a single column of differences with a narrow distribution clearly separated from zero. Student should see visually why pairing reduces noise.. Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/10-hypothesis-testing-with-two-samples-fig-02.html`
+
+---
+
+### Figure 10.3 — Scatter plot or dot plot with two axes
+
+Create a standalone D3 v7 HTML file for Figure Scatter plot or dot plot with two axes. Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: Scatter plot or dot plot with two axes — x-axis: p-value (log scale, from 0.001 to 1.0), y-axis: Cohen's d (0 to 1.5). Populate four quadrants with labeled example scenarios: top-left (large d, small p) = "significant AND important"; bottom-left (small d, small p) = "significant but trivial — the large-sample trap"; top-right (large d, large p) = "important but underpowered"; bottom-right (small d, large p) = "neither." Student should see that the p-value and effect size are asking different questions.. Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/10-hypothesis-testing-with-two-samples-fig-03.html`
+
+---
+
+### Figure 10.4 — Decision tree for choosing among the three two-sample
+
+Create a standalone D3 v7 HTML file for Figure Decision tree for choosing among the three two-sample. Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: Decision tree for choosing among the three two-sample tests — root node: "Are your samples independent or paired?" → paired branch: "Paired t-test (one-sample t on differences)" → independent branch: "Are you comparing means or proportions?" → means branch: "Two-sample t-test (Welch unpooled by default)" → proportions branch: "Two-proportion z-test (pooled SE under H₀)." Each leaf node shows the test statistic formula and the distribution used.. Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/10-hypothesis-testing-with-two-samples-fig-04.html`

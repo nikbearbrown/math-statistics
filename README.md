@@ -1,6 +1,6 @@
 # Introductory Statistics
 
-**Author:** Nik Bear Brown
+**Author:** Humanitarians AI
 
 **Folder:** `books/introductory-statistics-bundle-with-llms/`
 

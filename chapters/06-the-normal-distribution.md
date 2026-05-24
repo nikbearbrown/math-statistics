@@ -13,7 +13,8 @@ He began to suspect he was seeing something fundamental. Not a statistical artif
 
 He was right. That shape is the normal distribution. This chapter teaches you to read it.
 
-<!-- → [IMAGE: Recreation of Galton's 1875 bivariate scatter plot — father's height on x-axis, son's height on y-axis. Points form an elliptical cloud, denser in the center and thinning at the edges. A bell curve projected onto each axis to show the marginal distributions. Caption: "Galton's dots. The cloud has a shape — and that shape is the bell."] -->
+![Galton's dots. The cloud has a shape — and that shape is the bell.](images/06-the-normal-distribution-fig-01.png)
+*Figure 6.1 — Recreation of Galton's 1875 bivariate scatter plot *
 
 ---
 
@@ -31,7 +32,8 @@ Now extend the logic. A person's height is determined by hundreds of genes, each
 
 This is why the normal distribution appears whenever a quantity is the sum of many small independent effects. The causes don't need to be identical to each other. They just need to be numerous and independent. The central limit theorem (which you'll meet in Chapter 7) makes this precise. For now, trust the intuition: sums of many independent small things converge to a bell shape. That's not a coincidence. It's a theorem.
 
-<!-- → [CHART: Bar chart of the binomial distribution for n=100 coin flips — x-axis: number of heads (30 to 70), y-axis: probability. Bars form a clear bell shape peaking at 50. A smooth normal curve overlaid to show how well they match. Student should see the bell emerging from pure counting, with no formula required.] -->
+![Bar chart of the binomial distribution for n=100](images/06-the-normal-distribution-fig-02.png)
+*Figure 6.2 — Bar chart of the binomial distribution for n=100*
 
 ---
 
@@ -51,7 +53,8 @@ $\sigma$ is the standard deviation — the measure of spread. A small $\sigma$ p
 
 We write $X \sim N(\mu, \sigma)$ to say that a quantity $X$ follows a normal distribution with mean $\mu$ and standard deviation $\sigma$. The tilde means "is distributed as."
 
-<!-- → [IMAGE: Three normal curves drawn on the same axes, all centered at μ=0. First: σ=1, tall and narrow. Second: σ=2, medium. Third: σ=4, short and wide. Each labeled with its σ value. Caption: "Same mean, different spread. The shape is always the bell — only the width changes."] -->
+![Same mean, different spread. The shape is always the bell — only the width changes.](images/06-the-normal-distribution-fig-03.png)
+*Figure 6.3 — Three normal curves drawn on the same axes,*
 
 Three facts about the normal curve that are worth having in your head:
 
@@ -81,7 +84,8 @@ Notice the rule also gives you the tails. If 95% of data fall within two standar
 
 These tail probabilities matter enormously when you get to hypothesis testing. A result that is more than two standard deviations from what you expected is rare by chance. A result more than three standard deviations away is very rare. That's the intuition behind statistical significance, and it all flows from these three numbers.
 
-<!-- → [IMAGE: Standard normal bell curve with three nested shaded bands. Innermost band (darkest): ±1σ, labeled 68%. Middle band: ±2σ, labeled 95%. Outer band (lightest): ±3σ, labeled 99.7%. The unshaded tails at ±3σ clearly visible. Below the curve: the tail percentages labeled — 0.15% each beyond ±3σ, 2.5% each beyond ±2σ. Caption: "The 68-95-99.7 rule. Three numbers to memorize. The tails are already included."] -->
+![The 68-95-99.7 rule. Three numbers to memorize. The tails are already included.](images/06-the-normal-distribution-fig-04.png)
+*Figure 6.4 — Standard normal bell curve with three nested shaded*
 
 ---
 
@@ -124,7 +128,8 @@ When you convert a value to a z-score, you're translating it into a distribution
 
 Every normal distribution, regardless of its original mean and standard deviation, becomes the same standard normal distribution once you convert to z-scores. This is why z-scores are so powerful: they provide a universal scale. All normal distributions are the same shape. Standardization reveals that universal shape.
 
-<!-- → [INFOGRAPHIC: Two-step transformation diagram. Left: a bell curve labeled N(1050, 200) — the SAT distribution — with the value 1200 marked. Arrow pointing right labeled "z = (x − μ)/σ". Right: the standard normal N(0,1) with z = 0.75 marked at the same relative position. Parallel diagram below for ACT: N(21, 5), value 28, transforms to z = 1.40. Both z-scores shown on the same standard normal axis so the comparison is visible. Caption: "Z-scores put incomparable scales on a common ruler."] -->
+![Z-scores put incomparable scales on a common ruler.](images/06-the-normal-distribution-fig-05.png)
+*Figure 6.5 — Two-step transformation diagram*
 
 ---
 
@@ -174,7 +179,8 @@ Since they're on opposite sides of the mean, add: $0.3849 + 0.3849 = 0.7698$.
 
 About 77% of men fall in this range. Notice this is close to, but not exactly, the empirical rule's 68% for one standard deviation. The interval here is $\pm 1.2$ standard deviations, which is a bit wider than $\pm 1$.
 
-<!-- → [IMAGE: Three side-by-side standard normal curves illustrating the three question types. Left: "Below a value" — entire left tail shaded up to z=0.80, area labeled 0.7881. Center: "Above a value" — right tail shaded from z=0.80, area labeled 0.2119. Right: "Between two values" — middle region shaded between z=−1.20 and z=+1.20, areas on each half labeled 0.3849, total 0.7698. Caption: "Three shapes, three moves. Every normal probability question is one of these."] -->
+![Three shapes, three moves. Every normal probability question is one of these.](images/06-the-normal-distribution-fig-06.png)
+*Figure 6.6 — Three side-by-side standard normal curves illustrating the three*
 
 ---
 
@@ -194,7 +200,8 @@ The diagnostic is simple: plot the data. If the histogram looks roughly symmetri
 
 The most important violation to recognize is heavy tails. A normal distribution assigns very small probabilities to extreme values. If your data has more extreme values than the normal distribution predicts — which is common in financial returns, earthquake magnitudes, and network traffic — the normal distribution will underestimate the probability of rare, large events. This is not a minor problem. It's the kind of modeling error that produces financial crises.
 
-<!-- → [CHART: Overlapping density curves — standard normal (thin tail, labeled "Normal") vs a t-distribution or power-law distribution (visibly fatter tail, labeled "Heavy-tailed"). The two curves are nearly identical in the center but diverge sharply beyond ±2σ. A zoomed inset of the right tail makes the difference stark. Caption: "The tails look the same until they don't. Heavy-tailed data produces extreme events the normal distribution says are almost impossible."] -->
+![The tails look the same until they don't. Heavy-tailed data produces extreme events the normal distribution says are almost impossible.](images/06-the-normal-distribution-fig-07.png)
+*Figure 6.7 — Overlapping density curves *
 
 ---
 
@@ -347,3 +354,69 @@ Who is Carl Friedrich Gauss, and how does their work connect to the normal distr
 - Add a constraint: "Answer including criticisms or limits of Carl Friedrich Gauss's framework."
 
 What changes? What gets better? What gets worse?
+
+## Prompts
+
+Use these prompts with Claude to generate interactive D3 v7 versions of the
+figures in this chapter. Each produces a standalone HTML file you can open
+in a browser and modify freely.
+
+**Prerequisites:** Load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into
+your Claude project context before using these prompts. They define the stack,
+naming conventions, color system, and typography the figures use.
+
+---
+
+### Figure 6.1 — Recreation of Galton's 1875 bivariate scatter plot 
+
+Create a standalone D3 v7 HTML file for Figure Recreation of Galton's 1875 bivariate scatter plot . Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: Recreation of Galton's 1875 bivariate scatter plot — father's height on x-axis, son's height on y-axis. Points form an elliptical cloud, denser in the center and thinning at the edges. A bell curve projected onto each axis to show the marginal distributions. Caption: "Galton's dots. The cloud has a shape — and that shape is the bell.". Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/06-the-normal-distribution-fig-01.html`
+
+---
+
+### Figure 6.2 — Bar chart of the binomial distribution for n=100
+
+Create a standalone D3 v7 HTML file for Figure Bar chart of the binomial distribution for n=100. Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: Bar chart of the binomial distribution for n=100 coin flips — x-axis: number of heads (30 to 70), y-axis: probability. Bars form a clear bell shape peaking at 50. A smooth normal curve overlaid to show how well they match. Student should see the bell emerging from pure counting, with no formula required.. Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/06-the-normal-distribution-fig-02.html`
+
+---
+
+### Figure 6.3 — Three normal curves drawn on the same axes,
+
+Create a standalone D3 v7 HTML file for Figure Three normal curves drawn on the same axes,. Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: Three normal curves drawn on the same axes, all centered at μ=0. First: σ=1, tall and narrow. Second: σ=2, medium. Third: σ=4, short and wide. Each labeled with its σ value. Caption: "Same mean, different spread. The shape is always the bell — only the width changes.". Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/06-the-normal-distribution-fig-03.html`
+
+---
+
+### Figure 6.4 — Standard normal bell curve with three nested shaded
+
+Create a standalone D3 v7 HTML file for Figure Standard normal bell curve with three nested shaded. Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: Standard normal bell curve with three nested shaded bands. Innermost band (darkest): ±1σ, labeled 68%. Middle band: ±2σ, labeled 95%. Outer band (lightest): ±3σ, labeled 99.7%. The unshaded tails at ±3σ clearly visible. Below the curve: the tail percentages labeled — 0.15% each beyond ±3σ, 2.5% each beyond ±2σ. Caption: "The 68-95-99.7 rule. Three numbers to memorize. The tails are already included.". Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/06-the-normal-distribution-fig-04.html`
+
+---
+
+### Figure 6.5 — Two-step transformation diagram
+
+Create a standalone D3 v7 HTML file for Figure Two-step transformation diagram. Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: Two-step transformation diagram. Left: a bell curve labeled N(1050, 200) — the SAT distribution — with the value 1200 marked. Arrow pointing right labeled "z = (x − μ)/σ". Right: the standard normal N(0,1) with z = 0.75 marked at the same relative position. Parallel diagram below for ACT: N(21, 5), value 28, transforms to z = 1.40. Both z-scores shown on the same standard normal axis so the comparison is visible. Caption: "Z-scores put incomparable scales on a common ruler.". Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/06-the-normal-distribution-fig-05.html`
+
+---
+
+### Figure 6.6 — Three side-by-side standard normal curves illustrating the three
+
+Create a standalone D3 v7 HTML file for Figure Three side-by-side standard normal curves illustrating the three. Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: Three side-by-side standard normal curves illustrating the three question types. Left: "Below a value" — entire left tail shaded up to z=0.80, area labeled 0.7881. Center: "Above a value" — right tail shaded from z=0.80, area labeled 0.2119. Right: "Between two values" — middle region shaded between z=−1.20 and z=+1.20, areas on each half labeled 0.3849, total 0.7698. Caption: "Three shapes, three moves. Every normal probability question is one of these.". Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/06-the-normal-distribution-fig-06.html`
+
+---
+
+### Figure 6.7 — Overlapping density curves 
+
+Create a standalone D3 v7 HTML file for Figure Overlapping density curves . Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: Overlapping density curves — standard normal (thin tail, labeled "Normal") vs a t-distribution or power-law distribution (visibly fatter tail, labeled "Heavy-tailed"). The two curves are nearly identical in the center but diverge sharply beyond ±2σ. A zoomed inset of the right tail makes the difference stark. Caption: "The tails look the same until they don't. Heavy-tailed data produces extreme events the normal distribution says are almost impossible.". Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/06-the-normal-distribution-fig-07.html`

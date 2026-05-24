@@ -23,7 +23,8 @@ The only way out is to accept that the probability of any *single* point is zero
 
 This is the foundational fact of continuous probability, and it resolves the apparent paradox immediately. $P(X = 5) = 0$. But $P(4.9 < X < 5.1) = \text{something real}$. The probability is spread continuously over the interval, so thinly that any single point gets none of it.
 
-<!-- → [INFOGRAPHIC: two-panel comparison — left panel shows a discrete number line with probability "masses" (filled circles) sitting at integers 0 through 5, each labeled with a probability; right panel shows a continuous interval [0,5] with a smooth curve above it and a shaded region between two values, captioned "probability = area"; the visual contrast explains why individual points on the right have zero probability while intervals do not] -->
+![Comparison ](images/05-continuous-random-variables-fig-01.png)
+*Figure 5.1 — Comparison *
 
 ---
 
@@ -41,7 +42,8 @@ Two consequences follow immediately. First, since the probability that $X$ lands
 
 One thing to watch for: the height of the density function at a point is *not* a probability. It can be greater than 1, and often is. What matters is area. A density of 2 at a point just means probability is highly concentrated there — spread it over a thin enough interval and the area stays small.
 
-<!-- → [IMAGE: a smooth density curve f(x) with a shaded region between x=c and x=d, labeled "P(c < X < d) = this area"; a separate callout arrow points to the curve height at a single point x=c labeled "f(c) = density, NOT probability — can exceed 1"; helps students immediately internalize that height ≠ probability before they hit the uniform and exponential sections] -->
+![A smooth density curve f(x) with a shaded](images/05-continuous-random-variables-fig-02.png)
+*Figure 5.2 — A smooth density curve f(x) with a shaded*
 
 ---
 
@@ -55,7 +57,8 @@ $$f(x) = \frac{1}{b - a} \quad \text{for } a \leq x \leq b$$
 
 The height is constant. The shape is a rectangle with base $(b - a)$ and height $\frac{1}{b-a}$. Its area is exactly 1, as required.
 
-<!-- → [IMAGE: uniform distribution rectangle for U(0,12) — horizontal axis labeled "Wait time (minutes)" from 0 to 12, flat horizontal density line at height 1/12 ≈ 0.083, a narrower shaded rectangle from 0 to 3 labeled "P(X < 3) = 3/12 = 0.25"; shows how probability-as-fraction-of-total-base works geometrically] -->
+![Uniform distribution rectangle for U(0,12) ](images/05-continuous-random-variables-fig-03.png)
+*Figure 5.3 — Uniform distribution rectangle for U(0,12) *
 
 To find any probability, you compute the area of the relevant slice — still a rectangle, just narrower:
 
@@ -111,7 +114,8 @@ $$f(x) = \frac{1}{\mu} e^{-x/\mu}, \quad x \geq 0$$
 
 Here $e \approx 2.718$ is Euler's number, the base of natural logarithms. The density is highest at $x = 0$ and decays as $x$ grows. Short waits are the most probable; long waits are possible but increasingly rare.
 
-<!-- → [CHART: exponential density curve for Exp(4) — horizontal axis "Time (minutes)" from 0 to 16, vertical axis "Density f(x)"; curve starts at height 0.25 at x=0 and decays toward zero; shaded region under the curve from 0 to 1 labeled "P(X < 1) ≈ 0.22"; vertical dashed lines at mean=4 and median≈2.77 labeled to show median < mean; student sees the right-skew and understands why long waits inflate the mean] -->
+![Exponential density curve for Exp(4) ](images/05-continuous-random-variables-fig-04.png)
+*Figure 5.4 — Exponential density curve for Exp(4) *
 
 Both the mean and the standard deviation equal $\mu$:
 
@@ -175,7 +179,8 @@ $$P(X > 6 + 1 \mid X > 6) = P(X > 1) = e^{-1/4} \approx 0.779$$
 
 The probability of waiting another minute is the same as it was at the very start. The clock resets. There is no "due" call.
 
-<!-- → [IMAGE: timeline diagram illustrating the memoryless property — a horizontal line representing time, with "Last event" marked at left, a bracket labeled "Already waited r=6 min" ending at "Now", and a second bracket extending rightward labeled "Remaining wait t" with a question mark; below it, a second identical timeline starting fresh at "Now", with the same bracket labeled "Fresh wait t from scratch"; caption: "The distribution of remaining wait time is identical regardless of how long you have already waited"] -->
+![The distribution of remaining wait time is identical regardless of how long you have already waited](images/05-continuous-random-variables-fig-05.png)
+*Figure 5.5 — Timeline diagram illustrating the memoryless property *
 
 Why does this happen? Because the exponential distribution models truly random arrivals — events that happen at a constant rate, independent of when the last one occurred. The randomness doesn't have memory. The probability that a call arrives in the next second is the same whether the last call was 1 second ago or 10 minutes ago. The past left no trace.
 
@@ -199,7 +204,8 @@ The uniform distribution is rarely the final answer — real data is almost neve
 
 The exponential distribution is the continuous partner of the Poisson. If events arrive at an average rate of $\lambda$ per hour (Poisson count), then the time between events is exponential with mean $\mu = 1/\lambda$. You can go back and forth between these two descriptions of the same process: count the arrivals (discrete, Poisson) or measure the gaps (continuous, exponential). They're two ways of describing the same underlying randomness.
 
-<!-- → [INFOGRAPHIC: a timeline of random events (vertical tick marks at irregular intervals) above two parallel descriptions — top row: "Count events in fixed window → Poisson(λ)" with a bracket spanning several ticks and labeled "n=3 arrivals"; bottom row: "Measure gap between events → Exponential(1/λ)" with a bracket spanning one inter-arrival gap labeled "gap = X"; shows the same process viewed two ways, connecting the discrete chapter to this one] -->
+![A timeline of random events (vertical tick marks](images/05-continuous-random-variables-fig-06.png)
+*Figure 5.6 — A timeline of random events (vertical tick marks*
 
 ---
 
@@ -353,3 +359,61 @@ Who is Abraham de Moivre, and how does their work connect to continuous random v
 - Add a constraint: "Answer including criticisms or limits of Abraham de Moivre's framework."
 
 What changes? What gets better? What gets worse?
+
+## Prompts
+
+Use these prompts with Claude to generate interactive D3 v7 versions of the
+figures in this chapter. Each produces a standalone HTML file you can open
+in a browser and modify freely.
+
+**Prerequisites:** Load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into
+your Claude project context before using these prompts. They define the stack,
+naming conventions, color system, and typography the figures use.
+
+---
+
+### Figure 5.1 — Comparison 
+
+Create a standalone D3 v7 HTML file for Figure Comparison . Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: two-panel comparison — left panel shows a discrete number line with probability "masses" (filled circles) sitting at integers 0 through 5, each labeled with a probability; right panel shows a continuous interval [0,5] with a smooth curve above it and a shaded region between two values, captioned "probability = area"; the visual contrast explains why individual points on the right have zero probability while intervals do not. Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/05-continuous-random-variables-fig-01.html`
+
+---
+
+### Figure 5.2 — A smooth density curve f(x) with a shaded
+
+Create a standalone D3 v7 HTML file for Figure A smooth density curve f(x) with a shaded. Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: a smooth density curve f(x) with a shaded region between x=c and x=d, labeled "P(c < X < d) = this area"; a separate callout arrow points to the curve height at a single point x=c labeled "f(c) = density, NOT probability — can exceed 1"; helps students immediately internalize that height ≠ probability before they hit the uniform and exponential sections. Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/05-continuous-random-variables-fig-02.html`
+
+---
+
+### Figure 5.3 — Uniform distribution rectangle for U(0,12) 
+
+Create a standalone D3 v7 HTML file for Figure Uniform distribution rectangle for U(0,12) . Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: uniform distribution rectangle for U(0,12) — horizontal axis labeled "Wait time (minutes)" from 0 to 12, flat horizontal density line at height 1/12 ≈ 0.083, a narrower shaded rectangle from 0 to 3 labeled "P(X < 3) = 3/12 = 0.25"; shows how probability-as-fraction-of-total-base works geometrically. Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/05-continuous-random-variables-fig-03.html`
+
+---
+
+### Figure 5.4 — Exponential density curve for Exp(4) 
+
+Create a standalone D3 v7 HTML file for Figure Exponential density curve for Exp(4) . Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: exponential density curve for Exp(4) — horizontal axis "Time (minutes)" from 0 to 16, vertical axis "Density f(x)"; curve starts at height 0.25 at x=0 and decays toward zero; shaded region under the curve from 0 to 1 labeled "P(X < 1) ≈ 0.22"; vertical dashed lines at mean=4 and median≈2.77 labeled to show median < mean; student sees the right-skew and understands why long waits inflate the mean. Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/05-continuous-random-variables-fig-04.html`
+
+---
+
+### Figure 5.5 — Timeline diagram illustrating the memoryless property 
+
+Create a standalone D3 v7 HTML file for Figure Timeline diagram illustrating the memoryless property . Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: timeline diagram illustrating the memoryless property — a horizontal line representing time, with "Last event" marked at left, a bracket labeled "Already waited r=6 min" ending at "Now", and a second bracket extending rightward labeled "Remaining wait t" with a question mark; below it, a second identical timeline starting fresh at "Now", with the same bracket labeled "Fresh wait t from scratch"; caption: "The distribution of remaining wait time is identical regardless of how long you have already waited". Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/05-continuous-random-variables-fig-05.html`
+
+---
+
+### Figure 5.6 — A timeline of random events (vertical tick marks
+
+Create a standalone D3 v7 HTML file for Figure A timeline of random events (vertical tick marks. Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: a timeline of random events (vertical tick marks at irregular intervals) above two parallel descriptions — top row: "Count events in fixed window → Poisson(λ)" with a bracket spanning several ticks and labeled "n=3 arrivals"; bottom row: "Measure gap between events → Exponential(1/λ)" with a bracket spanning one inter-arrival gap labeled "gap = X"; shows the same process viewed two ways, connecting the discrete chapter to this one. Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/05-continuous-random-variables-fig-06.html`

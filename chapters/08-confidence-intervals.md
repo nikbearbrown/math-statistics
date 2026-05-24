@@ -27,7 +27,10 @@ $$\bar{x} - z^* \cdot \frac{\sigma}{\sqrt{n}} \leq \mu \leq \bar{x} + z^* \cdot 
 
 The $z^*$ is the critical value — the z-score that marks the boundary of your chosen confidence level. For 95% confidence, $z^* = 1.96$. For 90%, $z^* = 1.645$. For 99%, $z^* = 2.576$. The quantity $z^* \cdot \frac{\sigma}{\sqrt{n}}$ is the margin of error — how far you extend on each side of the sample mean.
 
-<!-- → [TABLE: three-row reference table — columns: Confidence Level, z* critical value, Interpretation; rows: 90% / 1.645 / "Miss 10% of the time", 95% / 1.96 / "Miss 5% of the time", 99% / 2.576 / "Miss 1% of the time"; quick lookup card students will return to throughout Chapters 8–13] -->
+| Confidence Level | z* critical value | Interpretation |
+| --- | --- | --- |
+| 90% | 1.645 | "Miss 10% of the time", 95% |
+| quick lookup card students will return to throughout Chapters 8–13 | A concrete checkpoint for applying the chapter concept. | A concrete checkpoint for applying the chapter concept. |
 
 ---
 
@@ -43,7 +46,8 @@ What 95% confidence actually means is a statement about the *procedure*, not abo
 
 Your interval is one of those 100. It either hit or missed. You'll never know which. But if the procedure is trustworthy (random sample, correct formula), you should trust that the procedure works 95% of the time.
 
-<!-- → [IMAGE: horizontal dot plot showing 100 confidence intervals stacked vertically — each a horizontal line segment representing one CI built from one sample; 95 of the lines cross a vertical dashed line labeled "true μ = 10.7"; 5 lines are colored red and do not cross the dashed line; caption: "95 of 100 intervals contain the true mean — but you never know which intervals those are"] -->
+![95 of 100 intervals contain the true mean — but you never know which intervals those are](images/08-confidence-intervals-fig-01.png)
+*Figure 8.1 — Horizontal dot plot showing 100 confidence intervals stacked*
 
 Let me be concrete. Suppose the true county average really is 10.7 days. The survey produced an interval of (9.3, 11.1). That interval contains 10.7, so it hit. But the survey team doesn't know 10.7 is the true value — they never will. They know only that they used a procedure that works 95% of the time. That's what they mean when they say "95% confidence."
 
@@ -69,7 +73,8 @@ Interpretation: we are 95% confident — meaning, we used a procedure that captu
 
 Notice two things. Larger samples narrow the interval, because $\sigma / \sqrt{n}$ shrinks as $n$ grows. Higher confidence levels widen the interval, because $z^*$ grows when you demand more confidence. These are the two levers you control. They pull in opposite directions: more confidence means a wider net; more data means a tighter net.
 
-<!-- → [INFOGRAPHIC: 2×2 grid showing four interval widths for the same x̄=2.0, σ=1 dataset — top row: n=100 at 90% and 99% confidence; bottom row: n=400 at 90% and 99% confidence; each cell shows the interval as a horizontal bar with numeric bounds; student sees both levers simultaneously: larger n narrows each row, higher confidence widens each column] -->
+![2×2 grid showing four interval widths for the](images/08-confidence-intervals-fig-02.png)
+*Figure 8.2 — 2×2 grid showing four interval widths for the*
 
 ---
 
@@ -93,7 +98,8 @@ Why $n - 1$? When you compute the sample standard deviation $s$, you first compu
 
 The t-distribution with $df$ degrees of freedom has heavier tails than the normal, and the difference is most pronounced when $df$ is small. As $df$ increases — as $n$ gets larger — the t-distribution converges to the standard normal. By around $df = 30$, the two are nearly identical. This is why practitioners sometimes say "use t for small samples and z for large ones" — but the more precise rule is: use t whenever you don't know $\sigma$. For large $n$, it doesn't much matter, but t is always correct.
 
-<!-- → [CHART: overlapping density curves — standard normal (z) in one color; t with df=3 in a second color; t with df=10 in a third; t with df=30 nearly indistinguishable from normal; all centered at 0; horizontal axis from -4 to 4; the heavier tails of t at small df are visible; caption notes that critical values at the 2.5% tail grow from 1.96 (z) to 2.262 (df=9) to 3.250 (df=9 at 99%), explaining why t-intervals are wider] -->
+![Overlapping density curves ](images/08-confidence-intervals-fig-03.png)
+*Figure 8.3 — Overlapping density curves *
 
 The confidence interval formula for a mean with unknown $\sigma$:
 
@@ -147,7 +153,8 @@ We are 95% confident that between 81.0% and 87.4% of adults in the city own smar
 
 One interesting quirk: the margin of error is largest when $\hat{p} = 0.5$, because the product $\hat{p}(1 - \hat{p})$ is maximized at $0.5$. A 50-50 split has the most uncertainty; an extreme proportion (near 0 or 1) has less, because when almost everyone or almost no one has the characteristic, your estimate is inherently more precise. The 95% split in our smartphone example gives a narrower interval than you'd get if the split were 50-50.
 
-<!-- → [CHART: parabolic curve of p̂(1-p̂) as a function of p̂ from 0 to 1 — peaks at p̂=0.5 (value=0.25) and falls to 0 at both extremes; horizontal axis labeled "Sample proportion p̂"; vertical axis labeled "Variance contribution p̂(1-p̂)"; point at p̂=0.842 marked to show the smartphone example sits on the right slope with lower variance than the 0.5 peak; caption: "Margin of error is widest when the split is closest to 50-50"] -->
+![Margin of error is widest when the split is closest to 50-50](images/08-confidence-intervals-fig-04.png)
+*Figure 8.4 — Parabolic curve of p̂(1-p̂) as a function of*
 
 ---
 
@@ -175,7 +182,8 @@ $$n = \frac{(1.96)^2 \times 0.25}{(0.0125)^2} = \frac{0.9604}{0.000156} = 6,157$
 
 This is why precision is expensive. A poll accurate to $\pm 3\%$ takes about 1,000 people. A poll accurate to $\pm 1\%$ takes about 9,600. News organizations don't run 10,000-person polls; they accept a $\pm 3\%$ margin and live with the uncertainty. That's not laziness — it's economics.
 
-<!-- → [CHART: curve of required sample size n (vertical axis, log scale) vs. desired margin of error e (horizontal axis, from 1% to 10%); the curve follows the 1/e² relationship; three labeled points: (3%, ~1,067), (2%, ~2,401), (1%, ~9,604); caption: "Halving the margin of error quadruples the required sample — the cost of precision is not linear"] -->
+![Halving the margin of error quadruples the required sample — the cost of precision is not linear](images/08-confidence-intervals-fig-05.png)
+*Figure 8.5 — Curve of required sample size n (vertical axis,*
 
 The same relationship holds for means. The sample size needed to achieve a margin of error $e$ for a mean is:
 
@@ -349,3 +357,53 @@ Who is Jerzy Neyman, and how does their work connect to confidence intervals we 
 - Add a constraint: "Answer including criticisms or limits of Jerzy Neyman's framework."
 
 What changes? What gets better? What gets worse?
+
+## Prompts
+
+Use these prompts with Claude to generate interactive D3 v7 versions of the
+figures in this chapter. Each produces a standalone HTML file you can open
+in a browser and modify freely.
+
+**Prerequisites:** Load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into
+your Claude project context before using these prompts. They define the stack,
+naming conventions, color system, and typography the figures use.
+
+---
+
+### Figure 8.1 — Horizontal dot plot showing 100 confidence intervals stacked
+
+Create a standalone D3 v7 HTML file for Figure Horizontal dot plot showing 100 confidence intervals stacked. Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: horizontal dot plot showing 100 confidence intervals stacked vertically — each a horizontal line segment representing one CI built from one sample; 95 of the lines cross a vertical dashed line labeled "true μ = 10.7"; 5 lines are colored red and do not cross the dashed line; caption: "95 of 100 intervals contain the true mean — but you never know which intervals those are". Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/08-confidence-intervals-fig-01.html`
+
+---
+
+### Figure 8.2 — 2×2 grid showing four interval widths for the
+
+Create a standalone D3 v7 HTML file for Figure 2×2 grid showing four interval widths for the. Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: 2×2 grid showing four interval widths for the same x̄=2.0, σ=1 dataset — top row: n=100 at 90% and 99% confidence; bottom row: n=400 at 90% and 99% confidence; each cell shows the interval as a horizontal bar with numeric bounds; student sees both levers simultaneously: larger n narrows each row, higher confidence widens each column. Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/08-confidence-intervals-fig-02.html`
+
+---
+
+### Figure 8.3 — Overlapping density curves 
+
+Create a standalone D3 v7 HTML file for Figure Overlapping density curves . Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: overlapping density curves — standard normal (z) in one color; t with df=3 in a second color; t with df=10 in a third; t with df=30 nearly indistinguishable from normal; all centered at 0; horizontal axis from -4 to 4; the heavier tails of t at small df are visible; caption notes that critical values at the 2.5% tail grow from 1.96 (z) to 2.262 (df=9) to 3.250 (df=9 at 99%), explaining why t-intervals are wider. Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/08-confidence-intervals-fig-03.html`
+
+---
+
+### Figure 8.4 — Parabolic curve of p̂(1-p̂) as a function of
+
+Create a standalone D3 v7 HTML file for Figure Parabolic curve of p̂(1-p̂) as a function of. Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: parabolic curve of p̂(1-p̂) as a function of p̂ from 0 to 1 — peaks at p̂=0.5 (value=0.25) and falls to 0 at both extremes; horizontal axis labeled "Sample proportion p̂"; vertical axis labeled "Variance contribution p̂(1-p̂)"; point at p̂=0.842 marked to show the smartphone example sits on the right slope with lower variance than the 0.5 peak; caption: "Margin of error is widest when the split is closest to 50-50". Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/08-confidence-intervals-fig-04.html`
+
+---
+
+### Figure 8.5 — Curve of required sample size n (vertical axis,
+
+Create a standalone D3 v7 HTML file for Figure Curve of required sample size n (vertical axis,. Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: curve of required sample size n (vertical axis, log scale) vs. desired margin of error e (horizontal axis, from 1% to 10%); the curve follows the 1/e² relationship; three labeled points: (3%, ~1,067), (2%, ~2,401), (1%, ~9,604); caption: "Halving the margin of error quadruples the required sample — the cost of precision is not linear". Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/08-confidence-intervals-fig-05.html`

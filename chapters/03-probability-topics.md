@@ -15,7 +15,8 @@ The doctor confused two probabilities that feel the same but are entirely differ
 
 This chapter is about the machinery that produces the correct answer and the vocabulary needed to understand why the doctor's intuition was so badly wrong.
 
-<!-- → [INFOGRAPHIC: Two-panel split showing the two reversed conditionals: left panel labeled "What the test measures: P(positive | cancer) = 98%" with arrow from Cancer → Test; right panel labeled "What the patient needs: P(cancer | positive) = ?" with arrow from Test → Cancer. Visual goal: student immediately sees these are different questions pointing in opposite directions.] -->
+![Split showing the two reversed conditionals: left panel](images/03-probability-topics-fig-01.png)
+*Figure 3.1 — Split showing the two reversed conditionals: left panel*
 
 ---
 
@@ -39,7 +40,8 @@ When all outcomes are equally likely:
 
 $$P(A) = \frac{\text{number of outcomes in } A}{\text{total number of outcomes in } S}$$
 
-<!-- → [IMAGE: Single fair die with all six faces shown; two faces (5 and 6) shaded to illustrate the event "rolling at least a 5." Caption should note: shaded outcomes = event A; total faces = sample space S; fraction = probability.] -->
+![Single fair die with all six faces shown](images/03-probability-topics-fig-02.png)
+*Figure 3.2 — Single fair die with all six faces shown*
 
 Roll a fair die. The event "rolling at least a 5" contains two outcomes: $\{5, 6\}$. So $P(\text{at least 5}) = 2/6 = 1/3$.
 
@@ -63,7 +65,8 @@ What probability *does* say is this: in the long run, the fraction of spins land
 
 This is the hard thing to internalize about probability. It describes populations and long-run frequencies. It says very little about any single event.
 
-<!-- → [CHART: Line chart showing 5 simulated runs of 500 roulette spins — y-axis is running fraction of "red" outcomes, x-axis is spin number. All lines start erratically (0 or 1) and converge toward 0.474 by spin 500. Student should see: short-run variability is enormous; convergence is real but says nothing about the next spin.] -->
+![Line chart showing 5 simulated runs of 500](images/03-probability-topics-fig-03.png)
+*Figure 3.3 — Line chart showing 5 simulated runs of 500*
 
 ---
 
@@ -137,7 +140,13 @@ Think of it this way. "Heart" and "diamond" are mutually exclusive — one card 
 
 Independent events usually can and do sometimes happen together. Mutually exclusive events never do. Keep these straight.
 
-<!-- → [TABLE: 2×2 classification grid — rows: "Can occur together / Cannot occur together"; columns: "Knowing A changes P(B) / Knowing A does not change P(B)". Fill in each cell with an example and the label (Dependent & not ME; Independent; Mutually exclusive = always dependent; impossible for positive-probability events). Goal: student sees at a glance that the two concepts are orthogonal axes, not synonyms.] -->
+| Knowing A changes P(B) | Knowing A does not change P(B) |
+| --- | --- |
+| "Can occur together | Cannot occur together" |
+| columns: "Knowing A changes P(B) | Knowing A does not change P(B)". Fill in each cell with an example and the label (Dependent & not ME |
+| Independent | A concrete checkpoint for applying the chapter concept. |
+| Mutually exclusive = always dependent | A concrete checkpoint for applying the chapter concept. |
+| impossible for positive-probability events). Goal: student sees at a glance that the two concepts are orthogonal axes, not synonyms. | A concrete checkpoint for applying the chapter concept. |
 
 ---
 
@@ -223,7 +232,8 @@ $$P(\text{cancer} \mid \text{positive}) = \frac{98}{1088} \approx 0.090$$
 
 Same answer. The frequency table forces you to see what you're actually counting — and it makes the result intuitive. Almost all positive tests come from the large pool of cancer-free women. The true positives are a small fraction.
 
-<!-- → [INFOGRAPHIC: Icon array of 10,000 women (100×100 grid of small person icons). 100 icons shaded red = cancer. Of those 100, 98 circled = true positives. 9,900 icons in grey = no cancer. Of those, 990 circled in orange = false positives. Final callout: "Of 1,088 circled women, only 98 have cancer." Visual makes the base-rate swamping viscerally clear.] -->
+![Icon array of 10,000 women (100×100 grid of](images/03-probability-topics-fig-04.png)
+*Figure 3.4 — Icon array of 10,000 women (100×100 grid of*
 
 Notice what happens when you raise the base rate. Suppose cancer affects 10% of this population instead of 1%. Now:
 
@@ -236,7 +246,8 @@ The same test, on the same kind of woman, gives a very different posterior — b
 
 This is the insight Bayes' theorem encodes. The evidence doesn't stand alone. Evidence updates prior beliefs. The strength of the update depends on both the quality of the evidence and where you started.
 
-<!-- → [CHART: Line chart — x-axis: base rate (prior) from 0% to 50%; y-axis: P(cancer | positive test). Two curves: one for the 98%/10% test parameters from this chapter, one for a 95%/5% test. Student should see: both curves start near zero at low base rates and climb; the posterior is highly sensitive to the prior, especially at low base rates. The knee of the curve is the key teaching point.] -->
+![Line chart ](images/03-probability-topics-fig-05.png)
+*Figure 3.5 — Line chart *
 
 ---
 
@@ -270,7 +281,8 @@ When a problem involves multiple stages or multiple variables, two tools help ke
 
 Both tools do the same thing: they make the bookkeeping visible. They force you to track the full set of possibilities so you don't accidentally leave something out or double-count something. Which one to use depends on the problem's structure — trees work well for sequential events; tables work well for two categorical variables measured simultaneously.
 
-<!-- → [IMAGE: Side-by-side comparison — left: a two-stage tree diagram for the mammogram problem (first branch: cancer/no cancer; second branch from each: positive/negative test), with joint probabilities written at the end of each path and marginal probability computed by summing paths. Right: the equivalent contingency table with the same numbers. Caption: "Both tools encode the same information; choose based on your problem's structure."] -->
+![Both tools encode the same information; choose based on your problem's structure.](images/03-probability-topics-fig-06.png)
+*Figure 3.6 — Comparison *
 
 ---
 
@@ -412,3 +424,61 @@ Who is Andrey Kolmogorov, and how does their work connect to probability we cove
 - Add a constraint: "Answer including criticisms or limits of Andrey Kolmogorov's framework."
 
 What changes? What gets better? What gets worse?
+
+## Prompts
+
+Use these prompts with Claude to generate interactive D3 v7 versions of the
+figures in this chapter. Each produces a standalone HTML file you can open
+in a browser and modify freely.
+
+**Prerequisites:** Load `brutalist/CLAUDE.md` and `brutalist/DESIGN.md` into
+your Claude project context before using these prompts. They define the stack,
+naming conventions, color system, and typography the figures use.
+
+---
+
+### Figure 3.1 — Split showing the two reversed conditionals: left panel
+
+Create a standalone D3 v7 HTML file for Figure Split showing the two reversed conditionals: left panel. Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: Two-panel split showing the two reversed conditionals: left panel labeled "What the test measures: P(positive | cancer) = 98%" with arrow from Cancer → Test; right panel labeled "What the patient needs: P(cancer | positive) = ?" with arrow from Test → Cancer. Visual goal: student immediately sees these are different questions pointing in opposite directions.. Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/03-probability-topics-fig-01.html`
+
+---
+
+### Figure 3.2 — Single fair die with all six faces shown
+
+Create a standalone D3 v7 HTML file for Figure Single fair die with all six faces shown. Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: Single fair die with all six faces shown; two faces (5 and 6) shaded to illustrate the event "rolling at least a 5." Caption should note: shaded outcomes = event A; total faces = sample space S; fraction = probability.. Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/03-probability-topics-fig-02.html`
+
+---
+
+### Figure 3.3 — Line chart showing 5 simulated runs of 500
+
+Create a standalone D3 v7 HTML file for Figure Line chart showing 5 simulated runs of 500. Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: Line chart showing 5 simulated runs of 500 roulette spins — y-axis is running fraction of "red" outcomes, x-axis is spin number. All lines start erratically (0 or 1) and converge toward 0.474 by spin 500. Student should see: short-run variability is enormous; convergence is real but says nothing about the next spin.. Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/03-probability-topics-fig-03.html`
+
+---
+
+### Figure 3.4 — Icon array of 10,000 women (100×100 grid of
+
+Create a standalone D3 v7 HTML file for Figure Icon array of 10,000 women (100×100 grid of. Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: Icon array of 10,000 women (100×100 grid of small person icons). 100 icons shaded red = cancer. Of those 100, 98 circled = true positives. 9,900 icons in grey = no cancer. Of those, 990 circled in orange = false positives. Final callout: "Of 1,088 circled women, only 98 have cancer." Visual makes the base-rate swamping viscerally clear.. Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/03-probability-topics-fig-04.html`
+
+---
+
+### Figure 3.5 — Line chart 
+
+Create a standalone D3 v7 HTML file for Figure Line chart . Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: Line chart — x-axis: base rate (prior) from 0% to 50%; y-axis: P(cancer | positive test). Two curves: one for the 98%/10% test parameters from this chapter, one for a 95%/5% test. Student should see: both curves start near zero at low base rates and climb; the posterior is highly sensitive to the prior, especially at low base rates. The knee of the curve is the key teaching point.. Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/03-probability-topics-fig-05.html`
+
+---
+
+### Figure 3.6 — Comparison 
+
+Create a standalone D3 v7 HTML file for Figure Comparison . Use the CDN https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js, inline CSS, ResizeObserver redraw, SVG role="img", aria-labelledby, title, and desc. Build the figure from this structural brief: Side-by-side comparison — left: a two-stage tree diagram for the mammogram problem (first branch: cancer/no cancer; second branch from each: positive/negative test), with joint probabilities written at the end of each path and marginal probability computed by summing paths. Right: the equivalent contingency table with the same numbers. Caption: "Both tools encode the same information; choose based on your problem's structure.". Use the described data shape and labels; when exact values are not supplied, use plausible illustrative values that preserve the relationships in the brief. Use a zero baseline for bars or areas, direct labels where possible, and annotations named in the brief. Use only DESIGN.md color variables and the required serif/mono font split.
+
+> Reference implementation: `d3/03-probability-topics-fig-06.html`
