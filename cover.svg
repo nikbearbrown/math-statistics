@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 2560" width="1600" height="2560" preserveAspectRatio="xMidYMid meet" shape-rendering="geometricPrecision">
+  <g id="background"><rect x="0" y="0" width="1600" height="2560" fill="#F5C518"/></g>
+  <g id="symbol-fragments" transform="rotate(11, 800, 830)">
+    <polygon points="300,320 382,350 442,936 342,984" fill="#111111"/>
+    <polygon points="430,400 512,443 572,1070 472,1090" fill="#111111"/>
+    <polygon points="560,309 642,316 702,948 602,976" fill="#111111"/>
+    <polygon points="690,322 772,344 832,1017 732,1039" fill="#111111"/>
+    <polygon points="820,487 902,492 962,899 862,953" fill="#111111"/>
+    <polygon points="950,421 1032,424 1092,896 992,955" fill="#D62B2B"/>
+    <polygon points="1080,371 1162,424 1222,923 1122,978" fill="#111111"/>
+  </g>
+  <g id="title-letterforms">
+    <text x="120" y="1510" font-family="Arial Black, Arial, sans-serif" font-size="250" font-weight="900" letter-spacing="0" fill="#111111" textLength="1300" lengthAdjust="spacingAndGlyphs">INTRODUCTORY</text>
+    <text x="120" y="1768" font-family="Arial Black, Arial, sans-serif" font-size="250" font-weight="900" letter-spacing="0" fill="#D62B2B" textLength="1300" lengthAdjust="spacingAndGlyphs">STATISTICS</text>
+  </g>
+</svg>
