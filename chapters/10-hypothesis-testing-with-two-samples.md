@@ -1,4 +1,11 @@
 # Chapter 10 — Hypothesis Testing with Two Samples
+
+## TL;DR
+
+- When One Group Isn't Enough to Tell You Anything.
+- The chapter moves through The difference as a random variable, A concrete case: two manufacturing plants, Pooled versus unpooled: a choice about assumptions, When the groups are not independent: the paired design, and related ideas.
+- Read it for the main argument, the vocabulary it introduces, and the practical judgment it asks you to develop.
+
 *When One Group Isn't Enough to Tell You Anything.*
 
 The question that drives almost everything in applied statistics is not "what is this group like?" It is "are these two groups different?"
@@ -265,9 +272,12 @@ dataset's central story?
 
 ---
 
-## AI Wayback Machine
-
+##  AI Wayback Machine
 **Frank Wilcoxon** was a chemist whose rank-based two-sample test (1945) became one of the most-used nonparametric techniques in modern statistics.
+
+![Frank Wilcoxon](../images/frank-wilcoxon-761.png)
+
+*Puppet Art by [Nik Bear Brown](https://www.nikbearbrown.com/).*
 
 **Run this:**
 

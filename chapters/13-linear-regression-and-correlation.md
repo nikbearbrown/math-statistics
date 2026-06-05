@@ -1,4 +1,11 @@
 # Chapter 13 — Linear Regression and Correlation
+
+## TL;DR
+
+- On what it means for two things to move together, and what it doesn't mean.
+- The chapter moves through Seeing co-movement, The line that fits best, What the line misses: Residuals and $r^2$, What regression can't do, and related ideas.
+- Read it for the main argument, the vocabulary it introduces, and the practical judgment it asks you to develop.
+
 *On what it means for two things to move together, and what it doesn't mean.*
 
 ---
@@ -367,8 +374,7 @@ close.
 
 ---
 
-## AI Wayback Machine
-
+##  AI Wayback Machine
 **Gertrude Cox** was the first woman to chair a statistics department in the US — at North Carolina State — and a pioneer of experimental design and regression methods.
 
 **Run this:**

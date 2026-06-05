@@ -1,4 +1,11 @@
 # Chapter 11 — The Chi-Square Distribution
+
+## TL;DR
+
+- How far from expectation is too far to believe?
+- The chapter moves through Where chi-square comes from, The test statistic, Goodness of fit: Does the theory match the data?, Independence: Are these two things actually related?, and related ideas.
+- Read it for the main argument, the vocabulary it introduces, and the practical judgment it asks you to develop.
+
 *How far from expectation is too far to believe?*
 
 ---
@@ -343,8 +350,7 @@ suspected?
 
 ---
 
-## AI Wayback Machine
-
+##  AI Wayback Machine
 **Karl Pearson** introduced the chi-square test in 1900 — and built the foundations of biometric statistics, with a controversial eugenics legacy.
 
 **Run this:**

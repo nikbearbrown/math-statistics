@@ -1,4 +1,11 @@
 # Chapter 3 — Probability Topics
+
+## TL;DR
+
+- The mathematics of what you don't yet know.
+- The chapter moves through What probability is, The gambler's fallacy and what probability does not say, Two events: AND and OR, The most important distinction: independence vs. mutual exclusivity, and related ideas.
+- Read it for the main argument, the vocabulary it introduces, and the practical judgment it asks you to develop.
+
 *The mathematics of what you don't yet know.*
 
 ---
@@ -406,9 +413,11 @@ between the two variables, made visible.
 
 ---
 
-## AI Wayback Machine
+##  AI Wayback Machine
 
-**Andrey Kolmogorov** was a Soviet mathematician who axiomatized probability theory in 1933 — the foundation of all modern statistical reasoning.
+![Andrey Kolmogorov](../images/andrey-kolmogorov-czw.png)
+
+*Puppet Art by [Nik Bear Brown](https://www.nikbearbrown.com/).*
 
 **Run this:**
 

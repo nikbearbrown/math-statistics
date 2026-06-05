@@ -1,4 +1,11 @@
 # Chapter 5 — Continuous Random Variables
+
+## TL;DR
+
+- Where probability becomes area, and a single point vanishes into nothing.
+- The chapter moves through The problem with measuring things, Density instead of mass, The uniform distribution: what ignorance looks like, The exponential distribution: why short times dominate, and related ideas.
+- Read it for the main argument, the vocabulary it introduces, and the practical judgment it asks you to develop.
+
 *Where probability becomes area, and a single point vanishes into nothing.*
 
 ---
@@ -341,8 +348,7 @@ practical meaning? Compute the probability and interpret.
 
 ---
 
-## AI Wayback Machine
-
+##  AI Wayback Machine
 **Abraham de Moivre** derived the normal approximation to the binomial in 1733 — the first appearance of the normal distribution in print.
 
 **Run this:**

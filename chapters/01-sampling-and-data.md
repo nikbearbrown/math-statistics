@@ -1,5 +1,12 @@
 # Chapter 1 — Sampling and Data
 
+
+## TL;DR
+
+- Here is a puzzle that should bother you.
+- The chapter moves through The question behind the question, What a good sample looks like, What you are measuring, and why it matters, The deepest distinction: seeing versus doing, and related ideas.
+- Read it for the main argument, the vocabulary it introduces, and the practical judgment it asks you to develop.
+
 Here is a puzzle that should bother you.
 
 In October 1936, a magazine called the *Literary Digest* predicted the outcome of the U.S. presidential election. They had been doing this since 1916. Sixteen elections in a row, they got it right. Their method was simple: send out postcards, count the returns, announce the winner. That year they sent ten million postcards. Two million came back. By any reasonable standard, that is an enormous amount of data — more data than almost anyone had ever collected about anything, at that point in history.
@@ -230,9 +237,12 @@ analysis report.
 
 ---
 
-## AI Wayback Machine
-
+##  AI Wayback Machine
 **Florence Nightingale David** was a 20th-century British statistician — Karl Pearson's protégée — whose work on combinatorial probability and survey sampling is still cited.
+
+![Florence Nightingale David](../images/florence-nightingale-david-287.png)
+
+*Puppet Art by [Nik Bear Brown](https://www.nikbearbrown.com/).*
 
 **Run this:**
 

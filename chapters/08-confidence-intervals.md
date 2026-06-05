@@ -1,4 +1,11 @@
 # Chapter 8 — Confidence Intervals
+
+## TL;DR
+
+- On the honest way to express what you don't know.
+- The chapter moves through Why one number is never enough, What "95% confident" actually means, Building a confidence interval when you know $\sigma$, The problem Gossett solved, and related ideas.
+- Read it for the main argument, the vocabulary it introduces, and the practical judgment it asks you to develop.
+
 *On the honest way to express what you don't know.*
 
 ---
@@ -339,9 +346,7 @@ confidence?
 
 ---
 
-## AI Wayback Machine
-
-**Jerzy Neyman** was a Polish-American statistician who built the modern theory of confidence intervals and hypothesis testing in the 1930s with Egon Pearson.
+##  AI Wayback Machine
 
 **Run this:**
 

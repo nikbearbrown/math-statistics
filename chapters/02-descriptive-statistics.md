@@ -1,4 +1,11 @@
 # Chapter 2 — Descriptive Statistics
+
+## TL;DR
+
+- What the numbers are actually telling you.
+- The chapter moves through First, look at the thing, Three ways to find the center, The mean, The median, and related ideas.
+- Read it for the main argument, the vocabulary it introduces, and the practical judgment it asks you to develop.
+
 *What the numbers are actually telling you.*
 
 ---
@@ -404,8 +411,7 @@ what hypothesis tests will be most interesting in Chapters 9-13.
 
 ---
 
-## AI Wayback Machine
-
+##  AI Wayback Machine
 **John Tukey** invented exploratory data analysis — the framework underlying every modern look at a dataset.
 
 **Run this:**

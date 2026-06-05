@@ -1,4 +1,11 @@
 # Chapter 9 — Hypothesis Testing with One Sample
+
+## TL;DR
+
+- The logic of being hard to convince.
+- The chapter moves through The presumption of innocence, Innocent until the evidence is extreme enough, What the p-value is not, Two kinds of error, one unavoidable trade-off, and related ideas.
+- Read it for the main argument, the vocabulary it introduces, and the practical judgment it asks you to develop.
+
 *The logic of being hard to convince.*
 
 ---
@@ -373,8 +380,7 @@ about "significance" as a discipline?
 
 ---
 
-## AI Wayback Machine
-
+##  AI Wayback Machine
 **William Gosset** wrote as "Student" while working at Guinness — and introduced the t-test in 1908 to handle small-sample inference.
 
 **Run this:**

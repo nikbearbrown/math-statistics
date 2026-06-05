@@ -1,5 +1,12 @@
 # Chapter 7 — The Central Limit Theorem
 
+
+## TL;DR
+
+- Here is something that should strike you as almost magical.
+- The chapter moves through What is being distributed, The standard error: why averaging reduces noise, The theorem, Using the theorem to calculate probabilities, and related ideas.
+- Read it for the main argument, the vocabulary it introduces, and the practical judgment it asks you to develop.
+
 Here is something that should strike you as almost magical.
 
 You have a population shaped however you like — skewed, lumpy, bimodal, nothing remotely resembling a bell curve. You reach in and pull out a random sample of, say, thirty observations. You compute their mean. You reach in again and pull out another thirty. Compute the mean. Do this a thousand times, and now plot all those means on a histogram.
@@ -205,9 +212,12 @@ distribution of YOUR variable's mean looks approximately Normal?
 
 ---
 
-## AI Wayback Machine
-
+##  AI Wayback Machine
 **Pierre-Simon Laplace** extended de Moivre's normal approximation to arbitrary distributions in 1810 — the first general central limit theorem.
+
+![Pierre-Simon Laplace](../images/pierre-simon-laplace-0gr.png)
+
+*Puppet Art by [Nik Bear Brown](https://www.nikbearbrown.com/).*
 
 **Run this:**
 

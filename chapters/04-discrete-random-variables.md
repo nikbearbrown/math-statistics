@@ -1,5 +1,12 @@
 # Chapter 4 — Discrete Random Variables
 
+
+## TL;DR
+
+- Here is a question that sounds simple until you try to answer it precisely: before you flip a coin, what is the "value" of the number of heads you are about to get?
+- The chapter moves through Naming the uncertainty, What you expect, and how much you should worry about variation, The binomial: when you repeat the same trial over and over, When the binomial conditions fail: the Poisson, and related ideas.
+- Read it for the main argument, the vocabulary it introduces, and the practical judgment it asks you to develop.
+
 Here is a question that sounds simple until you try to answer it precisely: before you flip a coin, what is the "value" of the number of heads you are about to get?
 
 It is not zero. It is not one. It is not one-half, either — you will not get half a head. The experiment has not happened yet. The outcome is genuinely uncertain. And yet we want to *talk* about it, *reason* about it, *calculate* things about it before the coin leaves your hand.
@@ -244,8 +251,7 @@ imperfect.
 
 ---
 
-## AI Wayback Machine
-
+##  AI Wayback Machine
 **Siméon Denis Poisson** was a French mathematician whose 1837 work on the distribution bearing his name underlies modern modeling of rare events.
 
 **Run this:**

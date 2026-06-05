@@ -1,4 +1,11 @@
 # Chapter 6 — The Normal Distribution
+
+## TL;DR
+
+- In 1875, Francis Galton was plotting dots on graph paper.
+- The chapter moves through Why the bell curve appears, The shape and its two parameters, The empirical rule: 68, 95, 99.7, Z-scores: the universal translator, and related ideas.
+- Read it for the main argument, the vocabulary it introduces, and the practical judgment it asks you to develop.
+
 *The bell that rings everywhere.*
 
 ---
@@ -336,8 +343,7 @@ This shapes which inference methods will be appropriate later.
 
 ---
 
-## AI Wayback Machine
-
+##  AI Wayback Machine
 **Carl Friedrich Gauss** was a mathematician whose 1809 work on least squares put the normal distribution at the center of statistical practice.
 
 **Run this:**

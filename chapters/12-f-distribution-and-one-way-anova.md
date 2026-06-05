@@ -1,4 +1,11 @@
 # Chapter 12 — The F-Distribution and One-Way ANOVA
+
+## TL;DR
+
+- What wheat fields taught us about comparing everything.
+- The chapter moves through The F-distribution, A simple use: comparing two variances, The central idea of ANOVA: partitioning variation, Mean squares: turning sums into variance estimates, and related ideas.
+- Read it for the main argument, the vocabulary it introduces, and the practical judgment it asks you to develop.
+
 *What wheat fields taught us about comparing everything.*
 
 ---
@@ -375,9 +382,12 @@ gives the full picture.
 
 ---
 
-## AI Wayback Machine
-
+##  AI Wayback Machine
 **Ronald Fisher** invented analysis of variance, the F-distribution, and the core machinery of modern experimental statistics — with an entangled eugenics legacy.
+
+![Ronald Fisher](../images/ronald-fisher-1j8.png)
+
+*Puppet Art by [Nik Bear Brown](https://www.nikbearbrown.com/).*
 
 **Run this:**
 
